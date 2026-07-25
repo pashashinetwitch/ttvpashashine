@@ -211,13 +211,13 @@
             <!-- Сетка галереи -->
             <div class="gallery-grid">
                 <!-- Карточка 1 -->
-               <div class="gallery-card" onclick="openGalleryModal('https://i.ibb.co/35YS0qNv/20.jpg')">
+   <div class="gallery-card" onclick="openGalleryModal('https://i.ibb.co/35YS0qNv/20.jpg')">
     <div class="image-thumb-wrap">
         <img src="https://i.ibb.co/YFMn1kBj/20.jpg" alt="Превью испытания">
     </div>
     <div class="card-info">
         <span class="card-title">🔪 PashaShine (ExPop)</span>
-        <span class="card-title">🔪 Петрушевый чай (ExPop)</span>
+        <span class="card-subtitle">🔪 Петрушевый чай (ExPop)</span>
     </div>
 </div>
 
@@ -319,7 +319,17 @@ body {
     background-position: center;
     background-attachment: fixed;
 }
-        
+        <script>
+    function openGalleryModal(imgSrc) {
+        const modal = document.getElementById('galleryModal');
+        const modalImg = document.getElementById('modalFullImg');
+        if (modal && modalImg) {
+            modalImg.src = imgSrc;
+            modal.style.display = 'flex';
+        }
+    }
+</script>
+    
     </script>
 </body>
 </html>
