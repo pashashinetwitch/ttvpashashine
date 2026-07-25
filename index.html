@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PashaShine | Live Hub</title>
+    <title>PashaShine | Hub</title>
     <style>
         /* --- Базовые стили --- */
         body {
@@ -56,7 +56,7 @@
             margin: 0;
         }
         .cyber-list li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             padding-left: 15px;
             position: relative;
         }
@@ -75,7 +75,7 @@
 
         /* --- Структура (3 колонки) --- */
         .sidebar-left {
-            width: 260px;
+            width: 280px;
             padding: 15px;
             box-sizing: border-box;
             overflow-y: auto;
@@ -88,7 +88,7 @@
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow-y: auto;
         }
         
         .sidebar-right {
@@ -120,23 +120,6 @@
             font-weight: bold;
         }
 
-        .player-container {
-            flex-grow: 1;
-            background: #000;
-            border-radius: 10px;
-            border: 1px solid #502099;
-            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4);
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-        
-        .player-container iframe,
-        .chat-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
         .chat-container {
             flex-grow: 1;
             background: #0e0e10;
@@ -144,14 +127,19 @@
             border: 1px solid #502099;
             box-shadow: 0 0 15px rgba(145, 70, 255, 0.4);
             overflow: hidden;
+            min-height: 400px;
+        }
+        .chat-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Статус-бар со скриптом */
         .status-box {
-            margin-bottom: 0;
             text-align: center;
-            padding: 12px;
-            font-size: 0.95em;
+            padding: 15px;
+            font-size: 1em;
         }
         .dot {
             height: 10px;
@@ -175,12 +163,10 @@
                 overflow: auto;
                 height: auto;
             }
-            .sidebar-left, .sidebar-right {
+            .sidebar-left, .sidebar-right, .main-content {
                 width: 100%;
                 height: auto;
-            }
-            .main-content {
-                height: 60vh;
+                overflow: visible;
             }
             .chat-container {
                 height: 400px;
@@ -202,26 +188,40 @@
         <div class="cyber-block">
             <h2>Навигация</h2>
             <ul class="cyber-list">
-                <li><a href="https://www.twitch.tv/pashashine/schedule" target="_blank">Расписание</a></li>
+                <li><a href="https://www.twitch.tv/pashashine/schedule" target="_blank">Расписание стримов</a></li>
                 <li><a href="https://www.twitch.tv/pashashine/about" target="_blank">О себе / Железо</a></li>
                 <li><a href="https://www.twitch.tv/pashashine/chat" target="_blank">Правила чата</a></li>
             </ul>
         </div>
     </aside>
 
-    <!-- ЦЕНТР: Плеер Twitch -->
+    <!-- ЦЕНТР: Информационные блоки вместо плеера -->
     <main class="main-content">
-        <div class="player-container">
-            <iframe src="https://player.twitch.tv/?channel=pashashine&parent=pashashinetwitch.github.io&muted=false" 
-                    allowfullscreen="true">
-            </iframe>
-        </div>
         
         <!-- Блок статуса с автопроверкой -->
         <div class="cyber-block status-box">
             <span id="status-dot" class="dot"></span>
             <span id="status-text">Проверка статуса трансляции...</span>
         </div>
+
+        <!-- Центральный информационный блок -->
+        <div class="cyber-block">
+            <h2>Добро пожаловать в хаб!</h2>
+            <p style="line-height: 1.6; color: #ccc; text-align: center;">
+                Это твоя личная страница на GitHub Pages. Здесь удобно разместить ссылки, анонсы игр, расписание или другую важную информацию для зрителей.
+            </p>
+        </div>
+
+        <!-- Блок с полезными ссылками или игрой -->
+        <div class="cyber-block">
+            <h2>Ссылки и комьюнити</h2>
+            <ul class="cyber-list">
+                <li><a href="https://www.twitch.tv/pashashine" target="_blank">Основной канал Twitch</a></li>
+                <li><a href="#" target="_blank">Telegram-канал (если есть)</a></li>
+                <li><a href="#" target="_blank">Discord-сервер</a></li>
+            </ul>
+        </div>
+
     </main>
 
     <!-- ПРАВАЯ КОЛОНКА: Чат Twitch -->
@@ -232,14 +232,13 @@
         </div>
     </aside>
 
-    <!-- Скрипт проверки онлайн-статуса Twitch через публичный эндпоинт -->
+    <!-- Скрипт проверки онлайн-статуса Twitch -->
     <script>
         async function checkStreamStatus() {
             const dot = document.getElementById('status-dot');
             const text = document.getElementById('status-text');
             
             try {
-                // Используем бесплатный публичный сервис для проверки стримов по нику
                 let response = await fetch('https://decapi.me/twitch/uptime/pashashine');
                 let data = await response.text();
 
@@ -256,7 +255,6 @@
             }
         }
 
-        // Проверяем сразу при загрузке и далее каждую минуту
         checkStreamStatus();
         setInterval(checkStreamStatus, 60000);
     </script>
