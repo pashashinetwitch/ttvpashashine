@@ -396,6 +396,8 @@
 
     <!-- Скрипты для статуса, игры, роли и кнопки тревоги -->
     <script>
+     <!-- Скрипты для статуса, игры, роли и кнопки тревоги -->
+    <script>
         // Сохранение выбранной роли (Реагент / Экс-поп) в браузере
         function changeRole() {
             const select = document.getElementById('user-role');
@@ -411,18 +413,49 @@
 
         // Массив секретных сообщений Murkoff при тревоге
         const alarmMessages = [
-            "🚨 ВНИМАНИЕ: Амелия замечена на территории объекта Синьялла!",
+            "🚨 ВНИМАНИЕ: Зафиксирован побег реагента из блока терапии!",
             "⚠️ Взломан главный терминал комплекса. Включено протокольное заражение.",
-            "💉 Предупреждение: Уровень психоза в секторе превышен на 100%.",
-            "🔴 Внимание всем сотрудникам: Истерман убит.",
-            "⚡ Сбой питания в изоляторе. Шатл недоступен. Побег открыт!"
+            "💉 Предупреждение: Уровень психоза в секторе превышен на 84%.",
+            "🔴 Внимание всем сотрудникам: Началась ночь испытаний.",
+            "⚡ Сбой питания в изоляторе. Эксперимент выходит из-под контроля!"
         ];
+
+        // Функция генерации сирены прямо в браузере
+        function playSiren() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sawtooth'; // Жесткий индустриальный звук сирены
+                
+                const now = audioCtx.currentTime;
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.linearRampToValueAtTime(800, now + 0.5);
+                osc.frequency.linearRampToValueAtTime(400, now + 1.0);
+                osc.frequency.linearRampToValueAtTime(800, now + 1.5);
+                osc.frequency.linearRampToValueAtTime(400, now + 2.0);
+
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.linearRampToValueAtTime(0, now + 2.0);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + 2.0);
+            } catch (e) {
+                console.log("Звуковой контекст заблокирован браузером");
+            }
+        }
 
         function triggerAlarm() {
             const body = document.body;
             const msgBox = document.getElementById('alarm-message');
             
             body.classList.add('alarm-active');
+            playSiren(); // Запускаем звук сирены
             
             const randomMsg = alarmMessages[Math.floor(Math.random() * alarmMessages.length)];
             msgBox.innerHTML = randomMsg;
@@ -461,6 +494,7 @@
 
         checkStreamStatus();
         setInterval(checkStreamStatus, 60000);
+    </script>
     </script>
 </body>
 </html>
