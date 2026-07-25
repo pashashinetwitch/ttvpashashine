@@ -862,6 +862,22 @@
 
         checkStreamStatus();
         setInterval(checkStreamStatus, 60000);
+
+
+
+// Авто-активация звукового движка по первому клику на любую область страницы
+    document.addEventListener('click', function unlockAudio() {
+        const audioEl = document.getElementById('ambient-audio');
+        if (audioEl && (audioEl.src === "" || audioEl.src === window.location.href)) {
+            // Если трек еще не выбран, подгружаем первый по умолчанию (но не орём на пользователя)
+            audioEl.src = playlist[0].url;
+            document.getElementById('track-title').innerText = playlist[0].name;
+        }
+        // Убираем этот обработчик после первого же клика
+        document.removeEventListener('click', unlockAudio);
+    }, { once: true });
+
+        
     </script>
 </body>
 </html>
