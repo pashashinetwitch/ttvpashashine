@@ -3,57 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PashaShine | Twitch</title>
+    <title>PashaShine | Live Hub</title>
     <style>
+        /* --- Базовые стили --- */
         body {
-            background-color: #0b0b0e;
-            color: #ffffff;
+            background-color: #050507; /* Очень темный фон */
+            color: #e0e0e0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             min-height: 100vh;
         }
-        .container {
+
+        a {
+            color: #bf94ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #ffffff;
+        }
+
+        /* --- Общие стили блоков (Неоновая рамка) --- */
+        .cyber-block {
+            background-color: #101014;
+            border: 1px solid #502099; /* Базовый фиолетовый */
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4), /* Мягкое свечение */
+                        inset 0 0 10px rgba(145, 70, 255, 0.1); /* Внутренний блик */
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        
+        /* Эффект пульсации при наведении (опционально) */
+        .cyber-block:hover {
+             box-shadow: 0 0 25px rgba(145, 70, 255, 0.7),
+                         inset 0 0 15px rgba(145, 70, 255, 0.2);
+        }
+
+        .cyber-block h2 {
+            color: #c39bff; /* Светло-фиолетовый заголовок */
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1em;
             text-align: center;
-            padding: 40px;
-            background: #141419;
-            border: 1px solid #2d2d38;
-            border-radius: 12px;
-            max-width: 600px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-bottom: 1px solid #40197a;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
         }
-        h1 {
-            color: #9146FF;
-            margin-bottom: 10px;
+        
+        /* Список ссылок (как в примере) */
+        .cyber-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
-        p {
-            color: #a0a0b0;
+        .cyber-list li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+        /* Маркеры списка (неоновые точки) */
+        .cyber-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: #9146FF; /* Фиолетовый маркер */
+            border-radius: 50%;
+            box-shadow: 0 0 10px #9146FF;
+        }
+
+        /* --- Структура лейаута --- */
+        /* Левая колонка */
+        .sidebar-left {
+            width: 250px;
+            padding: 20px;
+            flex-shrink: 0;
+        }
+        /* Центральная часть */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Правая колонка */
+        .sidebar-right {
+            width: 300px; /* Чат шире */
+            padding: 20px;
+            flex-shrink: 0;
+        }
+        
+        /* --- Блоки внутри --- */
+        .welcome-box {
+            text-align: center;
             margin-bottom: 30px;
         }
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            background-color: #9146FF;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
+        
+        .avatar-placeholder {
+            width: 120px;
+            height: 120px;
+            background: #181820;
+            border: 2px solid #9146FF;
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 0 20px rgba(145, 70, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9146FF;
+            font-size: 2em;
             font-weight: bold;
-            transition: background 0.2s;
         }
-        .btn:hover {
-            background-color: #772ce8;
+
+        /* Блок плеера (имитация) */
+        .player-placeholder {
+            flex-grow: 1;
+            background: #000;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #444;
+            border: 1px solid #222;
+            position: relative;
+            overflow: hidden;
+        }
+         .player-placeholder::after {
+            content: 'ПЛЕЕР СКОРО БУДЕТ';
+            font-size: 1.5em;
+            color: #222;
+        }
+
+        /* Блок чата (имитация) */
+        .chat-placeholder {
+            background: #0e0e10;
+            height: 100%; /* Растягиваем по высоте колонки */
+            border-radius: 10px;
+             display: flex;
+            align-items: center;
+            justify-content: center;
+             border: 1px solid #222;
+        }
+        .chat-placeholder::after {
+            content: 'ЧАТ СКОРО БУДЕТ';
+            font-size: 1.2em;
+            color: #222;
+        }
+
+
+        /* --- Адаптивность (мобилки) --- */
+        @media (max-width: 1000px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar-left, .sidebar-right {
+                width: 100%;
+                padding: 10px;
+            }
+            .main-content {
+                order: -1; /* Ставим контент выше */
+                height: 40vh; /* Плеер занимает часть экрана */
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>PashaShine</h1>
-        <p>Добро пожаловать на мою официальную страницу! Трансляции, расписание и ссылки.</p>
-        <a class="btn" href="https://www.twitch.tv/pashashine" target="_blank">Перейти на Twitch</a>
-    </div>
+
+    <!-- ЛЕВАЯ БОКОВАЯ ПАНЕЛЬ (Навигация и инфо) -->
+    <aside class="sidebar-left">
+        
+        <!-- Блок: Профиль/Приветствие -->
+        <div class="cyber-block welcome-box">
+            <div class="avatar-placeholder">P</div>
+            <h1>PashaShine</h1>
+            <p>Стример на Twitch</p>
+            <a href="https://www.twitch.tv/pashashinetwitch" target="_blank">Смотреть трансляцию</a>
+        </div>
+
+        <!-- Блок: Ссылки и разделы (аналог твоего примера) -->
+        <div class="cyber-block">
+            <h2>О канале</h2>
+            <ul class="cyber-list">
+                <li><a href="#">Правила чата</a></li>
+                <li><a href="#">Команды бота</a></li>
+                <li><a href="#">Моё железо</a></li>
+                <li><a href="#">Поддержать канал</a></li>
+            </ul>
+        </div>
+        
+        <!-- Блок: Расписание (пример) -->
+        <div class="cyber-block">
+            <h2>Расписание</h2>
+            <p style="font-size: 0.9em; color: #aaa;">Вт, Чт, Сб — с 19:00 МСК</p>
+            <p style="font-size: 0.9em; color: #aaa;">Вс — Стрим выходного дня</p>
+        </div>
+
+    </aside>
+
+    <!-- ЦЕНТРАЛЬНАЯ ЧАСТЬ (Плеер и анонсы) -->
+    <main class="main-content">
+        
+        <!-- Имитация Плеера Twitch -->
+        <div class="player-placeholder">
+            <!-- Сюда потом вставим iframe плеера Twitch -->
+        </div>
+        
+        <!-- Блок: Текущий статус -->
+        <div class="cyber-block" style="margin-bottom: 0;">
+            <h2>Сейчас в эфире</h2>
+            <p style="text-align: center; color: #fff;">Играю в The Outlast Trials 🩸 Прохожу на максимальной сложности!</p>
+        </div>
+    </main>
+
+    <!-- ПРАВАЯ БОКОВАЯ ПАНЕЛЬ (Чат) -->
+    <aside class="sidebar-right">
+        
+        <!-- Имитация Чата Twitch -->
+        <div class="chat-placeholder">
+             <!-- Сюда потом вставим iframe чата Twitch -->
+        </div>
+        
+    </aside>
+
 </body>
 </html>
