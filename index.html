@@ -173,6 +173,27 @@
             box-shadow: 0 0 10px #00ff66, 0 0 20px #00ff66;
         }
 
+        /* Кнопка архива вторжения */
+        .big-invasion-btn {
+            display: inline-block;
+            background: #181820;
+            border: 1px solid #9146FF;
+            color: #bf94ff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(145, 70, 255, 0.2);
+        }
+        .big-invasion-btn:hover {
+            background: #9146FF;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(145, 70, 255, 0.6);
+        }
+
         /* Стили для интерактивной консоли логов */
         .console-box {
             background: #08080a;
@@ -306,6 +327,17 @@
             <h1 style="font-size: 1.3em; margin: 0 0 2px 0; color: #fff;">PashaShine</h1>
             <p style="margin: 0 0 10px 0; font-size: 0.85em; color: #a0a0b0;">Twitch Streamer</p>
             
+            <!-- Вернул селектор статуса игрока, используемый в твоем JS -->
+            <div class="role-selector">
+                <label for="user-role">Статус реагента:</label>
+                <select id="user-role" onchange="changeRole()">
+                    <option value="Реагент-Новичок">Реагент-Новичок</option>
+                    <option value="Испытуемый Экспериментам">Испытуемый</option>
+                    <option value="Ветеран Комплекса">Ветеран Комплекса</option>
+                    <option value="Главная Угроза">Главная Угроза</option>
+                </select>
+            </div>
+
             <div style="margin-top: 15px;">
                 <a href="https://www.twitch.tv/pashashine" target="_blank" style="font-size: 0.9em; font-weight: bold;">Открыть на Twitch ↗</a>
             </div>
@@ -327,18 +359,17 @@
             <span id="status-text">Проверка статуса трансляции...</span>
         </div>
 
-    <div class="cyber-block main-header-block">
-    <h1>🔴 Добро пожаловать на хаб стримера PashaShine!</h1>
-    <p class="hub-subtitle">
-        Сайт посвящен моей стримерской деятельности и, в частности, прохождению суровых и мрачных испытаний в 
-        <strong>The Outlast Trials</strong>. Здесь собраны архивы трансляций, секретные материалы и памятные моменты совместных вылазок.
-    </p>
-    
-    <div>
-        <a href="invasion.html" class="big-invasion-btn">🔪 Архив вторжения</a>
-    </div>
-</div>
-
+        <div class="cyber-block main-header-block">
+            <h1>🔴 Добро пожаловать на хаб стримера PashaShine!</h1>
+            <p class="hub-subtitle">
+                Сайт посвящен моей стримерской деятельности и, в частности, прохождению суровых и мрачных испытаний в 
+                <strong>The Outlast Trials</strong>. Здесь собраны архивы трансляций, секретные материалы и памятные моменты совместных вылазок.
+            </p>
+            
+            <div>
+                <a href="invasion.html" class="big-invasion-btn">🔪 Архив вторжения</a>
+            </div>
+        </div>
         
         <div class="cyber-block">
             <h2>Поддержка</h2>
@@ -353,158 +384,54 @@
             </p>
         </div>
 
-<!-- Блок: Доска улик (Расследование Murkoff) -->
-<div class="cyber-block investigation-board">
-    <h2>📋 Доска улик расследования</h2>
-    <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 15px;">
-        Секретные материалы и текущие цели комплекса
-    </p>
+        <!-- Блок: Доска улик (Расследование Murkoff) -->
+        <div class="cyber-block investigation-board">
+            <h2>📋 Доска улик расследования</h2>
+            <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 15px;">
+                Секретные материалы и текущие цели комплекса
+            </p>
 
-    <div class="board-grid">
-        <!-- Карточка 1 -->
-        <div class="evidence-card" onclick="inspectCard(this)">
-            <span class="pin">📌</span>
-            <span class="case-number">SEASON 5</span>
-            <h3>Цель ВЫПОЛНЕНА</h3>
-            <p>GOLD I достигнуто</p>
-            <div class="status-stamp success">ВЫПОЛНЕНО</div>
+            <div class="board-grid">
+                <!-- Карточка 1 -->
+                <div class="evidence-card" onclick="inspectCard(this)">
+                    <span class="pin">📌</span>
+                    <span class="case-number">SEASON 5</span>
+                    <h3>Цель ВЫПОЛНЕНА</h3>
+                    <p>GOLD I достигнуто</p>
+                    <div class="status-stamp success">ВЫПОЛНЕНО</div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="evidence-card" onclick="inspectCard(this)">
+                    <span class="pin">📌</span>
+                    <span class="case-number">SEASON 6</span>
+                    <h3>Цель не выполнена</h3>
+                    <p>GOLD I не достигнуто</p>
+                    <div class="status-stamp pending">СЕЗОН ЗАКРЫТ</div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="evidence-card" onclick="inspectCard(this)">
+                    <span class="pin">📌</span>
+                    <span class="case-number">SEASON 7</span>
+                    <h3>Цель не выполнена</h3>
+                    <p>GOLD I не достигнуто</p>
+                    <div class="status-stamp">В процессе</div>
+                </div>
+            </div>
         </div>
-
-        <!-- Карточка 2 -->
-        <div class="evidence-card" onclick="inspectCard(this)">
-            <span class="pin">📌</span>
-            <span class="case-number">SEASON 6</span>
-            <h3>Цель не выполнена</h3>
-            <p>GOLD I не достигнуто</p>
-            <div class="status-stamp pending">СЕЗОН ЗАКРЫТ</div>
-        </div>
-
-        <!-- Карточка 3 -->
-        <div class="evidence-card" onclick="inspectCard(this)">
-            <span class="pin">📌</span>
-           <span class="case-number">SEASON 7</span>
-            <h3>Цель не выполнена</h3>
-            <p>GOLD I не достигнуто</p>
-            <div class="status-stamp">В процессе</div>
-        </div>
-    </div>
-</div>
-
-<style>
-    /* Стили для доски улик */
-    .investigation-board {
-        background: #0c0c10;
-        border: 1px solid #502099;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .board-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .evidence-card {
-        background: #14141c;
-        border: 1px dashed #40197a;
-        border-radius: 6px;
-        padding: 12px;
-        position: relative;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-
-    .evidence-card:hover {
-        border-color: #9146FF;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 15px rgba(145, 70, 255, 0.2);
-    }
-
-    .evidence-card .pin {
-        position: absolute;
-        top: -8px;
-        right: 10px;
-        font-size: 1.1em;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
-    }
-
-    .evidence-card .case-number {
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 0.7em;
-        color: #ff5555;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .evidence-card h3 {
-        color: #fff;
-        font-size: 0.95em;
-        margin: 0 0 8px 0;
-    }
-
-    .evidence-card p {
-        color: #b0b0c0;
-        font-size: 0.8em;
-        line-height: 1.4;
-        margin: 0 0 10px 0;
-    }
-
-    .status-stamp {
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 0.65em;
-        padding: 2px 6px;
-        border-radius: 3px;
-        display: inline-block;
-        background: #25180b;
-        color: #ffaa00;
-        border: 1px solid #ffaa00;
-        letter-spacing: 0.5px;
-    }
-
-    .status-stamp.success {
-        background: #0b2512;
-        color: #00ff66;
-        border-color: #00ff66;
-    }
-
-    .status-stamp.pending {
-        background: #250b12;
-        color: #ff5555;
-        border-color: #ff5555;
-    }
-</style>
-
-<script>
-    // Функция для интерактивности при клике на карточку
-    function inspectCard(cardElement) {
-        const title = cardElement.querySelector('h3').innerText;
-        const caseNum = cardElement.querySelector('.case-number').innerText;
-        
-        // Отправляем лог в твою консоль симулятора, если она есть на странице
-        if (typeof addLog === 'function') {
-            addLog(`АРХИВ: Изучено дело [${caseNum}] — "${title}"`);
-        }
-        
-        // Легкая анимация выбора
-        cardElement.style.borderColor = '#00ff66';
-        setTimeout(() => {
-            cardElement.style.borderColor = '';
-        }, 600);
-    }
-</script>
-
-
-        
     </main>
 
     <!-- ПРАВАЯ КОЛОНКА -->
     <aside class="sidebar-right">
+        <!-- Кнопка тревоги и консоль логов, привязанные к твоим скриптам -->
+        <div class="cyber-block">
+            <h2>Протокол Убежища</h2>
+            <button class="alarm-btn" onclick="triggerAlarm()">🚨 Тревога Murkoff</button>
+            <div id="alarm-message" style="font-size: 0.8em; color: #ff6666; margin-top: 8px; text-align: center; min-height: 30px;">Система в норме.</div>
+            <div id="console-logs" class="console-box">SYS: Инициализация терминала...</div>
+        </div>
+
         <div class="cyber-block social-hub">
             <h2>Комьюнити</h2>
             <div class="social-grid">
@@ -585,7 +512,6 @@
             }, 2000);
         }
 
-        // Идея 1: Интерактивная пасхалка на аватарку
         const easterEggMessages = [
             "👁️ Доктор Котеррике наблюдает за вами...",
             "⚡ Подача тока на электроошейник... Всё в норме.",
@@ -598,7 +524,6 @@
             addLog(`[ЭХО] ${randomMsg}`);
         }
 
-        // Идея 3: Живая генерация системных логов в консоли
         const consoleLogsData = [
             "SYN: Проверка пинга с сервером Murkoff...",
             "SEC: Уровень защиты периметра стабилен.",
@@ -647,6 +572,21 @@
 
         checkStreamStatus();
         setInterval(checkStreamStatus, 60000);
+
+        // Интерактивность при клике на карточку расследования
+        function inspectCard(cardElement) {
+            const title = cardElement.querySelector('h3').innerText;
+            const caseNum = cardElement.querySelector('.case-number').innerText;
+            
+            if (typeof addLog === 'function') {
+                addLog(`АРХИВ: Изучено дело [${caseNum}] — "${title}"`);
+            }
+            
+            cardElement.style.borderColor = '#00ff66';
+            setTimeout(() => {
+                cardElement.style.borderColor = '';
+            }, 600);
+        }
     </script>
 </body>
 </html>
