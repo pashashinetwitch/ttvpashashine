@@ -168,6 +168,36 @@
             box-shadow: 0 0 10px #00ff66, 0 0 20px #00ff66;
         }
 
+        /* Стили для кнопки тревоги */
+        .alarm-btn {
+            width: 100%;
+            background: #250b12;
+            border: 1px solid #ff3333;
+            color: #ff6666;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+        }
+        .alarm-btn:hover {
+            background: #ff3333;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+        }
+
+        /* Эффект красной тревоги на сайте */
+        body.alarm-active {
+            animation: redAlert 0.5s infinite alternate;
+        }
+        @keyframes redAlert {
+            0% { background-color: #050507; }
+            100% { background-color: #2b0507; }
+        }
+
         /* Стили для карточек соцсетей с иконками */
         .social-grid {
             display: flex;
@@ -254,23 +284,32 @@
     <!-- ЛЕВАЯ КОЛОНКА: Навигация -->
     <aside class="sidebar-left">
         <div class="cyber-block welcome-box">
-            <img src="11.png" alt="Avatar" class="custom-avatar">
+            <img src="avatar.png" alt="Avatar" class="custom-avatar">
             <h1 style="font-size: 1.3em; margin: 0 0 2px 0; color: #fff;">PashaShine</h1>
             <p style="margin: 0 0 10px 0; font-size: 0.85em; color: #a0a0b0;">Twitch Streamer</p>
+            
+            <!-- Интерактивный статус (Реагент / Экс-поп) -->
+            <div class="role-selector">
+                <label for="user-role">Текущий статус:</label>
+                <select id="user-role" onchange="changeRole()">
+                    <option value="🧪 Реагент (Murkoff)">🧪 Реагент (Murkoff)</option>
+                    <option value="💀 Экс-поп (Эксперимент)">💀 Экс-поп (Эксперимент)</option>
+                    <option value="⚡ Вне испытаний">⚡ Вне испытаний</option>
+                    <option value="🩸 Скрытый режим">🩸 Скрытый режим</option>
+                </select>
+            </div>
 
             <div style="margin-top: 15px;">
                 <a href="https://www.twitch.tv/pashashine" target="_blank" style="font-size: 0.9em; font-weight: bold;">Открыть на Twitch ↗</a>
             </div>
         </div>
 
-
-<!-- Блок протокола тревоги -->
+        <!-- Кнопка тревоги -->
         <div class="cyber-block" style="text-align: center;">
             <button class="alarm-btn" onclick="triggerAlarm()">⚠️ Протокол тревоги</button>
             <div id="alarm-message" style="margin-top: 10px; font-size: 0.8em; color: #ff4444; min-height: 35px;"></div>
         </div>
 
-        
         <div class="cyber-block">
             <h2>Обновления</h2>
             <ul class="cyber-list">
@@ -328,7 +367,7 @@
             <div class="social-grid">
                 <!-- Twitch -->
                 <a href="https://www.twitch.tv/pashashine" target="_blank" class="social-card twitch">
-                 <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
                     <div class="info">
                         <strong>Twitch</strong>
                         <span>Зафоловиться</span>
@@ -366,7 +405,7 @@
 
     </main>
 
-    <!-- Скрипты для статуса, игры и сохранения выбора -->
+    <!-- Скрипты для статуса, игры, роли и кнопки тревоги -->
     <script>
         // Сохранение выбранной роли (Реагент / Экс-поп) в браузере
         function changeRole() {
@@ -381,17 +420,38 @@
             }
         });
 
+        // Массив секретных сообщений Murkoff при тревоге
+        const alarmMessages = [
+            "🚨 ВНИМАНИЕ: Зафиксирован побег реагента из блока терапии!",
+            "⚠️ Взломан главный терминал комплекса. Включено протокольное заражение.",
+            "💉 Предупреждение: Уровень психоза в секторе превышен на 84%.",
+            "🔴 Внимание всем сотрудникам: Началась ночь испытаний.",
+            "⚡ Сбой питания в изоляторе. Эксперимент выходит из-под контроля!"
+        ];
+
+        function triggerAlarm() {
+            const body = document.body;
+            const msgBox = document.getElementById('alarm-message');
+            
+            body.classList.add('alarm-active');
+            
+            const randomMsg = alarmMessages[Math.floor(Math.random() * alarmMessages.length)];
+            msgBox.innerHTML = randomMsg;
+
+            setTimeout(() => {
+                body.classList.remove('alarm-active');
+            }, 2000);
+        }
+
         // Автопроверка стрима, аптайма и текущей игры на Twitch
         async function checkStreamStatus() {
             const dot = document.getElementById('status-dot');
             const text = document.getElementById('status-text');
             
             try {
-                // Запрос аптайма
                 let uptimeRes = await fetch('https://decapi.me/twitch/uptime/pashashine');
                 let uptimeData = await uptimeRes.text();
 
-                // Запрос текущей игры (категории)
                 let gameRes = await fetch('https://decapi.me/twitch/game/pashashine');
                 let gameData = await gameRes.text();
 
