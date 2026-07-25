@@ -548,6 +548,197 @@
                         <span>Отслеживать</span>
                     </div>
                 </a>
+
+
+
+
+
+
+<!-- Музыкальный терминал комплексов Murkoff -->
+<div class="cyber-block terminal-player">
+    <h2>🧪 Терминал эмбиента</h2>
+    <p style="font-size: 0.8em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 12px;">
+        Аудио-шлюз изолятора
+    </p>
+
+    <!-- Экран терминала -->
+    <div class="terminal-screen" id="terminal-screen">
+        <span class="terminal-status-dot" id="player-dot"></span>
+        <span id="track-title" class="track-name">Сигнал отключен</span>
+    </div>
+
+    <!-- Панель управления -->
+    <div class="terminal-controls">
+        <button class="term-btn" onclick="togglePlay()" id="play-btn">▶ ПУСК</button>
+        <button class="term-btn" onclick="nextTrack()">⏭ СМЕНИТЬ</button>
+    </div>
+
+    <!-- Скрытый аудиоэлемент -->
+    <audio id="ambient-audio" loop></audio>
+</div>
+
+<style>
+    /* Стили для музыкального терминала */
+    .terminal-player {
+        text-align: center;
+    }
+    .terminal-screen {
+        background: #08080a;
+        border: 1px solid #40197a;
+        border-radius: 6px;
+        padding: 10px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9);
+        min-height: 25px;
+    }
+    .terminal-status-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #555;
+        border-radius: 50%;
+        box-shadow: 0 0 5px #555;
+        transition: all 0.3s ease;
+    }
+    .terminal-status-dot.playing {
+        background-color: #00ff66;
+        box-shadow: 0 0 10px #00ff66, 0 0 15px #00ff66;
+    }
+    .track-name {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.8em;
+        color: #bf94ff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .terminal-controls {
+        display: flex;
+        gap: 10px;
+    }
+    .term-btn {
+        flex: 1;
+        background: #181820;
+        border: 1px solid #502099;
+        color: #bf94ff;
+        padding: 8px;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.8em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-transform: uppercase;
+    }
+    .term-btn:hover {
+        background: #9146FF;
+        color: #fff;
+        border-color: #9146FF;
+        box-shadow: 0 0 10px rgba(145, 70, 255, 0.4);
+    }
+</style>
+
+<script>
+    // Список твоих треков (можешь добавлять сюда ссылки или названия файлов)
+    const playlist = [
+        { name: "Сектор 1: Отречение", url: "Outlast.mp3" },
+        { name: "Эмбиент: Подземный гул", url: "Outlast.mp3" },
+        { name: "Протокол: Ночь испытаний", url: "Outlast.mp3" }
+    ];
+
+    let currentTrackIndex = 0;
+    const audio = document.getElementById('ambient-audio');
+    const playBtn = document.getElementById('play-btn');
+    const playerDot = document.getElementById('player-dot');
+    const trackTitle = document.getElementById('track-title');
+
+    function loadTrack(index) {
+        currentTrackIndex = index;
+        audio.src = playlist[currentTrackIndex].url;
+        trackTitle.innerText = playlist[currentTrackIndex].name;
+    }
+
+    function togglePlay() {
+        if (!audio.src || audio.src === window.location.href) {
+            loadTrack(0);
+        }
+
+        if (audio.paused) {
+            audio.play().then(() => {
+                playBtn.innerText = "⏸ СТОП";
+                playerDot.classList.add('playing');
+                trackTitle.innerText = playlist[currentTrackIndex].name;
+                if (typeof addLog === 'function') {
+                    addLog(`АУДИО: Запущен трек "${playlist[currentTrackIndex].name}"`);
+                }
+            }).catch(e => {
+                trackTitle.innerText = "Ошибка загрузки файла";
+                if (typeof addLog === 'function') {
+                    addLog("АУДИО: Ошибка воспроизведения (проверь ссылку на файл)");
+                }
+            });
+        } else {
+            audio.pause();
+            playBtn.innerText = "▶ ПУСК";
+            playerDot.classList.remove('playing');
+            trackTitle.innerText = "На паузе";
+            if (typeof addLog === 'function') {
+                addLog("АУДИО: Воспроизведение приостановлено");
+            }
+        }
+    }
+
+    function nextTrack() {
+        currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+        loadTrack(currentTrackIndex);
+        if (!audio.paused) {
+            audio.play();
+            if (typeof addLog === 'function') {
+                addLog(`АУДИО: Переключение на "${playlist[currentTrackIndex].name}"`);
+            }
+        }
+    }
+
+    // Инициализация первой песни при загрузке
+    trackTitle.innerText = playlist[0].name;
+    audio.src = playlist[0].url;
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
             </div>
         </div>
     </aside>
