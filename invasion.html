@@ -1,285 +1,352 @@
-<!-- Блок: Галерея испытаний (Галерея с превью и модальным окном) -->
-<div class="cyber-block gallery-block">
-    <h2>🧪 Галерея архива Murkoff</h2>
-    <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 15px;">
-        Нажмите на превью для детального изучения улик
-    </p>
-
-    <!-- Сетка превью (миниатюр) -->
-    <div class="gallery-grid">
-        <div class="gallery-item" onclick="openModal('11.png', 'PashaShine (ExPop)', 'Петрушевый чай (ExPop)')">
-            <img src="11.png" alt="Эксперимент 01">
-            <div class="gallery-overlay"><span>Увеличить 🔍</span></div>
-        </div>
-        <!-- Сюда можешь добавлять новые картинки по аналогии -->
-        <div class="gallery-item" onclick="openModal('11.png', 'PashaShine (ExPop)', 'Петрушевый чай (ExPop)')">
-            <img src="11.png" alt="Эксперимент 02">
-            <div class="gallery-overlay"><span>Увеличить 🔍</span></div>
-        </div>
-    </div>
-</div>
-
-<!-- Модальное окно просмотра -->
-<div id="imageModal" class="modal-overlay" onclick="closeModalOnBg(event)">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeModal()">×</button>
-        
-        <!-- Левая рамка с требуемой информацией -->
-        <div class="modal-sidebar">
-            <div class="modal-badge">АРХИВНЫЙ ДОКУМЕНТ</div>
-            <div class="modal-info-item">
-                <span class="label">Субъект:</span>
-                <strong class="value">PashaShine (ExPop)</strong>
-            </div>
-            <div class="modal-info-item">
-                <span class="label">Препарат / Артефакт:</span>
-                <strong class="value">Петрушевый чай (ExPop)</strong>
-            </div>
-            <p class="modal-note">Статус: Документальное подтверждение прохождения испытания.</p>
-        </div>
-
-        <!-- Правая часть с большой картинкой -->
-        <div class="modal-image-box">
-            <img id="modalImg" src="" alt="Большое фото">
-        </div>
-    </div>
-</div>
-
-<style>
-    /* Стили для галереи */
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-        gap: 12px;
-    }
-
-    .gallery-item {
-        position: relative;
-        height: 90px;
-        border: 1px solid #40197a;
-        border-radius: 6px;
-        overflow: hidden;
-        cursor: pointer;
-        background: #101014;
-        transition: all 0.3s ease;
-    }
-
-    .gallery-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .gallery-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(145, 70, 255, 0.4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .gallery-overlay span {
-        color: #fff;
-        font-size: 0.75em;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-    }
-
-    .gallery-item:hover {
-        border-color: #9146FF;
-        box-shadow: 0 0 12px rgba(145, 70, 255, 0.5);
-    }
-
-    .gallery-item:hover img {
-        transform: scale(1.1);
-    }
-
-    .gallery-item:hover .gallery-overlay {
-        opacity: 1;
-    }
-
-    /* Модальное окно */
-    .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(5, 5, 7, 0.85);
-        backdrop-filter: blur(5px);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        padding: 20px;
-        box-sizing: border-box;
-    }
-
-    .modal-container {
-        background: #101014;
-        border: 1px solid #502099;
-        box-shadow: 0 0 30px rgba(145, 70, 255, 0.4);
-        border-radius: 10px;
-        display: flex;
-        max-width: 800px;
-        width: 100%;
-        position: relative;
-        overflow: hidden;
-        animation: modalScale 0.3s ease;
-    }
-
-    @keyframes modalScale {
-        from { transform: scale(0.9); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
-
-    .modal-close {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        background: none;
-        border: none;
-        color: #a0a0b0;
-        font-size: 1.8em;
-        cursor: pointer;
-        z-index: 10;
-        transition: color 0.2s;
-    }
-    .modal-close:hover {
-        color: #fff;
-    }
-
-    /* Левая рамка с информацией */
-    .modal-sidebar {
-        width: 260px;
-        background: #14141c;
-        border-right: 1px solid #40197a;
-        padding: 25px 20px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .modal-badge {
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 0.65em;
-        color: #ff5555;
-        background: #250b12;
-        border: 1px solid #ff3333;
-        padding: 4px 8px;
-        border-radius: 4px;
-        text-align: center;
-        margin-bottom: 20px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
-
-    .modal-info-item {
-        margin-bottom: 15px;
-        background: #0c0c10;
-        border: 1px solid #40197a;
-        padding: 10px;
-        border-radius: 6px;
-    }
-
-    .modal-info-item .label {
-        display: block;
-        font-size: 0.7em;
-        color: #9090a0;
-        text-transform: uppercase;
-        margin-bottom: 4px;
-        letter-spacing: 0.5px;
-    }
-
-    .modal-info-item .value {
-        color: #bf94ff;
-        font-size: 0.9em;
-        word-break: break-word;
-    }
-
-    .modal-note {
-        font-size: 0.75em;
-        color: #808090;
-        line-height: 1.4;
-        margin-top: 10px;
-        margin-bottom: 0;
-    }
-
-    /* Правая часть с картинкой */
-    .modal-image-box {
-        flex-grow: 1;
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #08080a;
-    }
-
-    .modal-image-box img {
-        max-width: 100%;
-        max-height: 400px;
-        object-fit: contain;
-        border-radius: 4px;
-        border: 1px solid #40197a;
-    }
-
-    /* Адаптивность для мобильных */
-    @media (max-width: 700px) {
-        .modal-container {
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invasion Archive | PashaShineHouse</title>
+    <style>
+        /* --- Базовые стили --- */
+        body {
+            background-color: #050507;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
             flex-direction: column;
-            max-height: 90vh;
-            overflow-y: auto;
+            align-items: center;
+            min-height: 100vh;
         }
-        .modal-sidebar {
+
+        a {
+            color: #bf94ff;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #ffffff;
+        }
+
+        .container {
             width: 100%;
-            border-right: none;
+            max-width: 1200px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #9090a0;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: #bf94ff;
+        }
+
+        /* --- Неоновые блоки --- */
+        .cyber-block {
+            background-color: #101014;
+            border: 1px solid #502099;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4),
+                        inset 0 0 10px rgba(145, 70, 255, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .cyber-block h1 {
+            color: #c39bff;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.4em;
+            text-align: center;
             border-bottom: 1px solid #40197a;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        /* --- Сетка галереи --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-card {
+            background: #14141c;
+            border: 1px solid #40197a;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-card:hover {
+            border-color: #9146FF;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(145, 70, 255, 0.4);
+        }
+
+        .image-thumb-wrap {
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+            background: #08080a;
+            position: relative;
+        }
+
+        .image-thumb-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .card-info {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .card-title {
+            font-size: 0.9em;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .card-subtitle {
+            font-size: 0.75em;
+            color: #9090a0;
+        }
+
+        /* --- Модальное окно (полноэкранный просмотр) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(3, 3, 5, 0.9);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-window {
+            background: #101014;
+            border: 1px solid #7030ff;
+            box-shadow: 0 0 40px rgba(145, 70, 255, 0.5);
+            border-radius: 12px;
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            animation: modalAppear 0.3s ease;
+        }
+
+        @keyframes modalAppear {
+            from { transform: scale(0.92); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #a0a0b0;
+            font-size: 2em;
+            cursor: pointer;
+            z-index: 10;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .modal-close-btn:hover {
+            color: #fff;
+        }
+
+        /* Левая панель с рамкой и данными */
+        .modal-sidebar {
+            width: 300px;
+            background: #14141c;
+            border-right: 1px solid #40197a;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .data-frame {
+            border: 1px solid #502099;
+            background: #0c0c10;
+            border-radius: 8px;
             padding: 15px;
+            box-shadow: inset 0 0 10px rgba(145, 70, 255, 0.15);
         }
-        .modal-image-box {
-            padding: 15px;
-        }
-    }
-</style>
 
-<script>
-    function openModal(imgSrc, titleText, descText) {
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImg');
-        
-        modalImg.src = imgSrc;
-        modal.style.display = 'flex';
-        
-        if (typeof addLog === 'function') {
-            addLog(`АРХИВ: Открыт файл досье [${titleText} / ${descText}]`);
+        .data-item {
+            margin-bottom: 12px;
         }
-    }
-
-    function closeModal() {
-        document.getElementById('imageModal').style.display = 'none';
-    }
-
-    function closeModalOnBg(event) {
-        if (event.target.id === 'imageModal') {
-            closeModal();
+        .data-item:last-child {
+            margin-bottom: 0;
         }
-    }
 
-    // Закрытие по нажатию клавиши Esc
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            closeModal();
+        .data-label {
+            font-size: 0.7em;
+            color: #808090;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 3px;
         }
-    });
-</script>
+
+        .data-value {
+            font-size: 0.95em;
+            color: #bf94ff;
+            font-weight: bold;
+            word-break: break-word;
+        }
+
+        /* Правая часть с полноразмерным фото */
+        .modal-image-area {
+            flex-grow: 1;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #08080a;
+        }
+
+        .modal-image-area img {
+            max-width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 6px;
+            border: 1px solid #40197a;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+        }
+
+        @media (max-width: 800px) {
+            .modal-window {
+                flex-direction: column;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            .modal-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #40197a;
+                padding: 20px;
+            }
+            .modal-image-area {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Вернуться на главную хаба</a>
+
+        <div class="cyber-block">
+            <h1>Архив Испытаний (Invasion)</h1>
+            
+            <!-- Сетка галереи -->
+            <div class="gallery-grid">
+                <!-- Карточка 1 -->
+                <div class="gallery-card" onclick="openGalleryModal('11.png', 'PashaShine (ExPop)', 'Петрушевый чай (ExPop)')">
+                    <div class="image-thumb-wrap">
+                        <img src="11.png" alt="Превью 1">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">Испытание #01</span>
+                        <span class="card-subtitle">Детали досье</span>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 (можно дублировать и менять картинки/данные) -->
+                <div class="gallery-card" onclick="openGalleryModal('11.png', 'PashaShine (ExPop)', 'Петрушевый чай (ExPop)')">
+                    <div class="image-thumb-wrap">
+                        <img src="11.png" alt="Превью 2">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">Испытание #02</span>
+                        <span class="card-subtitle">Детали досье</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="galleryModal" class="modal-overlay" onclick="closeOnBg(event)">
+        <div class="modal-window">
+            <button class="modal-close-btn" onclick="closeGalleryModal()">×</button>
+            
+            <!-- Левая стильная рамка с информацией -->
+            <div class="modal-sidebar">
+                <div class="data-frame">
+                    <div class="data-item">
+                        <span class="data-label">Субъект</span>
+                        <span id="modalSubject" class="data-value">PashaShine (ExPop)</span>
+                    </div>
+                    <hr style="border: none; border-top: 1px solid #301060; margin: 12px 0;">
+                    <div class="data-item">
+                        <span class="data-label">Препарат / Артефакт</span>
+                        <span id="modalItem" class="data-value">Петрушевый чай (ExPop)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Правая часть с картинкой -->
+            <div class="modal-image-area">
+                <img id="modalFullImg" src="" alt="Полное изображение">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openGalleryModal(imgSrc, subject, item) {
+            const modal = document.getElementById('galleryModal');
+            document.getElementById('modalFullImg').src = imgSrc;
+            document.getElementById('modalSubject').innerText = subject;
+            document.getElementById('modalItem').innerText = item;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeGalleryModal() {
+            document.getElementById('galleryModal').style.display = 'none';
+        }
+
+        function closeOnBg(event) {
+            if (event.target.id === 'galleryModal') {
+                closeGalleryModal();
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeGalleryModal();
+            }
+        });
+    </script>
+</body>
+</html>
