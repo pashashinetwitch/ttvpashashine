@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PashaShine | Hub</title>
+    <title>PashaShineHouse</title>
     <style>
         /* --- Базовые стили --- */
         body {
@@ -189,7 +189,6 @@
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
         }
 
-        /* Эффект красной тревоги на сайте */
         body.alarm-active {
             animation: redAlert 0.5s infinite alternate;
         }
@@ -235,20 +234,12 @@
             color: #9090a0;
         }
         
-        /* Эффекты при наведении под цвет платформ */
         .social-card.twitch:hover {
             border-color: #9146FF;
             color: #fff;
             box-shadow: 0 0 10px rgba(145, 70, 255, 0.4);
         }
         .social-card.twitch svg { fill: #9146FF; }
-
-        .social-card.discord:hover {
-            border-color: #5865F2;
-            color: #fff;
-            box-shadow: 0 0 10px rgba(88, 101, 242, 0.4);
-        }
-        .social-card.discord svg { fill: #5865F2; }
 
         .social-card.telegram:hover {
             border-color: #24A1DE;
@@ -264,7 +255,6 @@
         }
         .social-card.youtube svg { fill: #FF0000; }
 
-        /* Мобильная адаптивность */
         @media (max-width: 1000px) {
             body {
                 flex-direction: column;
@@ -281,21 +271,30 @@
 </head>
 <body>
 
-    <!-- ЛЕВАЯ КОЛОНКА: Навигация -->
+    <!-- ЛЕВАЯ КОЛОНКА -->
     <aside class="sidebar-left">
         <div class="cyber-block welcome-box">
             <img src="11.png" alt="Avatar" class="custom-avatar">
             <h1 style="font-size: 1.3em; margin: 0 0 2px 0; color: #fff;">PashaShine</h1>
             <p style="margin: 0 0 10px 0; font-size: 0.85em; color: #a0a0b0;">Twitch Streamer</p>
+            
+            <div class="role-selector">
+                <label for="user-role">Текущий статус:</label>
+                <select id="user-role" onchange="changeRole()">
+                    <option value="🧪 Реагент (Murkoff)">🧪 Реагент (Murkoff)</option>
+                    <option value="💀 Экс-поп (Эксперимент)">💀 Экс-поп (Эксперимент)</option>
+                    <option value="⚡ Вне испытаний">⚡ Вне испытаний</option>
+                    <option value="🩸 Скрытый режим">🩸 Скрытый режим</option>
+                </select>
+            </div>
 
             <div style="margin-top: 15px;">
                 <a href="https://www.twitch.tv/pashashine" target="_blank" style="font-size: 0.9em; font-weight: bold;">Открыть на Twitch ↗</a>
             </div>
         </div>
 
-        <!-- Кнопка тревоги -->
         <div class="cyber-block" style="text-align: center;">
-            <button class="alarm-btn" onclick="triggerAlarm()">⚠️ Протокол тревоги: ЕГЕРЬ</button>
+            <button class="alarm-btn" onclick="triggerAlarm()">⚠️ Протокол тревоги</button>
             <div id="alarm-message" style="margin-top: 10px; font-size: 0.8em; color: #ff4444; min-height: 35px;"></div>
         </div>
 
@@ -316,9 +315,8 @@
         </div>
     </aside>
 
-    <!-- ЦЕНТР: Информационные блоки -->
+    <!-- ЦЕНТР -->
     <main class="main-content">
-        
         <!-- Блок статуса с автопроверкой игры и аптайма -->
         <div class="cyber-block status-box">
             <span id="status-dot" class="dot"></span>
@@ -332,13 +330,22 @@
             </p>
         </div>
 
-        
+        <div class="cyber-block">
+            <h2>Поддержка</h2>
+            <p style="font-size: 0.9em; color: #aaa; text-align: left; line-height: 1.6; padding-left: 10px;">
+                👑💎 ЗАЛ СЛАВЫ КАНАЛА 💎👑<br>
+                Список самых легендарных, щедрых и невероятных людей нашей галактики!<br><br>
+                ⚡ <b>ТОП ДОНАТЕРОВ</b> ⚡<br>
+                🥇 Flent 👑<br>
+                🥈 Stevenrichter1996 💎<br>
+                🥉 Ravenous_vest<br>
+                🚀 au_hero_wormix_54
+            </p>
+        </div>
     </main>
 
-    <!-- ПРАВАЯ КОЛОНКА: Соцсети -->
+    <!-- ПРАВАЯ КОЛОНКА -->
     <aside class="sidebar-right">
-        
-        <!-- Блок соцсетей и комьюнити с иконками -->
         <div class="cyber-block social-hub">
             <h2>Комьюнити</h2>
             <div class="social-grid">
@@ -351,14 +358,10 @@
                     </div>
                 </a>
 
-                <!-- Discord -->
-                <a href="https://discord.gg/ТВОЙ_КОД" target="_blank" class="social-card discord">
-                    <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-                    <div class="info">
-                        <strong>Discord</strong>
-                        <span>Присоединиться</span>
-                    </div>
-                </a>
+                <!-- Discord Виджет -->
+                <div style="background: #181820; border: 1px solid #5865F2; border-radius: 8px; overflow: hidden; box-shadow: 0 0 10px rgba(88, 101, 242, 0.3);">
+                    <iframe src="https://discord.com/widget?id=918201595936788520&theme=dark" width="100%" height="300" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                </div>
 
                 <!-- Telegram -->
                 <a href="https://t.me/ТВОЙ_КАНАЛ" target="_blank" class="social-card telegram">
@@ -377,35 +380,12 @@
                         <span>Отслеживать</span>
                     </div>
                 </a>
-
-   <div class="cyber-block">
-            <h2>Поддержка</h2>
-            <p style="font-size: 0.9em; color: #aaa; text-align: left; line-height: 1.6; padding-left: 10px;">
-                👑💎 ЗАЛ СЛАВЫ КАНАЛА 💎👑<br>
-                Список самых легендарных, щедрых и невероятных людей нашей галактики!<br><br>
-                ⚡ <b>ТОП ДОНАТЕРОВ</b> ⚡<br>
-                🥇 Flent 👑<br>
-                🥈 Stevenrichter1996 💎<br>
-                🥉 Ravenous_vest<br>
-                🚀 au_hero_wormix_54
-            </p>
-        </div>
-
-
-
-
-
-                
             </div>
         </div>
+    </aside>
 
-    </main>
-
-    <!-- Скрипты для статуса, игры, роли и кнопки тревоги -->
+    <!-- Скрипты -->
     <script>
-     <!-- Скрипты для статуса, игры, роли и кнопки тревоги -->
-    <script>
-        // Сохранение выбранной роли (Реагент / Экс-поп) в браузере
         function changeRole() {
             const select = document.getElementById('user-role');
             localStorage.setItem('pasha_role', select.value);
@@ -418,7 +398,6 @@
             }
         });
 
-        // Массив секретных сообщений Murkoff при тревоге
         const alarmMessages = [
             "🚨 ВНИМАНИЕ: Зафиксирован побег реагента из блока терапии!",
             "⚠️ Взломан главный терминал комплекса. Включено протокольное заражение.",
@@ -427,42 +406,11 @@
             "⚡ Сбой питания в изоляторе. Эксперимент выходит из-под контроля!"
         ];
 
-        // Функция генерации сирены прямо в браузере
-        function playSiren() {
-            try {
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-
-                osc.type = 'sawtooth'; // Жесткий индустриальный звук сирены
-                
-                const now = audioCtx.currentTime;
-                osc.frequency.setValueAtTime(400, now);
-                osc.frequency.linearRampToValueAtTime(800, now + 0.5);
-                osc.frequency.linearRampToValueAtTime(400, now + 1.0);
-                osc.frequency.linearRampToValueAtTime(800, now + 1.5);
-                osc.frequency.linearRampToValueAtTime(400, now + 2.0);
-
-                gain.gain.setValueAtTime(0.15, now);
-                gain.gain.linearRampToValueAtTime(0, now + 2.0);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                osc.start(now);
-                osc.stop(now + 2.0);
-            } catch (e) {
-                console.log("Звуковой контекст заблокирован браузером");
-            }
-        }
-
         function triggerAlarm() {
             const body = document.body;
             const msgBox = document.getElementById('alarm-message');
             
             body.classList.add('alarm-active');
-            playSiren(); // Запускаем звук сирены
             
             const randomMsg = alarmMessages[Math.floor(Math.random() * alarmMessages.length)];
             msgBox.innerHTML = randomMsg;
@@ -472,7 +420,6 @@
             }, 2000);
         }
 
-        // Автопроверка стрима, аптайма и текущей игры на Twitch
         async function checkStreamStatus() {
             const dot = document.getElementById('status-dot');
             const text = document.getElementById('status-text');
@@ -501,7 +448,6 @@
 
         checkStreamStatus();
         setInterval(checkStreamStatus, 60000);
-    </script>
     </script>
 </body>
 </html>
