@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invasion Archive | PashaShineHouse</title>
     <style>
-        /* --- Базовые стили --- */
+        /* --- Базовые стили и фон --- */
         body {
             background-color: #050507;
+            background-image: linear-gradient(rgba(5, 5, 7, 0.82), rgba(5, 5, 7, 0.90)), url('https://butwhytho.net/wp-content/uploads/2025/10/Invasion-Mode-The-Outlast-Trials-But-Why-Tho.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: #e0e0e0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -43,7 +47,7 @@
             color: #ff3333;
         }
 
-        /* --- Неоново-красные блоки (Кроваво-красная тема) --- */
+        /* --- Неоново-красные блоки --- */
         .cyber-block {
             background-color: #12080a;
             border: 1px solid #992020;
@@ -112,7 +116,7 @@
             transform: scale(1.08);
         }
 
-        /* Инфо блок на превью с неоново-красными никами */
+        /* Инфо блок на превью */
         .card-info {
             padding: 14px;
             display: flex;
@@ -139,7 +143,7 @@
             text-shadow: 0 0 5px rgba(255, 102, 102, 0.5);
         }
 
-        /* --- Модальное окно (чисто картинка по центру) --- */
+        /* --- Модальное окно --- */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -210,77 +214,56 @@
             
             <!-- Сетка галереи -->
             <div class="gallery-grid">
-                <!-- Карточка 1 -->
-   <div class="gallery-card" onclick="openGalleryModal('https://i.ibb.co/35YS0qNv/20.jpg')">
-    <div class="image-thumb-wrap">
-        <img src="https://i.ibb.co/YFMn1kBj/20.jpg" alt="Превью испытания">
-    </div>
-    <div class="card-info">
-        <span class="card-title">🔪 PashaShine (ExPop)</span>
-        <span class="card-subtitle">🔪 Петрушевый чай (ExPop)</span>
-    </div>
-</div>
-
-                <!-- Карточка 2 (пример второй картинки) -->
-                <div class="gallery-card" onclick="openGalleryModal('ССЫЛКА_НА_БОЛЬШУЮ_КАРТИНКУ.png')">
-    <div class="image-thumb-wrap">
-        <img src="ССЫЛКА_НА_ПРЕВЬЮ.png" alt="Превью испытания">
-    </div>
-    <div class="card-info">
-        <span class="card-title">🔪 PashaShine (ExPop)</span>
-        <span class="card-title">🔪 Петрушевый чай (ExPop)</span>
-    </div>
-</div>
-
-                           <!-- Карточка 3 (пример второй картинки) -->
-                <div class="gallery-card" onclick="openGalleryModal('ССЫЛКА_НА_БОЛЬШУЮ_КАРТИНКУ.png')">
-    <div class="image-thumb-wrap">
-        <img src="ССЫЛКА_НА_ПРЕВЬЮ.png" alt="Превью испытания">
-    </div>
-    <div class="card-info">
-        <span class="card-title">🔪 PashaShine (ExPop)</span>
-        <span class="card-title">🔪 Петрушевый чай (ExPop)</span>
-    </div>
-</div>
-
-                           <!-- Карточка 4 (пример второй картинки) -->
-                <div class="gallery-card" onclick="openGalleryModal('ССЫЛКА_НА_БОЛЬШУЮ_КАРТИНКУ.png')">
-    <div class="image-thumb-wrap">
-        <img src="ССЫЛКА_НА_ПРЕВЬЮ.png" alt="Превью испытания">
-    </div>
-    <div class="card-info">
-        <span class="card-title">🔪 PashaShine (ExPop)</span>
-        <span class="card-title">🔪 Петрушевый чай (ExPop)</span>
-    </div>
-</div>
-
-                                           <!-- Карточка 5 (пример второй картинки) -->
-                <div class="gallery-card" onclick="openGalleryModal('ССЫЛКА_НА_БОЛЬШУЮ_КАРТИНКУ.png')">
-    <div class="image-thumb-wrap">
-        <img src="ССЫЛКА_НА_ПРЕВЬЮ.png" alt="Превью испытания">
-    </div>
-    <div class="card-info">
-        <span class="card-title">🔪 PashaShine (ExPop)</span>
-        <span class="card-title">🔪 Петрушевый чай (ExPop)</span>
-    </div>
-</div>
-
-                                           <!-- Карточка 6 (пример второй картинки) -->
-                <div class="gallery-card" onclick="openGalleryModal('ССЫЛКА_НА_БОЛЬШУЮ_КАРТИНКУ.png')">
-    <div class="image-thumb-wrap">
-        <img src="ССЫЛКА_НА_ПРЕВЬЮ.png" alt="Превью испытания">
-    </div>
-    <div class="card-info">
-        <span class="card-title">🔪 PashaShine (ExPop)</span>
-        <span class="card-title">🔪 Петрушевый чай (ExPop)</span>
-    </div>
-</div>
                 
+                <!-- Карточка 1 (Твоя рабочая) -->
+                <div class="gallery-card" onclick="openGalleryModal('https://i.ibb.co/35YS0qNv/20.jpg')">
+                    <div class="image-thumb-wrap">
+                        <img src="https://i.ibb.co/YFMn1kBj/20.jpg" alt="Превью испытания">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">🔪 PashaShine (ExPop)</span>
+                        <span class="card-subtitle">🔪 Петрушевый чай (ExPop)</span>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 (Заготовка) -->
+                <div class="gallery-card" onclick="openGalleryModal('ССЫЛКА_НА_БОЛЬШУЮ_КАРТИНКУ.png')">
+                    <div class="image-thumb-wrap">
+                        <img src="ССЫЛКА_НА_ПРЕВЬЮ.png" alt="Превью испытания">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">🔪 PashaShine (ExPop)</span>
+                        <span class="card-subtitle">🔪 Петрушевый чай (ExPop)</span>
+                    </div>
+                </div>
+
+                <!-- Карточка 3 (Заготовка) -->
+                <div class="gallery-card" onclick="openGalleryModal('ССЫЛКА_НА_БОЛЬШУЮ_КАРТИНКУ.png')">
+                    <div class="image-thumb-wrap">
+                        <img src="ССЫЛКА_НА_ПРЕВЬЮ.png" alt="Превью испытания">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">🔪 PashaShine (ExPop)</span>
+                        <span class="card-subtitle">🔪 Петрушевый чай (ExPop)</span>
+                    </div>
+                </div>
+
+                <!-- Карточка 4 (Заготовка) -->
+                <div class="gallery-card" onclick="openGalleryModal('ССЫЛКА_НА_БОЛЬШУЮ_КАРТИНКУ.png')">
+                    <div class="image-thumb-wrap">
+                        <img src="ССЫЛКА_НА_ПРЕВЬЮ.png" alt="Превью испытания">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">🔪 PashaShine (ExPop)</span>
+                        <span class="card-subtitle">🔪 Петрушевый чай (ExPop)</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- Модальное окно (чисто картинка) -->
+    <!-- Модальное окно -->
     <div id="galleryModal" class="modal-overlay" onclick="closeOnBg(event)">
         <div class="modal-content-box">
             <button class="modal-close-btn" onclick="closeGalleryModal()">×</button>
@@ -288,11 +271,15 @@
         </div>
     </div>
 
+    <!-- Скрипты -->
     <script>
         function openGalleryModal(imgSrc) {
             const modal = document.getElementById('galleryModal');
-            document.getElementById('modalFullImg').src = imgSrc;
-            modal.style.display = 'flex';
+            const modalImg = document.getElementById('modalFullImg');
+            if (modal && modalImg) {
+                modalImg.src = imgSrc;
+                modal.style.display = 'flex';
+            }
         }
 
         function closeGalleryModal() {
@@ -310,26 +297,6 @@
                 closeGalleryModal();
             }
         });
-
-
-body {
-    background-color: #050507;
-    background-image: linear-gradient(rgba(5, 5, 7, 0.82), rgba(5, 5, 7, 0.90)), url('https://butwhytho.net/wp-content/uploads/2025/10/Invasion-Mode-The-Outlast-Trials-But-Why-Tho.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-        <script>
-    function openGalleryModal(imgSrc) {
-        const modal = document.getElementById('galleryModal');
-        const modalImg = document.getElementById('modalFullImg');
-        if (modal && modalImg) {
-            modalImg.src = imgSrc;
-            modal.style.display = 'flex';
-        }
-    }
-</script>
-    
     </script>
 </body>
 </html>
