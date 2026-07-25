@@ -112,9 +112,14 @@
             margin: 0 auto 15px auto;
             box-shadow: 0 0 20px rgba(145, 70, 255, 0.6);
             display: block;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .custom-avatar:hover {
+            transform: scale(1.05) rotate(3deg);
         }
 
-        /* Переключатель статуса игрока (Реагент / Экс-поп) */
+        /* Переключатель статуса игрока */
         .role-selector {
             margin-top: 12px;
             background: #181820;
@@ -166,6 +171,22 @@
         .dot.online {
             background-color: #00ff66;
             box-shadow: 0 0 10px #00ff66, 0 0 20px #00ff66;
+        }
+
+        /* Стили для интерактивной консоли логов */
+        .console-box {
+            background: #08080a;
+            border: 1px solid #40197a;
+            border-radius: 6px;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8em;
+            color: #00ff66;
+            height: 90px;
+            overflow-y: hidden;
+            text-align: left;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+            margin-top: 10px;
         }
 
         /* Стили для кнопки тревоги */
@@ -281,28 +302,34 @@
     <!-- ЛЕВАЯ КОЛОНКА -->
     <aside class="sidebar-left">
         <div class="cyber-block welcome-box">
-            <img src="11.png" alt="Avatar" class="custom-avatar">
+            <img src="11.png" alt="Avatar" class="custom-avatar" title="Нажми на меня!" onclick="triggerEasterEgg()">
             <h1 style="font-size: 1.3em; margin: 0 0 2px 0; color: #fff;">PashaShine</h1>
             <p style="margin: 0 0 10px 0; font-size: 0.85em; color: #a0a0b0;">Twitch Streamer</p>
+            
+            <div class="role-selector">
+                <label for="user-role">Текущий статус:</label>
+                <select id="user-role" onchange="changeRole()">
+                    <option value="🧪 Реагент (Murkoff)">🧪 Реагент (Murkoff)</option>
+                    <option value="💀 Экс-поп (Эксперимент)">💀 Экс-поп (Эксперимент)</option>
+                    <option value="⚡ Вне испытаний">⚡ Вне испытаний</option>
+                    <option value="🩸 Скрытый режим">🩸 Скрытый режим</option>
+                </select>
+            </div>
 
             <div style="margin-top: 15px;">
                 <a href="https://www.twitch.tv/pashashine" target="_blank" style="font-size: 0.9em; font-weight: bold;">Открыть на Twitch ↗</a>
             </div>
         </div>
 
-        <div class="cyber-block">
-            <h2>Интерактив</h2>
-            <ul class="cyber-list">
-                <li><a href="updates.html">Патчи Outlast Trials</a></li>
-            </ul>
+        <div class="cyber-block" style="text-align: center;">
+            <button class="alarm-btn" onclick="triggerAlarm()">⚠️ Протокол тревоги</button>
+            <div id="alarm-message" style="margin-top: 10px; font-size: 0.8em; color: #ff4444; min-height: 35px;"></div>
         </div>
 
         <div class="cyber-block">
-            <h2>Навигация</h2>
+            <h2>Обновления</h2>
             <ul class="cyber-list">
-                <li><a href="https://www.twitch.tv/pashashine/schedule" target="_blank">Расписание стримов</a></li>
-                <li><a href="https://www.twitch.tv/pashashine/about" target="_blank">О себе / Железо</a></li>
-                <li><a href="https://www.twitch.tv/pashashine/chat" target="_blank">Правила чата</a></li>
+                <li><a href="updates.html">Патчи Outlast Trials</a></li>
             </ul>
         </div>
     </aside>
@@ -315,67 +342,22 @@
             <span id="status-text">Проверка статуса трансляции...</span>
         </div>
 
-       <!-- Блок: Шапка / Главное приветствие хаба -->
-<div class="cyber-block main-header-block">
-    <h1>🔴 Добро пожаловать на хаб стримера PashaShine!</h1>
-    <p class="hub-subtitle">
-        Централизованный архив трансляций, секретных материалов и совместных вылазок. 
-        Основной фокус комплекса направлен на суровые испытания и эксперименты в 
-        <strong>The Outlast Trials</strong>, а также прочие мрачные интерактивные развлечения.
-    </p>
-    
-    <div class="hub-nav-links">
-        <a href="invasion.html" class="hub-btn">🧪 Архив испытаний (Invasion)</a>
-    </div>
-</div>
+        <div class="cyber-block">
+            <h2>О проекте</h2>
+            <p style="line-height: 1.6; color: #ccc; text-align: center;">
+                Добро пожаловать на мой сайт-хаб! Здесь собрана вся основная информация по стримам, ссылкам и активностям.
+            </p>
+        </div>
 
-<style>
-    .main-header-block {
-        text-align: center;
-        padding: 30px 20px;
-    }
-
-    .hub-subtitle {
-        font-size: 0.95em;
-        color: #b0b0c0;
-        line-height: 1.5;
-        max-width: 800px;
-        margin: 0 auto 20px auto;
-    }
-
-    .hub-subtitle strong {
-        color: #ff3333;
-        text-shadow: 0 0 8px rgba(255, 51, 51, 0.5);
-    }
-
-    .hub-nav-links {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin-top: 15px;
-    }
-
-    .hub-btn {
-        background: #1a0b0d;
-        border: 1px solid #ff3333;
-        color: #ff3333;
-        padding: 10px 20px;
-        border-radius: 6px;
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 0.85em;
-        letter-spacing: 1px;
-        transition: all 0.3s ease;
-        box-shadow: 0 0 10px rgba(255, 51, 51, 0.2);
-    }
-
-    .hub-btn:hover {
-        background: #ff3333;
-        color: #fff;
-        box-shadow: 0 0 20px rgba(255, 51, 51, 0.6);
-        transform: translateY(-2px);
-    }
-</style>
+        <!-- Идея 3: Интерактивная живая консоль комплекса -->
+        <div class="cyber-block">
+            <h2>Системный лог Murkoff</h2>
+            <div class="console-box" id="console-logs">
+                [SYSTEM] Инициализация ядра протоколов...<br>
+                [CONNECT] Подключение к нейросети канала...<br>
+                [READY] Ожидание пользовательских команд...
+            </div>
+        </div>
 
         <div class="cyber-block">
             <h2>Поддержка</h2>
@@ -383,175 +365,12 @@
                 👑💎 ЗАЛ СЛАВЫ КАНАЛА 💎👑<br>
                 Список самых легендарных, щедрых и невероятных людей нашей галактики!<br><br>
                 ⚡ <b>ТОП ДОНАТЕРОВ</b> ⚡<br>
-                🥇 <b>Flent</b> 👑<br>
-                🥈 <b>Stevenrichter1996</b> 💎<br>
-                🥉 <b>Ravenous_vest</b><br>
-                🚀 <b>au_hero_wormix_54</b>
+                🥇 Flent 👑<br>
+                🥈 Stevenrichter1996 💎<br>
+                🥉 Ravenous_vest<br>
+                🚀 au_hero_wormix_54
             </p>
         </div>
-
-
-
-<!-- Блок: Доска улик (Расследование Murkoff) -->
-<div class="cyber-block investigation-board">
-    <h2>📋 Доска целей в игре Outlast Trials</h2>
-    <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 15px;">
-        Текущие и будущие цели режима Вторжение
-    </p>
-
-    <div class="board-grid">
-        <!-- Карточка 1 -->
-        <div class="evidence-card" onclick="inspectCard(this)">
-            <span class="pin">📌</span>
-            <span class="case-number">INVASION 5 season</span>
-            <h3>Цель выполнена</h3>
-            <p>Gold 1 закрыто</p>
-            <div class="status-stamp success">ВЫПОЛНЕНО</div>
-        </div>
-
-        <!-- Карточка 2 -->
-        <div class="evidence-card" onclick="inspectCard(this)">
-            <span class="pin">📌</span>
-            <span class="case-number">INVASION 6 season</span>
-            <h3>Цель не выполнена</h3>
-            <p>Gold 1 не закрыто</p>
-            <div class="status-stamp error">НЕ ВЫПОЛНЕНО</div>
-        </div>
-
-        <!-- Карточка 3 -->
-        <div class="evidence-card" onclick="inspectCard(this)">
-            <span class="pin">📌</span>
-          <span class="case-number">INVASION 7 season</span>
-            <h3>Цель в процессе</h3>
-            <p>Gold 1 не закрыто</p>
-            <div class="status-stamp ">НЕ ВЫПОЛНЕНО</div>
-        </div>
-
-
-     <!-- Карточка 3 -->
-        <div class="evidence-card" onclick="inspectCard(this)">
-            <span class="pin">📌</span>
-          <span class="case-number">INVASION 8 season</span>
-            <h3>Сезон еще не вышел</h3>
-            <p>Вторжение не достигнуто </p>
-            <div class="status-stamp ">НЕ ВЫПОЛНЕНО</div>
-        </div>
-
-        
-    </div>
-</div>
-
-<style>
-    /* Стили для доски улик */
-    .investigation-board {
-        background: #0c0c10;
-        border: 1px solid #502099;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .board-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .evidence-card {
-        background: #14141c;
-        border: 1px dashed #40197a;
-        border-radius: 6px;
-        padding: 12px;
-        position: relative;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-
-    .evidence-card:hover {
-        border-color: #9146FF;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 15px rgba(145, 70, 255, 0.2);
-    }
-
-    .evidence-card .pin {
-        position: absolute;
-        top: -8px;
-        right: 10px;
-        font-size: 1.1em;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
-    }
-
-    .evidence-card .case-number {
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 0.7em;
-        color: #ff5555;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .evidence-card h3 {
-        color: #fff;
-        font-size: 0.95em;
-        margin: 0 0 8px 0;
-    }
-
-    .evidence-card p {
-        color: #b0b0c0;
-        font-size: 0.8em;
-        line-height: 1.4;
-        margin: 0 0 10px 0;
-    }
-
-    .status-stamp {
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 0.65em;
-        padding: 2px 6px;
-        border-radius: 3px;
-        display: inline-block;
-        background: #25180b;
-        color: #ffaa00;
-        border: 1px solid #ffaa00;
-        letter-spacing: 0.5px;
-    }
-
-    .status-stamp.success {
-        background: #0b2512;
-        color: #00ff66;
-        border-color: #00ff66;
-    }
-
-    .status-stamp.pending {
-        background: #250b12;
-        color: #ff5555;
-        border-color: #ff5555;
-    }
-</style>
-
-<script>
-    // Функция для интерактивности при клике на карточку
-    function inspectCard(cardElement) {
-        const title = cardElement.querySelector('h3').innerText;
-        const caseNum = cardElement.querySelector('.case-number').innerText;
-        
-        // Отправляем лог в твою консоль симулятора, если она есть на странице
-        if (typeof addLog === 'function') {
-            addLog(`АРХИВ: Изучено дело [${caseNum}] — "${title}"`);
-        }
-        
-        // Легкая анимация выбора
-        cardElement.style.borderColor = '#00ff66';
-        setTimeout(() => {
-            cardElement.style.borderColor = '';
-        }, 600);
-    }
-</script>
-
-
-        
     </main>
 
     <!-- ПРАВАЯ КОЛОНКА -->
@@ -598,6 +417,77 @@
         </div>
     </aside>
 
+    <!-- Скрипты -->
+    <script>
+        function changeRole() {
+            const select = document.getElementById('user-role');
+            localStorage.setItem('pasha_role', select.value);
+            addLog(`Сменен статус реагента: ${select.value}`);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedRole = localStorage.getItem('pasha_role');
+            if (savedRole) {
+                document.getElementById('user-role').value = savedRole;
+            }
+        });
+
+        const alarmMessages = [
+            "🚨 ВНИМАНИЕ: Зафиксирован побег реагента из блока терапии!",
+            "⚠️ Взломан главный терминал комплекса. Включено протокольное заражение.",
+            "💉 Предупреждение: Уровень психоза в секторе превышен на 84%.",
+            "🔴 Внимание всем сотрудникам: Началась ночь испытаний.",
+            "⚡ Сбой питания в изоляторе. Эксперимент выходит из-под контроля!"
+        ];
+
+        function triggerAlarm() {
+            const body = document.body;
+            const msgBox = document.getElementById('alarm-message');
+            
+            body.classList.add('alarm-active');
+            
+            const randomMsg = alarmMessages[Math.floor(Math.random() * alarmMessages.length)];
+            msgBox.innerHTML = randomMsg;
+            addLog(`ТРЕВОГА: ${randomMsg}`);
+
+            setTimeout(() => {
+                body.classList.remove('alarm-active');
+            }, 2000);
+        }
+
+        // Идея 1: Интерактивная пасхалка на аватарку
+        const easterEggMessages = [
+            "👁️ Доктор Котеррике наблюдает за вами...",
+            "⚡ Подача тока на электроошейник... Всё в норме.",
+            "🧪 Обнаружен скрытый образец сыворотки.",
+            "🔒 Доступ к секретным материалам комплекса заблокирован."
+        ];
+        function triggerEasterEgg() {
+            const randomMsg = easterEggMessages[Math.floor(Math.random() * easterEggMessages.length)];
+            alert(randomMsg);
+            addLog(`[ЭХО] ${randomMsg}`);
+        }
+
+        // Идея 3: Живая генерация системных логов в консоли
+        const consoleLogsData = [
+            "SYN: Проверка пинга с сервером Murkoff...",
+            "SEC: Уровень защиты периметра стабилен.",
+            "DATA: Синхронизация трансляции Twitch...",
+            "AI: Обработка психо-триггеров...",
+            "USER: Активность сеанса подтверждена."
+        ];
+        function addLog(text) {
+            const consoleBox = document.getElementById('console-logs');
+            const time = new Date().toLocaleTimeString();
+            consoleBox.innerHTML += `<br>[${time}] ${text}`;
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+        }
+
+        setInterval(() => {
+            const randomLog = consoleLogsData[Math.floor(Math.random() * consoleLogsData.length)];
+            addLog(randomLog);
+        }, 12000);
+
         async function checkStreamStatus() {
             const dot = document.getElementById('status-dot');
             const text = document.getElementById('status-text');
@@ -617,6 +507,7 @@
                     let gameInfo = (gameData && !gameData.includes('error')) ? `<br>🎮 Игра: <b>${gameData}</b>` : '';
                     let roleInfo = `<br>⚡ Статус: <b>${document.getElementById('user-role').value}</b>`;
                     text.innerHTML = `🟢 <b>Прямой эфир идет!</b> (Аптайм: ${uptimeData})${gameInfo}${roleInfo}`;
+                    addLog("Статус стрима: Активен (Эфир идет)");
                 }
             } catch (error) {
                 dot.classList.remove('online');
@@ -626,16 +517,6 @@
 
         checkStreamStatus();
         setInterval(checkStreamStatus, 60000);
-
-
-
-    .status-stamp.danger {
-    background-color: #1a0b0d;
-    color: #ff3333;
-    border: 1px solid #ff3333;
-    box-shadow: 0 0 10px rgba(255, 51, 51, 0.4);
-}
-    
     </script>
 </body>
 </html>
