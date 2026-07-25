@@ -120,7 +120,6 @@
             font-weight: bold;
         }
 
-        /* Плеер и чат на весь экран по высоте */
         .player-container {
             flex-grow: 1;
             background: #000;
@@ -147,10 +146,26 @@
             overflow: hidden;
         }
 
+        /* Статус-бар со скриптом */
         .status-box {
             margin-bottom: 0;
             text-align: center;
             padding: 12px;
+            font-size: 0.95em;
+        }
+        .dot {
+            height: 10px;
+            width: 10px;
+            background-color: #555;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            box-shadow: 0 0 5px #555;
+            transition: all 0.3s;
+        }
+        .dot.online {
+            background-color: #00ff66;
+            box-shadow: 0 0 10px #00ff66, 0 0 20px #00ff66;
         }
 
         /* Мобильная адаптивность */
@@ -197,25 +212,53 @@
     <!-- ЦЕНТР: Плеер Twitch -->
     <main class="main-content">
         <div class="player-container">
-            <!-- Встроенный плеер Twitch с твоим ником pashashine -->
             <iframe src="https://player.twitch.tv/?channel=pashashine&parent=pashashinetwitch.github.io&muted=false" 
                     allowfullscreen="true">
             </iframe>
         </div>
         
+        <!-- Блок статуса с автопроверкой -->
         <div class="cyber-block status-box">
-            <p style="margin: 0; color: #fff; font-size: 0.95em;">🔴 Добро пожаловать на стрим!</p>
+            <span id="status-dot" class="dot"></span>
+            <span id="status-text">Проверка статуса трансляции...</span>
         </div>
     </main>
 
     <!-- ПРАВАЯ КОЛОНКА: Чат Twitch -->
     <aside class="sidebar-right">
         <div class="chat-container">
-            <!-- Встроенный чат Twitch -->
             <iframe src="https://www.twitch.tv/embed/pashashine/chat?parent=pashashinetwitch.github.io&darkpopout">
             </iframe>
         </div>
     </aside>
 
+    <!-- Скрипт проверки онлайн-статуса Twitch через публичный эндпоинт -->
+    <script>
+        async function checkStreamStatus() {
+            const dot = document.getElementById('status-dot');
+            const text = document.getElementById('status-text');
+            
+            try {
+                // Используем бесплатный публичный сервис для проверки стримов по нику
+                let response = await fetch('https://decapi.me/twitch/uptime/pashashine');
+                let data = await response.text();
+
+                if (data.includes('offline') || data.includes('not live') || data.includes('Channel not found')) {
+                    dot.classList.remove('online');
+                    text.innerHTML = '⚫ Стрим оффлайн. Жду на следующем эфире!';
+                } else {
+                    dot.classList.add('online');
+                    text.innerHTML = '🟢 <b>Прямой эфир идет!</b> Время стрима: ' + data;
+                }
+            } catch (error) {
+                dot.classList.remove('online');
+                text.innerHTML = '🔴 Статус: трансляция (ошибка проверки)';
+            }
+        }
+
+        // Проверяем сразу при загрузке и далее каждую минуту
+        checkStreamStatus();
+        setInterval(checkStreamStatus, 60000);
+    </script>
 </body>
 </html>
