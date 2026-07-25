@@ -114,11 +114,44 @@
             display: block;
         }
 
+        /* Переключатель статуса игрока (Реагент / Экс-поп) */
+        .role-selector {
+            margin-top: 12px;
+            background: #181820;
+            border: 1px solid #40197a;
+            border-radius: 6px;
+            padding: 8px;
+            text-align: left;
+        }
+        .role-selector label {
+            font-size: 0.75em;
+            color: #9090a0;
+            display: block;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .role-selector select {
+            width: 100%;
+            background: #101014;
+            color: #bf94ff;
+            border: 1px solid #502099;
+            padding: 5px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            outline: none;
+            cursor: pointer;
+        }
+        .role-selector select:hover {
+            border-color: #9146FF;
+        }
+
         /* Статус-бар со скриптом */
         .status-box {
             text-align: center;
             padding: 15px;
-            font-size: 1em;
+            font-size: 0.95em;
+            line-height: 1.4;
         }
         .dot {
             height: 10px;
@@ -221,22 +254,33 @@
     <!-- ЛЕВАЯ КОЛОНКА: Навигация -->
     <aside class="sidebar-left">
         <div class="cyber-block welcome-box">
-            <img src="11.png" alt="Avatar" class="custom-avatar">
-            <h1 style="font-size: 1.3em; margin: 0 0 5px 0; color: #fff;">PashaShine</h1>
-            <p style="margin: 0 0 15px 0; font-size: 0.9em; color: #a0a0b0;">Twitch Streamer</p>
-            <a class="cyber-list" href="https://www.twitch.tv/pashashine" target="_blank" style="font-weight: bold;">Открыть на Twitch ↗</a>
+            <img src="avatar.png" alt="Avatar" class="custom-avatar">
+            <h1 style="font-size: 1.3em; margin: 0 0 2px 0; color: #fff;">PashaShine</h1>
+            <p style="margin: 0 0 10px 0; font-size: 0.85em; color: #a0a0b0;">Twitch Streamer</p>
+            
+            <!-- Интерактивный статус (Реагент / Экс-поп) -->
+            <div class="role-selector">
+                <label for="user-role">Текущий статус:</label>
+                <select id="user-role" onchange="changeRole()">
+                    <option value="🧪 Реагент (Murkoff)">🧪 Реагент (Murkoff)</option>
+                    <option value="💀 Экс-поп (Эксперимент)">💀 Экс-поп (Эксперимент)</option>
+                    <option value="⚡ Вне испытаний">⚡ Вне испытаний</option>
+                    <option value="🩸 Скрытый режим">🩸 Скрытый режим</option>
+                </select>
+            </div>
+
+            <div style="margin-top: 15px;">
+                <a href="https://www.twitch.tv/pashashine" target="_blank" style="font-size: 0.9em; font-weight: bold;">Открыть на Twitch ↗</a>
+            </div>
         </div>
 
-
-                <div class="cyber-block">
-            <h2>Обновления Outlast Trials</h2>
+        <div class="cyber-block">
+            <h2>Обновления</h2>
             <ul class="cyber-list">
                 <li><a href="updates.html">Патчи Outlast Trials</a></li>
             </ul>
         </div>
 
-
-        
         <div class="cyber-block">
             <h2>Навигация</h2>
             <ul class="cyber-list">
@@ -250,7 +294,7 @@
     <!-- ЦЕНТР: Информационные блоки -->
     <main class="main-content">
         
-        <!-- Блок статуса с автопроверкой -->
+        <!-- Блок статуса с автопроверкой игры и аптайма -->
         <div class="cyber-block status-box">
             <span id="status-dot" class="dot"></span>
             <span id="status-text">Проверка статуса трансляции...</span>
@@ -287,7 +331,7 @@
             <div class="social-grid">
                 <!-- Twitch -->
                 <a href="https://www.twitch.tv/pashashine" target="_blank" class="social-card twitch">
-                    <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57 যন্ত্র4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
                     <div class="info">
                         <strong>Twitch</strong>
                         <span>Зафоловиться</span>
@@ -295,7 +339,7 @@
                 </a>
 
                 <!-- Discord -->
-                <a href="https://discord.gg/6JK7Qc6C9u" target="_blank" class="social-card discord">
+                <a href="https://discord.gg/ТВОЙ_КОД" target="_blank" class="social-card discord">
                     <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
                     <div class="info">
                         <strong>Discord</strong>
@@ -304,7 +348,7 @@
                 </a>
 
                 <!-- Telegram -->
-                <a href="https://t.me/pasha_shine" target="_blank" class="social-card telegram">
+                <a href="https://t.me/ТВОЙ_КАНАЛ" target="_blank" class="social-card telegram">
                     <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.12.098.153.228.166.331.011.095.025.319.011.503z"/></svg>
                     <div class="info">
                         <strong>Telegram</strong>
@@ -313,7 +357,7 @@
                 </a>
 
                 <!-- YouTube -->
-                <a href="https://www.youtube.com/@PashaShine" target="_blank" class="social-card youtube">
+                <a href="https://www.youtube.com/@ТВОЙ_КАНАЛ" target="_blank" class="social-card youtube">
                     <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                     <div class="info">
                         <strong>YouTube</strong>
@@ -325,26 +369,47 @@
 
     </main>
 
-    <!-- Скрипт проверки онлайн-статуса Twitch -->
+    <!-- Скрипты для статуса, игры и сохранения выбора -->
     <script>
+        // Сохранение выбранной роли (Реагент / Экс-поп) в браузере
+        function changeRole() {
+            const select = document.getElementById('user-role');
+            localStorage.setItem('pasha_role', select.value);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedRole = localStorage.getItem('pasha_role');
+            if (savedRole) {
+                document.getElementById('user-role').value = savedRole;
+            }
+        });
+
+        // Автопроверка стрима, аптайма и текущей игры на Twitch
         async function checkStreamStatus() {
             const dot = document.getElementById('status-dot');
             const text = document.getElementById('status-text');
             
             try {
-                let response = await fetch('https://decapi.me/twitch/uptime/pashashine');
-                let data = await response.text();
+                // Запрос аптайма
+                let uptimeRes = await fetch('https://decapi.me/twitch/uptime/pashashine');
+                let uptimeData = await uptimeRes.text();
 
-                if (data.includes('offline') || data.includes('not live') || data.includes('Channel not found')) {
+                // Запрос текущей игры (категории)
+                let gameRes = await fetch('https://decapi.me/twitch/game/pashashine');
+                let gameData = await gameRes.text();
+
+                if (uptimeData.includes('offline') || uptimeData.includes('not live') || uptimeData.includes('Channel not found')) {
                     dot.classList.remove('online');
                     text.innerHTML = '⚫ Стрим оффлайн. Жду на следующем эфире!';
                 } else {
                     dot.classList.add('online');
-                    text.innerHTML = '🟢 <b>Прямой эфир идет!</b> Время стрима: ' + data;
+                    let gameInfo = (gameData && !gameData.includes('error')) ? `<br>🎮 Игра: <b>${gameData}</b>` : '';
+                    let roleInfo = `<br>⚡ Статус: <b>${document.getElementById('user-role').value}</b>`;
+                    text.innerHTML = `🟢 <b>Прямой эфир идет!</b> (Аптайм: ${uptimeData})${gameInfo}${roleInfo}`;
                 }
             } catch (error) {
                 dot.classList.remove('online');
-                text.innerHTML = '🔴 Статус: трансляция (ошибка проверки)';
+                text.innerHTML = '🔴 Ошибка загрузки статуса трансляции';
             }
         }
 
