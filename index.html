@@ -95,9 +95,8 @@
             width: 320px;
             padding: 15px;
             box-sizing: border-box;
+            overflow-y: auto;
             flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
         }
         
         .welcome-box {
@@ -118,21 +117,6 @@
             color: #9146FF;
             font-size: 2em;
             font-weight: bold;
-        }
-
-        .chat-container {
-            flex-grow: 1;
-            background: #0e0e10;
-            border-radius: 10px;
-            border: 1px solid #502099;
-            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4);
-            overflow: hidden;
-            min-height: 400px;
-        }
-        .chat-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
         }
 
         /* Статус-бар со скриптом */
@@ -168,9 +152,6 @@
                 height: auto;
                 overflow: visible;
             }
-            .chat-container {
-                height: 400px;
-            }
         }
     </style>
 </head>
@@ -195,7 +176,7 @@
         </div>
     </aside>
 
-    <!-- ЦЕНТР: Информационные блоки вместо плеера -->
+    <!-- ЦЕНТР: Информационные блоки -->
     <main class="main-content">
         
         <!-- Блок статуса с автопроверкой -->
@@ -204,32 +185,43 @@
             <span id="status-text">Проверка статуса трансляции...</span>
         </div>
 
-        <!-- Центральный информационный блок -->
         <div class="cyber-block">
-            <h2>Добро пожаловать в хаб!</h2>
+            <h2>О проекте</h2>
             <p style="line-height: 1.6; color: #ccc; text-align: center;">
-                Это твоя личная страница на GitHub Pages. Здесь удобно разместить ссылки, анонсы игр, расписание или другую важную информацию для зрителей.
+                Добро пожаловать на мой сайт-хаб! Здесь собрана вся основная информация по стримам, ссылкам и активностям.
             </p>
         </div>
 
-        <!-- Блок с полезными ссылками или игрой -->
         <div class="cyber-block">
             <h2>Ссылки и комьюнити</h2>
             <ul class="cyber-list">
                 <li><a href="https://www.twitch.tv/pashashine" target="_blank">Основной канал Twitch</a></li>
-                <li><a href="#" target="_blank">Telegram-канал (если есть)</a></li>
+                <li><a href="#" target="_blank">Telegram-канал</a></li>
                 <li><a href="#" target="_blank">Discord-сервер</a></li>
             </ul>
         </div>
 
     </main>
 
-    <!-- ПРАВАЯ КОЛОНКА: Чат Twitch -->
+    <!-- ПРАВАЯ КОЛОНКА: Дополнительные блоки вместо чата -->
     <aside class="sidebar-right">
-        <div class="chat-container">
-            <iframe src="https://www.twitch.tv/embed/pashashine/chat?parent=pashashinetwitch.github.io&darkpopout">
-            </iframe>
+        
+        <div class="cyber-block">
+            <h2>Игры на стриме</h2>
+            <ul class="cyber-list">
+                <li>Прохождение хорроров</li>
+                <li>Кооперативные сессии</li>
+                <li>Инди-проекты</li>
+            </ul>
         </div>
+
+        <div class="cyber-block">
+            <h2>Поддержка</h2>
+            <p style="font-size: 0.9em; color: #aaa; text-align: center; line-height: 1.5;">
+                Самая лучшая поддержка — это твоя подписка, фоллов и активное участие в чате на трансляции!
+            </p>
+        </div>
+
     </aside>
 
     <!-- Скрипт проверки онлайн-статуса Twitch -->
