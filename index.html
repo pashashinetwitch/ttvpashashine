@@ -409,19 +409,6 @@
         overflow: hidden;
     }
 
-    /* Имитация красных нитей на фоне */
-    .investigation-board::before {
-        content: '';
-        position: absolute;
-        top: 40px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: rgba(255, 51, 51, 0.25);
-        transform: rotate(-3deg);
-        pointer-events: none;
-    }
-
     .board-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
