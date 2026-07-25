@@ -415,7 +415,7 @@
             <span class="case-number">INVASION 6 season</span>
             <h3>Цель не выполнена</h3>
             <p>Gold 1 не закрыто</p>
-            <div class="status-stamp ">НЕ ВЫПОЛНЕНО</div>
+            <div class="status-stamp error">НЕ ВЫПОЛНЕНО</div>
         </div>
 
         <!-- Карточка 3 -->
@@ -598,42 +598,6 @@
         </div>
     </aside>
 
-    <!-- Скрипты -->
-    <script>
-        function changeRole() {
-            const select = document.getElementById('user-role');
-            localStorage.setItem('pasha_role', select.value);
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedRole = localStorage.getItem('pasha_role');
-            if (savedRole) {
-                document.getElementById('user-role').value = savedRole;
-            }
-        });
-
-        const alarmMessages = [
-            "🚨 ВНИМАНИЕ: Зафиксирован побег реагента из блока терапии!",
-            "⚠️ Взломан главный терминал комплекса. Включено протокольное заражение.",
-            "💉 Предупреждение: Уровень психоза в секторе превышен на 84%.",
-            "🔴 Внимание всем сотрудникам: Началась ночь испытаний.",
-            "⚡ Сбой питания в изоляторе. Эксперимент выходит из-под контроля!"
-        ];
-
-        function triggerAlarm() {
-            const body = document.body;
-            const msgBox = document.getElementById('alarm-message');
-            
-            body.classList.add('alarm-active');
-            
-            const randomMsg = alarmMessages[Math.floor(Math.random() * alarmMessages.length)];
-            msgBox.innerHTML = randomMsg;
-
-            setTimeout(() => {
-                body.classList.remove('alarm-active');
-            }, 2000);
-        }
-
         async function checkStreamStatus() {
             const dot = document.getElementById('status-dot');
             const text = document.getElementById('status-text');
@@ -662,6 +626,16 @@
 
         checkStreamStatus();
         setInterval(checkStreamStatus, 60000);
+
+
+
+    .status-stamp.danger {
+    background-color: #1a0b0d;
+    color: #ff3333;
+    border: 1px solid #ff3333;
+    box-shadow: 0 0 10px rgba(255, 51, 51, 0.4);
+}
+    
     </script>
 </body>
 </html>
