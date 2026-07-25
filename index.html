@@ -694,7 +694,7 @@
                     addLog(`АУДИО: Запущен трек "${playlist[currentTrackIndex].name}"`);
                 }
             }).catch(e => {
-                trackTitle.innerText = "Ошибка загрузки файла";
+                trackTitle.innerText = "Трек воспроизводиться?";
                 if (typeof addLog === 'function') {
                     addLog("АУДИО: Ошибка воспроизведения (проверь ссылку на файл)");
                 }
