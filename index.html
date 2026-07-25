@@ -284,20 +284,9 @@
     <!-- ЛЕВАЯ КОЛОНКА: Навигация -->
     <aside class="sidebar-left">
         <div class="cyber-block welcome-box">
-            <img src="avatar.png" alt="Avatar" class="custom-avatar">
+            <img src="11.png" alt="Avatar" class="custom-avatar">
             <h1 style="font-size: 1.3em; margin: 0 0 2px 0; color: #fff;">PashaShine</h1>
             <p style="margin: 0 0 10px 0; font-size: 0.85em; color: #a0a0b0;">Twitch Streamer</p>
-            
-            <!-- Интерактивный статус (Реагент / Экс-поп) -->
-            <div class="role-selector">
-                <label for="user-role">Текущий статус:</label>
-                <select id="user-role" onchange="changeRole()">
-                    <option value="🧪 Реагент (Murkoff)">🧪 Реагент (Murkoff)</option>
-                    <option value="💀 Экс-поп (Эксперимент)">💀 Экс-поп (Эксперимент)</option>
-                    <option value="⚡ Вне испытаний">⚡ Вне испытаний</option>
-                    <option value="🩸 Скрытый режим">🩸 Скрытый режим</option>
-                </select>
-            </div>
 
             <div style="margin-top: 15px;">
                 <a href="https://www.twitch.tv/pashashine" target="_blank" style="font-size: 0.9em; font-weight: bold;">Открыть на Twitch ↗</a>
@@ -306,7 +295,7 @@
 
         <!-- Кнопка тревоги -->
         <div class="cyber-block" style="text-align: center;">
-            <button class="alarm-btn" onclick="triggerAlarm()">⚠️ Протокол тревоги</button>
+            <button class="alarm-btn" onclick="triggerAlarm()">⚠️ Протокол тревоги: ЕГЕРЬ</button>
             <div id="alarm-message" style="margin-top: 10px; font-size: 0.8em; color: #ff4444; min-height: 35px;"></div>
         </div>
 
@@ -422,11 +411,11 @@
 
         // Массив секретных сообщений Murkoff при тревоге
         const alarmMessages = [
-            "🚨 ВНИМАНИЕ: Зафиксирован побег реагента из блока терапии!",
+            "🚨 ВНИМАНИЕ: Амелия замечена на территории объекта Синьялла!",
             "⚠️ Взломан главный терминал комплекса. Включено протокольное заражение.",
-            "💉 Предупреждение: Уровень психоза в секторе превышен на 84%.",
-            "🔴 Внимание всем сотрудникам: Началась ночь испытаний.",
-            "⚡ Сбой питания в изоляторе. Эксперимент выходит из-под контроля!"
+            "💉 Предупреждение: Уровень психоза в секторе превышен на 100%.",
+            "🔴 Внимание всем сотрудникам: Истерман убит.",
+            "⚡ Сбой питания в изоляторе. Шатл недоступен. Побег открыт!"
         ];
 
         function triggerAlarm() {
