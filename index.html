@@ -7,13 +7,15 @@
     <style>
         /* --- Базовые стили --- */
         body {
-            background-color: #050507; /* Очень темный фон */
+            background-color: #050507;
             color: #e0e0e0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
-            min-height: 100vh;
+            height: 100vh;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
         a {
@@ -25,27 +27,19 @@
             color: #ffffff;
         }
 
-        /* --- Общие стили блоков (Неоновая рамка) --- */
+        /* --- Неоновые блоки --- */
         .cyber-block {
             background-color: #101014;
-            border: 1px solid #502099; /* Базовый фиолетовый */
-            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4), /* Мягкое свечение */
-                        inset 0 0 10px rgba(145, 70, 255, 0.1); /* Внутренний блик */
+            border: 1px solid #502099;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4),
+                        inset 0 0 10px rgba(145, 70, 255, 0.1);
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
-            position: relative;
-            transition: box-shadow 0.3s ease-in-out;
-        }
-        
-        /* Эффект пульсации при наведении (опционально) */
-        .cyber-block:hover {
-             box-shadow: 0 0 25px rgba(145, 70, 255, 0.7),
-                         inset 0 0 15px rgba(145, 70, 255, 0.2);
         }
 
         .cyber-block h2 {
-            color: #c39bff; /* Светло-фиолетовый заголовок */
+            color: #c39bff;
             margin-top: 0;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -56,7 +50,6 @@
             margin-bottom: 15px;
         }
         
-        /* Список ссылок (как в примере) */
         .cyber-list {
             list-style: none;
             padding: 0;
@@ -67,7 +60,6 @@
             padding-left: 15px;
             position: relative;
         }
-        /* Маркеры списка (неоновые точки ) */
         .cyber-list li::before {
             content: '';
             position: absolute;
@@ -76,41 +68,45 @@
             transform: translateY(-50%);
             width: 8px;
             height: 8px;
-            background-color: #9146FF; /* Фиолетовый маркер */
+            background-color: #9146FF;
             border-radius: 50%;
             box-shadow: 0 0 10px #9146FF;
         }
 
-        /* --- Структура лейаута --- */
-        /* Левая колонка */
+        /* --- Структура (3 колонки) --- */
         .sidebar-left {
-            width: 250px;
-            padding: 20px;
+            width: 260px;
+            padding: 15px;
+            box-sizing: border-box;
+            overflow-y: auto;
             flex-shrink: 0;
         }
-        /* Центральная часть */
+        
         .main-content {
             flex-grow: 1;
-            padding: 20px;
+            padding: 15px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .sidebar-right {
+            width: 320px;
+            padding: 15px;
+            box-sizing: border-box;
+            flex-shrink: 0;
             display: flex;
             flex-direction: column;
         }
-        /* Правая колонка */
-        .sidebar-right {
-            width: 300px; /* Чат шире */
-            padding: 20px;
-            flex-shrink: 0;
-        }
         
-        /* --- Блоки внутри --- */
         .welcome-box {
             text-align: center;
-            margin-bottom: 30px;
         }
         
         .avatar-placeholder {
-            width: 120px;
-            height: 120px;
+            width: 90px;
+            height: 90px;
             background: #181820;
             border: 2px solid #9146FF;
             border-radius: 50%;
@@ -124,115 +120,101 @@
             font-weight: bold;
         }
 
-        /* Блок плеера (имитация) */
-        .player-placeholder {
+        /* Плеер и чат на весь экран по высоте */
+        .player-container {
             flex-grow: 1;
             background: #000;
             border-radius: 10px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #444;
-            border: 1px solid #222;
-            position: relative;
+            border: 1px solid #502099;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4);
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .player-container iframe,
+        .chat-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .chat-container {
+            flex-grow: 1;
+            background: #0e0e10;
+            border-radius: 10px;
+            border: 1px solid #502099;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4);
             overflow: hidden;
         }
-         .player-placeholder::after {
-            content: 'ПЛЕЕР СКОРО БУДЕТ';
-            font-size: 1.5em;
-            color: #222;
+
+        .status-box {
+            margin-bottom: 0;
+            text-align: center;
+            padding: 12px;
         }
 
-        /* Блок чата (имитация) */
-        .chat-placeholder {
-            background: #0e0e10;
-            height: 100%; /* Растягиваем по высоте колонки */
-            border-radius: 10px;
-             display: flex;
-            align-items: center;
-            justify-content: center;
-             border: 1px solid #222;
-        }
-        .chat-placeholder::after {
-            content: 'ЧАТ СКОРО БУДЕТ';
-            font-size: 1.2em;
-            color: #222;
-        }
-
-
-        /* --- Адаптивность (мобилки) --- */
+        /* Мобильная адаптивность */
         @media (max-width: 1000px) {
             body {
                 flex-direction: column;
+                overflow: auto;
+                height: auto;
             }
             .sidebar-left, .sidebar-right {
                 width: 100%;
-                padding: 10px;
+                height: auto;
             }
             .main-content {
-                order: -1; /* Ставим контент выше */
-                height: 40vh; /* Плеер занимает часть экрана */
+                height: 60vh;
+            }
+            .chat-container {
+                height: 400px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ЛЕВАЯ БОКОВАЯ ПАНЕЛЬ (Навигация и инфо) -->
+    <!-- ЛЕВАЯ КОЛОНКА: Навигация -->
     <aside class="sidebar-left">
-        
-        <!-- Блок: Профиль/Приветствие -->
         <div class="cyber-block welcome-box">
             <div class="avatar-placeholder">P</div>
-            <h1>PashaShine</h1>
-            <p>Стример на Twitch</p>
-            <a href="https://www.twitch.tv/pashashinetwitch" target="_blank">Смотреть трансляцию</a>
+            <h1 style="font-size: 1.3em; margin: 0 0 5px 0; color: #fff;">PashaShine</h1>
+            <p style="margin: 0 0 15px 0; font-size: 0.9em; color: #a0a0b0;">Twitch Streamer</p>
+            <a class="cyber-list" href="https://www.twitch.tv/pashashine" target="_blank" style="font-weight: bold;">Открыть на Twitch ↗</a>
         </div>
 
-        <!-- Блок: Ссылки и разделы (аналог твоего примера) -->
         <div class="cyber-block">
-            <h2>О канале</h2>
+            <h2>Навигация</h2>
             <ul class="cyber-list">
-                <li><a href="#">Правила чата</a></li>
-                <li><a href="#">Команды бота</a></li>
-                <li><a href="#">Моё железо</a></li>
-                <li><a href="#">Поддержать канал</a></li>
+                <li><a href="https://www.twitch.tv/pashashine/schedule" target="_blank">Расписание</a></li>
+                <li><a href="https://www.twitch.tv/pashashine/about" target="_blank">О себе / Железо</a></li>
+                <li><a href="https://www.twitch.tv/pashashine/chat" target="_blank">Правила чата</a></li>
             </ul>
         </div>
-        
-        <!-- Блок: Расписание (пример) -->
-        <div class="cyber-block">
-            <h2>Расписание</h2>
-            <p style="font-size: 0.9em; color: #aaa;">Вт, Чт, Сб — с 19:00 МСК</p>
-            <p style="font-size: 0.9em; color: #aaa;">Вс — Стрим выходного дня</p>
-        </div>
-
     </aside>
 
-    <!-- ЦЕНТРАЛЬНАЯ ЧАСТЬ (Плеер и анонсы) -->
+    <!-- ЦЕНТР: Плеер Twitch -->
     <main class="main-content">
-        
-        <!-- Имитация Плеера Twitch -->
-        <div class="player-placeholder">
-            <!-- Сюда потом вставим iframe плеера Twitch -->
+        <div class="player-container">
+            <!-- Встроенный плеер Twitch с твоим ником pashashine -->
+            <iframe src="https://player.twitch.tv/?channel=pashashine&parent=pashashinetwitch.github.io&muted=false" 
+                    allowfullscreen="true">
+            </iframe>
         </div>
         
-        <!-- Блок: Текущий статус -->
-        <div class="cyber-block" style="margin-bottom: 0;">
-            <h2>Сейчас в эфире</h2>
-            <p style="text-align: center; color: #fff;">Играю в The Outlast Trials 🩸 Прохожу на максимальной сложности!</p>
+        <div class="cyber-block status-box">
+            <p style="margin: 0; color: #fff; font-size: 0.95em;">🔴 Добро пожаловать на стрим!</p>
         </div>
     </main>
 
-    <!-- ПРАВАЯ БОКОВАЯ ПАНЕЛЬ (Чат) -->
+    <!-- ПРАВАЯ КОЛОНКА: Чат Twitch -->
     <aside class="sidebar-right">
-        
-        <!-- Имитация Чата Twitch -->
-        <div class="chat-placeholder">
-             <!-- Сюда потом вставим iframe чата Twitch -->
+        <div class="chat-container">
+            <!-- Встроенный чат Twitch -->
+            <iframe src="https://www.twitch.tv/embed/pashashine/chat?parent=pashashinetwitch.github.io&darkpopout">
+            </iframe>
         </div>
-        
     </aside>
 
 </body>
