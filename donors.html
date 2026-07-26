@@ -68,7 +68,7 @@
   .progress-bar-fill {
     background: linear-gradient(90deg, #e67e22, #f1c40f);
     height: 100%;
-    width: 75%; /* Заполненность */
+    width: 75%;
     border-radius: 4px;
   }
 
@@ -96,31 +96,50 @@
     color: #2ecc71;
   }
 
-  /* Кнопка доната */
-  .donate-action-btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
-    color: #fff;
-    padding: 12px;
+  /* Кнопка доната (возвращаем брендовый стиль Kinozal.TV с темным фоном и золотой рамкой) */
+  .sponsor-banner-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+    border: 1px solid #f39c12;
     border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    text-transform: uppercase;
+    padding: 12px;
+    color: #f39c12;
+    font-family: inherit;
     font-size: 14px;
-    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
-    transition: all 0.2s ease;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.25s ease;
     margin-top: 12px;
     box-sizing: border-box;
   }
-  .donate-action-btn:hover {
-    background: linear-gradient(135deg, #2ecc71 100%, #27ae60 0%);
-    box-shadow: 0 6px 16px rgba(46, 204, 113, 0.5);
+
+  .sponsor-banner-btn:hover {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+    border-color: #f1c40f;
+    color: #f1c40f;
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transform: translateY(-1px);
   }
 
-  /* Адаптивность для мобилок (на всякий случай) */
+  .sponsor-banner-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  .sponsor-banner-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  /* Адаптивность */
   @media (max-width: 900px) {
     .donors-page-wrapper {
       flex-direction: column;
@@ -147,10 +166,15 @@
             <div class="progress-bar-fill"></div>
         </div>
         <div style="font-size: 12px; color: #888; margin-top: 8px; text-align: right;">
-            Собранно: 15 000 / 20 000 ₽
+            Собранно: 15 000 / 20 000 ₴
         </div>
       </div>
-      <a href="#pay" class="donate-action-btn">Поддержать проект</a>
+      <a href="#pay" class="sponsor-banner-btn">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span>Поддержать проект</span>
+      </a>
     </div>
 
     <div class="donors-card">
@@ -164,7 +188,7 @@
     </div>
   </aside>
 
-  <!-- Основной контент (например, таблица или список топ-доноров) -->
+  <!-- Основной контент -->
   <main class="donors-main-content">
     <h2 style="margin-top: 0; color: #f39c12; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px;">
       Список меценатов проекта
@@ -173,7 +197,6 @@
       Здесь отображаются пользователи, внесшие значительный вклад в развитие и поддержку сервера. Огромное спасибо каждому за помощь в оплате хостинга и каналов связи!
     </p>
     
-    <!-- Сюда можно вставить основную таблицу со списком меценатов -->
     <div style="background: #161616; border: 1px dashed #333; padding: 40px; text-align: center; color: #777; border-radius: 6px; margin-top: 20px;">
       [ Основная таблица со списком пользователей и суммами пожертвований ]
     </div>
@@ -184,11 +207,11 @@
     <div class="donors-card">
       <h3>Топ за месяц</h3>
       <ul class="donors-list-small">
-        <li><span class="donor-name">KinoFan_99</span> <span class="donor-sum">5 000 ₽</span></li>
-        <li><span class="donor-name">Alex_777</span> <span class="donor-sum">3 000 ₽</span></li>
-        <li><span class="donor-name">Sergey_B</span> <span class="donor-sum">2 000 ₽</span></li>
-        <li><span class="donor-name">RetroAdmin</span> <span class="donor-sum">1 500 ₽</span></li>
-        <li><span class="donor-name">Anonymous</span> <span class="donor-sum">1 000 ₽</span></li>
+        <li><span class="donor-name">KinoFan_99</span> <span class="donor-sum">5 000 ₴</span></li>
+        <li><span class="donor-name">Alex_777</span> <span class="donor-sum">3 000 ₴</span></li>
+        <li><span class="donor-name">Sergey_B</span> <span class="donor-sum">2 000 ₴</span></li>
+        <li><span class="donor-name">RetroAdmin</span> <span class="donor-sum">1 500 ₴</span></li>
+        <li><span class="donor-name">Anonymous</span> <span class="donor-sum">1 000 ₴</span></li>
       </ul>
     </div>
 
