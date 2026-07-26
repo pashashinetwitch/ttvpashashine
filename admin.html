@@ -3,42 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Murkoff // Control Center (Admin)</title>
+    <title>Murkoff // Mega-Control Center (Admin)</title>
     <style>
         body {
-            background-color: #050507;
-            color: #e0e0e0;
+            background-color: #030305;
+            color: #d0d0e0;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             justify-content: center;
         }
 
         .control-panel {
             width: 100%;
-            max-width: 900px;
-            background: #0c0c10;
+            max-width: 1400px;
+            background: #0a0a0e;
             border: 2px solid #502099;
-            box-shadow: 0 0 30px rgba(145, 70, 255, 0.3), inset 0 0 15px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 40px rgba(145, 70, 255, 0.4), inset 0 0 20px rgba(0, 0, 0, 0.9);
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             box-sizing: border-box;
         }
 
         header {
             text-align: center;
-            border-bottom: 1px dashed #502099;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
+            border-bottom: 2px dashed #502099;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
         }
 
         header h1 {
             color: #bf94ff;
             margin: 0 0 5px 0;
-            font-size: 1.4em;
+            font-size: 1.6em;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         header p {
@@ -47,176 +47,152 @@
             margin: 0;
         }
 
-        /* Сетка панели управления */
+        /* Большая сетка терминала */
         .grid-dashboard {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1100px) {
+            .grid-dashboard {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 700px) {
             .grid-dashboard {
                 grid-template-columns: 1fr;
             }
         }
 
         .panel-module {
-            background: #14141c;
+            background: #111118;
             border: 1px solid #40197a;
-            border-radius: 8px;
-            padding: 15px;
+            border-radius: 6px;
+            padding: 12px;
             position: relative;
         }
 
         .panel-module h3 {
-            color: #ff6666;
+            color: #c39bff;
             margin-top: 0;
-            font-size: 0.95em;
+            font-size: 0.85em;
             text-transform: uppercase;
-            border-bottom: 1px solid #301050;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
+            border-bottom: 1px solid #280f42;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
             letter-spacing: 1px;
         }
 
-        .panel-module.security h3 { color: #ff3333; }
-        .panel-module.streams h3 { color: #00ff66; }
+        .panel-module.danger h3 { color: #ff5555; }
+        .panel-module.success h3 { color: #00ff66; }
+        .panel-module.warning h3 { color: #ffaa00; }
 
-        /* Элементы управления (кнопки, тумблеры, ползунки) */
         .control-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
-            font-size: 0.85em;
+            margin-bottom: 8px;
+            font-size: 0.78em;
         }
 
         .control-row label {
-            color: #b0b0c0;
+            color: #9090a0;
         }
 
-        /* Кастомный чекбокс-тумблер */
+        /* Тумблеры */
         .switch {
             position: relative;
             display: inline-block;
-            width: 44px;
-            height: 22px;
+            width: 36px;
+            height: 18px;
+            flex-shrink: 0;
         }
-
-        .switch input { 
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
+        .switch input { opacity: 0; width: 0; height: 0; }
         .slider {
             position: absolute;
             cursor: pointer;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #22222d;
-            transition: .3s;
-            border: 1px solid #502099;
-            border-radius: 22px;
+            background-color: #1a1a24;
+            transition: .2s;
+            border: 1px solid #40197a;
+            border-radius: 18px;
         }
-
         .slider:before {
             position: absolute;
             content: "";
-            height: 14px;
-            width: 14px;
-            left: 3px;
-            bottom: 3px;
-            background-color: #707085;
-            transition: .3s;
+            height: 12px;
+            width: 12px;
+            left: 2px;
+            bottom: 2px;
+            background-color: #606070;
+            transition: .2s;
             border-radius: 50%;
         }
-
-        input:checked + .slider {
-            background-color: #502099;
-            border-color: #9146FF;
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(22px);
-            background-color: #00ff66;
-            box-shadow: 0 0 8px #00ff66;
-        }
+        input:checked + .slider { background-color: #40197a; border-color: #9146FF; }
+        input:checked + .slider:before { transform: translateX(18px); background-color: #00ff66; box-shadow: 0 0 6px #00ff66; }
 
         /* Ползунки */
         input[type="range"] {
-            width: 130px;
+            width: 100px;
             accent-color: #9146FF;
-            background: #08080a;
+            background: #050507;
         }
 
-        /* Поля ввода */
+        /* Поля */
         textarea, input[type="password"], input[type="text"] {
             width: 100%;
-            background: #08080a;
-            border: 1px solid #502099;
+            background: #050507;
+            border: 1px solid #40197a;
             color: #fff;
-            padding: 8px;
-            border-radius: 4px;
+            padding: 6px;
+            border-radius: 3px;
             box-sizing: border-box;
             font-family: inherit;
-            font-size: 0.85em;
-            margin-bottom: 10px;
+            font-size: 0.8em;
+            margin-bottom: 8px;
         }
-
-        textarea {
-            height: 75px;
-            resize: none;
-        }
+        textarea { height: 50px; resize: none; }
 
         /* Кнопки */
         .btn-terminal {
-            background: #181820;
-            border: 1px solid #502099;
+            background: #181824;
+            border: 1px solid #40197a;
             color: #bf94ff;
-            padding: 8px 12px;
-            border-radius: 4px;
+            padding: 6px 10px;
+            border-radius: 3px;
             font-family: inherit;
-            font-size: 0.8em;
+            font-size: 0.75em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s ease;
             text-transform: uppercase;
             width: 100%;
+            margin-bottom: 5px;
         }
-
         .btn-terminal:hover {
             background: #9146FF;
             color: #fff;
             border-color: #9146FF;
-            box-shadow: 0 0 10px rgba(145, 70, 255, 0.4);
+            box-shadow: 0 0 8px rgba(145, 70, 255, 0.4);
         }
+        .btn-danger { border-color: #6a1515; color: #ff6666; }
+        .btn-danger:hover { background: #cc2222; border-color: #ff3333; box-shadow: 0 0 8px rgba(255, 51, 51, 0.4); }
+        .btn-warning { border-color: #665511; color: #ffaa00; }
+        .btn-warning:hover { background: #cc9900; color: #000; box-shadow: 0 0 8px rgba(255, 170, 0, 0.4); }
 
-        .btn-danger {
-            border-color: #7a1919;
-            color: #ff6666;
-        }
-        .btn-danger:hover {
-            background: #ff3333;
-            border-color: #ff3333;
-            box-shadow: 0 0 10px rgba(255, 51, 51, 0.4);
-        }
-
-        /* Статус-лог */
+        /* Лог на всю ширину снизу */
         .terminal-log {
-            grid-column: span 2;
-            background: #08080a;
+            grid-column: 1 / -1;
+            background: #050507;
             border: 1px solid #301050;
-            border-radius: 6px;
-            padding: 10px 15px;
-            font-size: 0.8em;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 0.78em;
             color: #00ff66;
-            min-height: 40px;
+            min-height: 35px;
             display: flex;
             align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .terminal-log { grid-column: span 1; }
         }
     </style>
 </head>
@@ -224,94 +200,93 @@
 
     <div class="control-panel">
         <header>
-            <h1>🔒 Терминал Управления Системой</h1>
-            <p>Уровень доступа: Администратор (PashaShine)</p>
+            <h1>🔒 Мега-Терминал Управления Сектором</h1>
+            <p>Главный пульт оператора PashaShine // Статус: Активен</p>
         </header>
 
         <div class="grid-dashboard">
 
-            <!-- Модуль 1: Управление расписанием и текстом -->
+            <!-- 1. Редактор расписания -->
             <div class="panel-module">
-                <h3>📅 Редактор вещания</h3>
-                <div class="control-row">
-                    <label>Секретный ключ:</label>
-                </div>
-                <input type="password" id="admin-pass" placeholder="Введите ключ доступа...">
-                
-                <div class="control-row">
-                    <label>Текст расписания / Статуса:</label>
-                </div>
-                <textarea id="schedule-text" placeholder="Например: Пятница 19:00 — Outlast Trials"></textarea>
-                
-                <button class="btn-terminal" onclick="saveData()">💾 Загрузить в сеть</button>
+                <h3>📅 Редактор расписания</h3>
+                <input type="password" id="admin-pass" placeholder="Ключ доступа...">
+                <textarea id="schedule-text" placeholder="Текст вещания..."></textarea>
+                <button class="btn-terminal" onclick="logAction('Расписание отправлено в сеть.')">💾 Сохранить данные</button>
             </div>
 
-            <!-- Модуль 2: Системные тумблеры и рычаги -->
-            <div class="panel-module streams">
-                <h3>⚡ Параметры хаба</h3>
-                
-                <div class="control-row">
-                    <label>Авто-проверка Twitch:</label>
-                    <label class="switch">
-                        <input type="checkbox" checked onchange="logAction('Авто-проверка Twitch изменена')">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="control-row">
-                    <label>Эффект помех на сайте:</label>
-                    <label class="switch">
-                        <input type="checkbox" onchange="logAction('Режим помех переключен')">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="control-row">
-                    <label>Музыкальный эмбиент:</label>
-                    <label class="switch" checked>
-                        <input type="checkbox" checked onchange="logAction('Статус аудио-шлюза изменен')">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="control-row" style="margin-top: 15px;">
-                    <label>Уровень напряжения (Шок):</label>
-                    <input type="range" min="0" max="100" value="25" oninput="logAction('Напряжение сети: ' + this.value + '%')">
-                </div>
+            <!-- 2. Параметры стрима -->
+            <div class="panel-module success">
+                <h3>⚡ Параметры трансляции</h3>
+                <div class="control-row"><label>Авто-проверка Twitch:</label><label class="switch"><input type="checkbox" checked onchange="logAction('Twitch API переключен')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Прямой эфир (Форс):</label><label class="switch"><input type="checkbox" onchange="logAction('Форс эфира изменен')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Аптайм таймер:</label><label class="switch"><input type="checkbox" checked onchange="logAction('Таймер аптайма изменен')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Счётчик зрителей:</label><label class="switch"><input type="checkbox" checked onchange="logAction('Счётчик зрителей изменен')"><span class="slider"></span></label></div>
             </div>
 
-            <!-- Модуль 3: Протоколы безопасности -->
-            <div class="panel-module security">
+            <!-- 3. Системные эффекты -->
+            <div class="panel-module">
+                <h3>🌀 Эффекты хаба</h3>
+                <div class="control-row"><label>Неоновое свечение:</label><label class="switch"><input type="checkbox" checked onchange="logAction('Свечение изменено')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Эффект помех:</label><label class="switch"><input type="checkbox" onchange="logAction('Помехи переключены')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Анимация аватара:</label><label class="switch"><input type="checkbox" checked onchange="logAction('Анимация аватара изменена')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Ретро-сетка фона:</label><label class="switch"><input type="checkbox" onchange="logAction('Ретро-сетка изменена')"><span class="slider"></span></label></div>
+            </div>
+
+            <!-- 4. Аудио-шлюз -->
+            <div class="panel-module warning">
+                <h3>🎵 Аудио-комплекс</h3>
+                <div class="control-row"><label>Эмбиент-плеер:</label><label class="switch"><input type="checkbox" checked onchange="logAction('Эмбиент изменен')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Авто-воспроизведение:</label><label class="switch"><input type="checkbox" onchange="logAction('Авто-плей изменен')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Звуки интерфейса:</label><label class="switch"><input type="checkbox" checked onchange="logAction('Звуки UI изменены')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Громкость треков:</label><input type="range" min="0" max="100" value="70" oninput="logAction('Громкость: ' + this.value + '%')"></div>
+            </div>
+
+            <!-- 5. Безопасность и шокеры -->
+            <div class="panel-module danger">
                 <h3>🚨 Протоколы изолятора</h3>
-                
-                <div class="control-row" style="margin-bottom: 15px;">
-                    <button class="btn-terminal btn-danger" onclick="logAction('⚠ ВНИМАНИЕ: Активирован протокол тревоги!')">🚨 ОБЩАЯ ТРЕВОГА</button>
-                </div>
-                <div class="control-row" style="margin-bottom: 15px;">
-                    <button class="btn-terminal" onclick="logAction('🔄 Кэш сайта успешно сброшен.')">🧹 ОЧИСТИТЬ КЭШ СЕКТОРОВ</button>
-                </div>
-                <div class="control-row">
-                    <button class="btn-terminal" onclick="logAction('🔒 Сессия администратора заблокирована.')">🔒 ЗАБЛОКИРОВАТЬ ПУЛЬТ</button>
-                </div>
+                <div class="control-row"><label>Электроошейники:</label><label class="switch"><input type="checkbox" checked onchange="logAction('Ошейники активированы')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Газовая тревога:</label><label class="switch"><input type="checkbox" onchange="logAction('Газ переключен')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Уровень тока:</label><input type="range" min="0" max="100" value="40" oninput="logAction('Ток: ' + this.value + 'V')"></div>
+                <button class="btn-terminal btn-danger" style="margin-top: 5px;" onclick="logAction('⚠ АКТИВИРОВАН ШОКОВЫЙ ИМПУЛЬС!')">⚡ ПОДАТЬ ТОК</button>
             </div>
 
-            <!-- Модуль 4: Быстрые ссылки -->
+            <!-- 6. Секретные блоки -->
             <div class="panel-module">
-                <h3>🔗 Быстрые действия</h3>
-                <div class="control-row" style="margin-bottom: 12px;">
-                    <button class="btn-terminal" onclick="logAction('📋 Список логов выгружен в буфер.')">СКАЧАТЬ ЛОГИ СИСТЕМЫ</button>
-                </div>
-                <div class="control-row" style="margin-bottom: 12px;">
-                    <button class="btn-terminal" onclick="logAction('👁 Режим скрытого наблюдения активен.')">СКРЫТЬ СТАТУС ОНЛАЙН</button>
-                </div>
-                <div class="control-row">
-                    <button class="btn-terminal" onclick="window.location.href='index.html'">◀ НА ГЛАВНУЮ ХАБА</button>
-                </div>
+                <h3>👁 Секретные модули</h3>
+                <div class="control-row"><label>Доска улик (Murkoff):</label><label class="switch"><input type="checkbox" checked onchange="logAction('Доска улик изменена')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Зал славы (Донаты):</label><label class="switch"><input type="checkbox" checked onchange="logAction('Зал славы изменен')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Пасхалки в аватаре:</label><label class="switch"><input type="checkbox" checked onchange="logAction('Пасхалки изменены')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Режим наблюдателя:</label><label class="switch"><input type="checkbox" onchange="logAction('Наблюдатель переключен')"><span class="slider"></span></label></div>
             </div>
 
-            <!-- Лог терминала снизу -->
+            <!-- 7. Управление серверами -->
+            <div class="panel-module">
+                <h3>🌐 Сеть и Сервера</h3>
+                <div class="control-row"><label>Discord-радар:</label><label class="switch"><input type="checkbox" checked onchange="logAction('Радар изменен')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Twitch-виджет:</label><label class="switch"><input type="checkbox" checked onchange="logAction('Виджет Twitch изменен')"><span class="slider"></span></label></div>
+                <div class="control-row"><label>Telegram-канал:</label><label class="switch"><input type="checkbox" checked onchange="logAction('Telegram статус изменен')"><span class="slider"></span></label></div>
+                <button class="btn-terminal btn-warning" onclick="logAction('🔄 Синхронизация баз данных...')">🔄 СИНХРОНИЗИРОВАТЬ СЕТЬ</button>
+            </div>
+
+            <!-- 8. Экстренные действия -->
+            <div class="panel-module danger">
+                <h3>💥 Аварийный пульт</h3>
+                <button class="btn-terminal btn-danger" onclick="logAction('🚨 ОБЩАЯ ТРЕВОГА КОМПЛЕКСА!')">🚨 ВКЛЮЧИТЬ СИРЕНУ</button>
+                <button class="btn-terminal btn-warning" onclick="logAction('🧹 Кэш секторов полностью очищен.')">🧹 СБРОСИТЬ КЭШ САЙТА</button>
+                <button class="btn-terminal" onclick="logAction('🔒 Сессия оператора заблокирована.')">🔒 ЗАБЛОКИРОВАТЬ ПУЛЬТ</button>
+            </div>
+
+            <!-- 9. Навигация админа -->
+            <div class="panel-module">
+                <h3>⚙ Навигация пульта</h3>
+                <button class="btn-terminal" onclick="logAction('📋 Логи выгружены в буфер обмена.')">СКАЧАТЬ ЛОГИ СИСТЕМЫ</button>
+                <button class="btn-terminal" onclick="logAction('🛠 Диагностика секторов: ВСЁ СТАБИЛЬНО.')">ЗАПУСТИТЬ ДИАГНОСТИКУ</button>
+                <button class="btn-terminal" onclick="window.location.href='index.html'">◀ НА ГЛАВНУЮ ХАБА</button>
+            </div>
+
+            <!-- Лог внизу -->
             <div class="terminal-log" id="terminal-log">
-                > Системный терминал инициализирован. Ожидание команд...
+                > Мега-терминал инициализирован. Все 9 модулей активны. Ожидание команд...
             </div>
 
         </div>
@@ -322,22 +297,6 @@
             const logBox = document.getElementById('terminal-log');
             const time = new Date().toLocaleTimeString();
             logBox.innerText = `[${time}] > ${text}`;
-        }
-
-        function saveData() {
-            const pass = document.getElementById('admin-pass').value;
-            const text = document.getElementById('schedule-text').value;
-
-            if (!pass) {
-                logAction('❌ ОШИБКА: Не введен секретный ключ доступа!');
-                return;
-            }
-            if (!text) {
-                logAction('❌ ОШИБКА: Поле расписания пустое!');
-                return;
-            }
-
-            logAction('✔ Данные успешно сохранены в локальный сектор терминала!');
         }
     </script>
 </body>
