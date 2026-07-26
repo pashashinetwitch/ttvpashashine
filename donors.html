@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PashaShine // Зал Славы Меценатов</title>
     <style>
-        /* --- Базовые стили --- */
         body {
             background-color: #050507;
             color: #e0e0e0;
@@ -33,7 +32,6 @@
             color: #ffffff;
         }
 
-        /* --- Кибер-блоки --- */
         .cyber-block {
             background-color: #101014;
             border: 1px solid #502099;
@@ -55,7 +53,6 @@
             margin-bottom: 15px;
         }
 
-        /* Шапка страницы */
         .hall-header {
             text-align: center;
         }
@@ -106,6 +103,7 @@
             background: #00ff66;
             border-radius: 4px;
             box-shadow: 0 0 8px #00ff66;
+            transition: width 0.4s ease;
         }
         .fund-progress-text {
             display: block;
@@ -116,7 +114,7 @@
             font-family: 'Courier New', Courier, monospace;
         }
 
-        /* Кнопки терминала */
+        /* Кнопки и формы */
         .term-btn {
             background: #181820;
             border: 1px solid #502099;
@@ -135,6 +133,27 @@
             color: #fff;
             border-color: #9146FF;
             box-shadow: 0 0 10px rgba(145, 70, 255, 0.4);
+        }
+
+        /* Скрытая админ-панель для добавления */
+        .admin-controls {
+            background: #14141c;
+            border: 1px dashed #502099;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .admin-controls input {
+            width: 100%;
+            background: #08080a;
+            border: 1px solid #40197a;
+            color: #fff;
+            padding: 8px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 0.85em;
+            margin-bottom: 8px;
         }
 
         /* Список меценатов */
@@ -181,9 +200,9 @@
             padding: 4px 8px;
             border: 1px solid #1a4025;
             border-radius: 4px;
+            white-space: nowrap;
         }
 
-        /* Навигация */
         .nav-footer {
             text-align: center;
             margin-top: 10px;
@@ -219,14 +238,14 @@
                 
                 <!-- Прогресс-бар -->
                 <div class="fund-progress-container">
-                    <div class="fund-progress-bar" style="width: 40%;"></div>
+                    <div class="fund-progress-bar" id="progress-bar" style="width: 40%;"></div>
                 </div>
-                <span class="fund-progress-text">Собрано: 480 из 1200 грн</span>
+                <span class="fund-progress-text" id="progress-text">Собрано: 480 из 1200 грн</span>
             </div>
 
             <!-- Кнопки действий -->
             <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
-                <a href="https://send.monobank.ua/jar/2mXzYKQymJ" target="_blank" class="term-btn" style="flex: 1; min-width: 140px; text-align: center; text-decoration: none; background: #00ff66; color: #000; border-color: #00ff66;">
+                <a href="ССЫЛКА_НА_ТВОЮ_БАНКУ_МОНО" target="_blank" class="term-btn" style="flex: 1; min-width: 140px; text-align: center; text-decoration: none; background: #00ff66; color: #000; border-color: #00ff66;">
                     🟢 ПЕРЕЙТИ В БАНКУ
                 </a>
                 <button class="term-btn" onclick="copyCardInfo()" style="flex: 1; min-width: 140px;">
@@ -235,37 +254,22 @@
             </div>
         </div>
 
-        <!-- Список меценатов -->
+        <!-- Блок со списком меценатов и формой добавления -->
         <div class="cyber-block">
-            <h2>💎 Последние инвесторы системы</h2>
+            <h2>💎 Инвесторы системы</h2>
             
-            <div class="donors-list">
-                <!-- Меценат 1 -->
-                <div class="donor-card">
-                    <div class="donor-info">
-                        <span class="donor-name">Flent 👑</span>
-                        <span class="donor-comment">«На стабильную работу бота и нервы стримера»</span>
-                    </div>
-                    <span class="donor-amount">300 грн</span>
-                </div>
+            <!-- Форма добавления нового мецената (только для тебя на этом ПК) -->
+            <div class="admin-controls">
+                <p style="font-size: 0.8em; color: #bf94ff; margin-top: 0; margin-bottom: 10px; text-transform: uppercase; font-weight: bold;">➕ Добавить мецената в список:</p>
+                <input type="text" id="input-name" placeholder="Имя мецената (например: Flent 👑)">
+                <input type="text" id="input-amount" placeholder="Сумма (например: 300 грн или 300)">
+                <input type="text" id="input-comment" placeholder="Комментарий (например: «На бота и нервы»)">
+                <button class="term-btn" style="width: 100%; background: #9146FF; color: #fff; border-color: #9146FF;" onclick="addDonor()">ЗАПИСАТЬ В АРХИВ</button>
+            </div>
 
-                <!-- Меценат 2 -->
-                <div class="donor-card">
-                    <div class="donor-info">
-                        <span class="donor-name">Stevenrichter1996 💎</span>
-                        <span class="donor-comment">«Чтобы электроошейники не разряжались»</span>
-                    </div>
-                    <span class="donor-amount">180 грн</span>
-                </div>
-
-                <!-- Меценат 3 -->
-                <div class="donor-card">
-                    <div class="donor-info">
-                        <span class="donor-name">Агент Murkoff</span>
-                        <span class="donor-comment">«Вклад в развитие секретной базы»</span>
-                    </div>
-                    <span class="donor-amount">100 грн</span>
-                </div>
+            <!-- Список, куда динамически выводятся карточки -->
+            <div class="donors-list" id="donors-container">
+                <!-- Сюда скрипт подгрузит данные -->
             </div>
         </div>
 
@@ -279,12 +283,96 @@
     </div>
 
     <script>
+        // Базовый список на случай, если память пуста
+        let defaultDonors = [
+            { name: "Flent 👑", amount: "300 грн", comment: "«На стабильную работу бота и нервы стримера»" },
+            { name: "Stevenrichter1996 💎", amount: "180 грн", comment: "«Чтобы электроошейники не разряжались»" }
+        ];
+
+        // Загружаем данные из памяти браузера или используем базовые
+        function getDonors() {
+            let saved = localStorage.getItem('murkoff_donors');
+            return saved ? JSON.parse(saved) : defaultDonors;
+        }
+
+        function saveDonors(donors) {
+            localStorage.setItem('murkoff_donors', JSON.stringify(donors));
+        }
+
+        // Рендер списка на страницу
+        function renderDonors() {
+            let donors = getDonors();
+            let container = document.getElementById('donors-container');
+            container.innerHTML = '';
+
+            let totalSum = 0;
+
+            donors.forEach(donor => {
+                // Считаем общую сумму для прогресс-бара (вытаскиваем цифры)
+                let numMatch = donor.amount.match(/\d+/);
+                if (numMatch) {
+                    totalSum += parseInt(numMatch[0]);
+                }
+
+                let card = document.createElement('div');
+                card.className = 'donor-card';
+                card.innerHTML = `
+                    <div class="donor-info">
+                        <span class="donor-name">${donor.name}</span>
+                        <span class="donor-comment">${donor.comment}</span>
+                    </div>
+                    <span class="donor-amount">${donor.amount}</span>
+                `;
+                container.appendChild(card);
+            });
+
+            // Обновляем прогресс-бар сбора (цель 1200 грн)
+            let goal = 1200;
+            let percent = Math.min(Math.round((totalSum / goal) * 100), 100);
+            
+            document.getElementById('progress-bar').style.width = percent + '%';
+            document.getElementById('progress-text').innerText = `Собрано: ${totalSum} из ${goal} грн (${percent}%)`;
+        }
+
+        // Добавление нового мецената через форму
+        function addDonor() {
+            let name = document.getElementById('input-name').value.trim();
+            let amount = document.getElementById('input-amount').value.trim();
+            let comment = document.getElementById('input-comment').value.trim();
+
+            if (!name || !amount) {
+                alert("⚠ Заполни хотя бы имя и сумму!");
+                return;
+            }
+
+            // Если пользователь забыл написать валюту, добавим "грн"
+            if (!amount.toLowerCase().includes('грн')) {
+                amount += ' грн';
+            }
+
+            let donors = getDonors();
+            donors.unshift({ name: name, amount: amount, comment: comment || "—" }); // Добавляем наверх списка
+
+            saveDonors(donors);
+            renderDonors();
+
+            // Очищаем поля ввода
+            document.getElementById('input-name').value = '';
+            document.getElementById('input-amount').value = '';
+            document.getElementById('input-comment').value = '';
+
+            alert("✔ Меценат успешно внесен в реестр комплекса!");
+        }
+
         function copyCardInfo() {
             const cardNum = "4874100030762697";
             navigator.clipboard.writeText(cardNum).then(() => {
                 alert("✔ Номер карты скопирован в буфер обмена!");
             });
         }
+
+        // Запускаем отрисовку при загрузке страницы
+        window.onload = renderDonors;
     </script>
 </body>
 </html>
