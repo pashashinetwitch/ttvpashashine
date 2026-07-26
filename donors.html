@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PashaShine // Зал Славы Меценатов</title>
+    <style>
+        /* --- Базовые стили --- */
+        body {
+            background-color: #050507;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        a {
+            color: #bf94ff;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #ffffff;
+        }
+
+        /* --- Кибер-блоки --- */
+        .cyber-block {
+            background-color: #101014;
+            border: 1px solid #502099;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4),
+                        inset 0 0 10px rgba(145, 70, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .cyber-block h2 {
+            color: #c39bff;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1em;
+            text-align: center;
+            border-bottom: 1px solid #40197a;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Шапка страницы */
+        .hall-header {
+            text-align: center;
+        }
+        .hall-header h1 {
+            color: #fff;
+            margin: 0 0 5px 0;
+            font-size: 1.5em;
+        }
+        .hall-header p {
+            color: #9090a0;
+            font-size: 0.9em;
+            margin: 0;
+        }
+
+        /* Блок сбора средств */
+        .mono-funding-box {
+            border-color: #00ff66;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+        }
+        .mono-funding-box h2 {
+            color: #00ff66;
+            border-bottom-color: #1a4025;
+        }
+        .mono-details {
+            background: #08080a;
+            border: 1px solid #1a4025;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 0.85em;
+        }
+        .fund-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #9090a0;
+        }
+        .fund-progress-container {
+            width: 100%;
+            height: 8px;
+            background: #1a1a24;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+            border: 1px solid #205030;
+        }
+        .fund-progress-bar {
+            height: 100%;
+            background: #00ff66;
+            border-radius: 4px;
+            box-shadow: 0 0 8px #00ff66;
+        }
+        .fund-progress-text {
+            display: block;
+            font-size: 0.75em;
+            color: #707085;
+            text-align: right;
+            margin-top: 5px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Кнопки терминала */
+        .term-btn {
+            background: #181820;
+            border: 1px solid #502099;
+            color: #bf94ff;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+        .term-btn:hover {
+            background: #9146FF;
+            color: #fff;
+            border-color: #9146FF;
+            box-shadow: 0 0 10px rgba(145, 70, 255, 0.4);
+        }
+
+        /* Список меценатов */
+        .donors-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .donor-card {
+            background: #14141c;
+            border: 1px dashed #40197a;
+            border-radius: 6px;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .donor-card:hover {
+            border-color: #00ff66;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 255, 102, 0.15);
+        }
+        .donor-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .donor-name {
+            font-weight: bold;
+            color: #fff;
+            font-size: 0.95em;
+        }
+        .donor-comment {
+            font-size: 0.8em;
+            color: #9090a0;
+            margin-top: 3px;
+        }
+        .donor-amount {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            color: #00ff66;
+            font-size: 1.05em;
+            background: #0b2512;
+            padding: 4px 8px;
+            border: 1px solid #1a4025;
+            border-radius: 4px;
+        }
+
+        /* Навигация */
+        .nav-footer {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Шапка -->
+        <div class="cyber-block hall-header">
+            <h1>👑 Зал Славы Меценатов</h1>
+            <p>Элитный архив поддержки сервера и инфраструктуры</p>
+        </div>
+
+        <!-- Блок сбора на бота -->
+        <div class="cyber-block mono-funding-box">
+            <h2>🤖 Сбор на годовую лицензию бота</h2>
+            <p style="font-size: 0.85em; color: #a0a0b0; margin-top: 0; margin-bottom: 15px; line-height: 1.4;">
+                Финансирование работы нашего Discord-бота (1200 грн/год). Поддержание бесперебойной связи и всех функций в комплексе.
+            </p>
+
+            <div class="mono-details">
+                <div class="fund-row">
+                    <span>Цель сбора:</span>
+                    <strong style="color: #fff; font-family: 'Courier New', Courier, monospace;">Годовая лицензия</strong>
+                </div>
+                <div class="fund-row">
+                    <span>Необходимо:</span>
+                    <strong style="color: #00ff66; font-family: 'Courier New', Courier, monospace;">1 200 грн</strong>
+                </div>
+                
+                <!-- Прогресс-бар -->
+                <div class="fund-progress-container">
+                    <div class="fund-progress-bar" style="width: 40%;"></div>
+                </div>
+                <span class="fund-progress-text">Собрано: 480 из 1200 грн</span>
+            </div>
+
+            <!-- Кнопки действий -->
+            <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                <a href="ССЫЛКА_НА_ТВОЮ_БАНКУ_МОНО" target="_blank" class="term-btn" style="flex: 1; min-width: 140px; text-align: center; text-decoration: none; background: #00ff66; color: #000; border-color: #00ff66;">
+                    🟢 ПЕРЕЙТИ В БАНКУ
+                </a>
+                <button class="term-btn" onclick="copyCardInfo()" style="flex: 1; min-width: 140px;">
+                    📋 СКОПИРОВАТЬ КАРТУ
+                </button>
+            </div>
+        </div>
+
+        <!-- Список меценатов -->
+        <div class="cyber-block">
+            <h2>💎 Последние инвесторы системы</h2>
+            
+            <div class="donors-list">
+                <!-- Меценат 1 -->
+                <div class="donor-card">
+                    <div class="donor-info">
+                        <span class="donor-name">Flent 👑</span>
+                        <span class="donor-comment">«На стабильную работу бота и нервы стримера»</span>
+                    </div>
+                    <span class="donor-amount">300 грн</span>
+                </div>
+
+                <!-- Меценат 2 -->
+                <div class="donor-card">
+                    <div class="donor-info">
+                        <span class="donor-name">Stevenrichter1996 💎</span>
+                        <span class="donor-comment">«Чтобы электроошейники не разряжались»</span>
+                    </div>
+                    <span class="donor-amount">180 грн</span>
+                </div>
+
+                <!-- Меценат 3 -->
+                <div class="donor-card">
+                    <div class="donor-info">
+                        <span class="donor-name">Агент Murkoff</span>
+                        <span class="donor-comment">«Вклад в развитие секретной базы»</span>
+                    </div>
+                    <span class="donor-amount">100 грн</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Кнопка возврата -->
+        <div class="nav-footer">
+            <a href="index.html" class="term-btn" style="display: inline-block; text-decoration: none; padding: 12px 25px;">
+                ◀ ВЕРНУТЬСЯ НА ГЛАВНЫЙ ХАБ
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        function copyCardInfo() {
+            const cardNum = "4874100030762697";
+            navigator.clipboard.writeText(cardNum).then(() => {
+                alert("✔ Номер карты скопирован в буфер обмена!");
+            });
+        }
+    </script>
+</body>
+</html>
