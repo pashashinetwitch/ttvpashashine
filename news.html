@@ -6,23 +6,23 @@
     <title>История изменений</title>
     <style>
         :root {
-            --bg-color: #141416;
-            --card-bg: #1c1c21;
-            --text-color: #e4e4e7;
-            --text-muted: #9ca3af;
-            --accent-color: #6366f1;
-            --border-color: #27272a;
+            --bg-color: #050507;
+            --card-bg: #101014;
+            --text-color: #e0e0e0;
+            --text-muted: #9090a0;
+            --accent-color: #9146FF;
+            --border-color: #40197a;
             
-            --tag-new-bg: rgba(16, 185, 129, 0.15);
-            --tag-new-text: #34d399;
-            --tag-imp-bg: rgba(59, 130, 246, 0.15);
-            --tag-imp-text: #60a5fa;
-            --tag-fix-bg: rgba(245, 158, 11, 0.15);
-            --tag-fix-text: #fbbf24;
+            --tag-new-bg: rgba(145, 70, 255, 0.15);
+            --tag-new-text: #bf94ff;
+            --tag-imp-bg: rgba(0, 255, 102, 0.15);
+            --tag-imp-text: #00ff66;
+            --tag-fix-bg: rgba(255, 85, 85, 0.15);
+            --tag-fix-text: #ff5555;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
@@ -31,25 +31,30 @@
         }
 
         .changelog-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 10px;
             padding: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 20px rgba(145, 70, 255, 0.3);
         }
 
         .changelog-header h2 {
             margin-top: 0;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
-            color: #fff;
+            color: #c39bff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .changelog-header p {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 30px;
         }
 
@@ -81,7 +86,7 @@
         }
 
         .version-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             color: #fff;
             margin: 0 0 10px 0;
@@ -95,39 +100,43 @@
 
         .changelog-list li {
             margin-bottom: 8px;
-            font-size: 14px;
+            font-size: 13px;
             display: flex;
             align-items: flex-start;
-            gap: 8px;
+            gap: 10px;
         }
 
         /* Теги */
         .tag {
-            font-size: 11px;
-            font-weight: 600;
+            font-size: 10px;
+            font-weight: 700;
             padding: 2px 6px;
-            border-radius: 4px;
+            border-radius: 3px;
             white-space: nowrap;
-            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .tag.new { background: var(--tag-new-bg); color: var(--tag-new-text); }
-        .tag.improved { background: var(--tag-imp-bg); color: var(--tag-imp-text); }
-        .tag.fixed { background: var(--tag-fix-bg); color: var(--tag-fix-text); }
+        .tag.new { background: var(--tag-new-bg); color: var(--tag-new-text); border: 1px solid var(--accent-color); }
+        .tag.improved { background: var(--tag-imp-bg); color: var(--tag-imp-text); border: 1px solid #00ff66; }
+        .tag.fixed { background: var(--tag-fix-bg); color: var(--tag-fix-text); border: 1px solid #ff5555; }
 
-        /* Спойлер для старых обновлений */
+        /* Спойлер для истории */
         details {
-            margin-top: 20px;
+            margin-top: 25px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
         }
         summary {
             cursor: pointer;
-            color: var(--accent-color);
+            color: #bf94ff;
             font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 15px;
+            font-size: 13px;
             user-select: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         summary:hover {
-            text-decoration: underline;
+            color: #ffffff;
         }
     </style>
 </head>
@@ -135,50 +144,32 @@
 
 <div class="changelog-container">
     <div class="changelog-header">
-        <h2>История изменений</h2>
-        <p>Здесь публикуются все ключевые обновления, технические доработки и новые функции нашего проекта с момента его запуска.</p>
+        <h2>Журнал обновлений и доработок</h2>
+        <p>Хронология технического развития проекта, фронтенд-архитектуры и интерфейсных решений с момента запуска.</p>
     </div>
 
     <div class="timeline">
-        <!-- Последнее обновление -->
+        <!-- Актуальные изменения -->
         <div class="timeline-item">
-            <h3 class="version-title">Текущие улучшения</h3>
+            <h3 class="version-title">Интерфейс и адаптивность</h3>
             <ul class="changelog-list">
-                <li><span class="tag new">Новое</span> Регулярная актуализация правил и модерации контента.</li>
-                <li><span class="tag improved">Улучшено</span> Мелкие исправления багов интерфейса и оптимизация отображения на различных экранах.</li>
-            </ul>
-        </div>
-
-        <!-- Интерфейс -->
-        <div class="timeline-item">
-            <h3 class="version-title">Интерфейс и оформление</h3>
-            <ul class="changelog-list">
-                <li><span class="tag new">Новое</span> Запуск обновленной графической концепции разделов.</li>
-                <li><span class="tag improved">Улучшено</span> Доработка визуальных элементов интерфейса (баннеры, иконки, оформление шапки сайта).</li>
-                <li><span class="tag improved">Улучшено</span> Улучшение системы навигации по категориям каталога.</li>
+                <li><span class="tag new">Новое</span> Разработка и внедрение сеточной структуры (grid-систем) для корректного отображения блоков и каталогов.</li>
+                <li><span class="tag improved">Улучшено</span> Проработка архитектуры фронтенда вместо поверхностных правок тегов viewport для стабильной работы интерфейса.</li>
+                <li><span class="tag fixed">Исправление</span> Решение проблем с читаемостью и масштабированием элементов на различных экранах и устройствах.</li>
             </ul>
         </div>
     </div>
 
-    <!-- Сворачиваемая старая часть -->
+    <!-- Архив ранних этапов -->
     <details>
-        <summary>Показать более ранние изменения (Архив)</summary>
-        <div class="timeline" style="margin-top: 20px;">
+        <summary>Показать ранние этапы разработки и запуска</summary>
+        <div class="timeline" style="margin-top: 25px;">
             <div class="timeline-item">
-                <h3 class="version-title">Масштабные технические доработки</h3>
+                <h3 class="version-title">Архитектурный фундамент и запуск</h3>
                 <ul class="changelog-list">
-                    <li><span class="tag improved">Улучшено</span> Обновление движка и оптимизация производительности серверов для быстрой обработки запросов.</li>
-                    <li><span class="tag fixed">Исправлено</span> Доработка системы безопасности и защиты пользовательских данных.</li>
-                    <li><span class="tag new">Новое</span> Интеграция новых инструментов для работы модераторов и контент-менеджеров.</li>
-                </ul>
-            </div>
-
-            <div class="timeline-item" style="margin-top: 30px;">
-                <h3 class="version-title">Версия 1.0 (Запуск проекта)</h3>
-                <ul class="changelog-list">
-                    <li><span class="tag new">Новое</span> Официальный ввод сайта в эксплуатацию.</li>
-                    <li><span class="tag new">Новое</span> Базовый функционал каталога, форума и трекера.</li>
-                    <li><span class="tag new">Новое</span> Настройка основных разделов и пользовательских профилей.</li>
+                    <li><span class="tag new">Старт</span> Первоначальный запуск проекта в эксплуатацию и развертывание базовой инфраструктуры.</li>
+                    <li><span class="tag new">Архитектура</span> Проектирование структуры разделов, каталогов и навигационных связей.</li>
+                    <li><span class="tag improved">Оптимизация</span> Настройка базовых стилей и элементов управления для стабильной работы платформы.</li>
                 </ul>
             </div>
         </div>
