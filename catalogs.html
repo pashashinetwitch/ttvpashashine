@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталоги испытаний - PashaShineHouse</title>
+    <style>
+        body {
+            background-color: #050507;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        a {
+            color: #bf94ff;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #ffffff;
+        }
+
+        .cyber-block {
+            background-color: #101014;
+            border: 1px solid #502099;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4),
+                        inset 0 0 10px rgba(145, 70, 255, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            width: 100%;
+            max-width: 1100px;
+            box-sizing: border-box;
+        }
+
+        .cyber-block h2 {
+            color: #c39bff;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.2em;
+            text-align: center;
+            border-bottom: 1px solid #40197a;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .catalog-slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            scrollbar-color: #9146FF rgba(0,0,0,0.3);
+            scrollbar-width: thin;
+        }
+
+        .catalog-card {
+            min-width: 260px;
+            max-width: 260px;
+            flex: 0 0 auto;
+            background: #14141c;
+            border: 1px dashed #40197a;
+            padding: 20px;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .catalog-card:hover {
+            border-color: #9146FF;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cyber-block">
+        <a href="index.html" class="back-link">← На главную хаба</a>
+        
+        <h2>📋 Каталоги испытаний и их статусы</h2>
+        <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 20px;">
+            Прокрутите вправо, чтобы просмотреть все каталоги (доступно 10 из 15)
+        </p>
+        
+        <div class="catalog-slider">
+            
+            <!-- Шаблон карточки каталога (просто дублируй нужное количество раз и меняй номера/картинки) -->
+            
+            <!-- Каталог 1 -->
+            <div class="catalog-card">
+                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №1</div>
+                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний I</div>
+                <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
+                    <img src="100.jpg" alt="Каталог 1" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Все цели закрыты</div>
+                <div style="display: inline-block; border: 1px solid #00ff66; color: #00ff66; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+            </div>
+
+            <!-- Каталог 2 -->
+            <div class="catalog-card">
+                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №2</div>
+                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний II</div>
+                <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
+                    <img src="101.jpg" alt="Каталог 2" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Все цели закрыты</div>
+                <div style="display: inline-block; border: 1px solid #00ff66; color: #00ff66; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+            </div>
+
+            <!-- Каталог 3 -->
+            <div class="catalog-card">
+                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №3</div>
+                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний III</div>
+                <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
+                    <img src="102.jpg" alt="Каталог 3" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Все цели закрыты</div>
+                <div style="display: inline-block; border: 1px solid #00ff66; color: #00ff66; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+            </div>
+
+            <!-- Каталог 4 -->
+            <div class="catalog-card">
+                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №4</div>
+                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний IV</div>
+                <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
+                    <img src="103.jpg" alt="Каталог 4" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: В процессе</div>
+                <div style="display: inline-block; border: 1px solid #ffaa00; color: #ffaa00; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #25180b; border-radius: 3px;">АКТИВЕН</div>
+            </div>
+
+            <!-- Каталог 5 -->
+            <div class="catalog-card">
+                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №5</div>
+                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний V</div>
+                <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
+                    <img src="104.jpg" alt="Каталог 5" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
+                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+            </div>
+
+            <!-- Каталог 6 -->
+            <div class="catalog-card">
+                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №6</div>
+                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний VI</div>
+                <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
+                    <img src="105.jpg" alt="Каталог 6" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
+                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+            </div>
+
+            <!-- Каталог 7 -->
+            <div class="catalog-card">
+                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №7</div>
+                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний VII</div>
+                <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
+                    <img src="106.jpg" alt="Каталог 7" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
+                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+            </div>
+
+            <!-- Каталог 8 -->
+            <div class="catalog-card">
+                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №8</div>
+                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний VIII</div>
+                <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
+                    <img src="107.jpg" alt="Каталог 8" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
+                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+            </div>
+
+            <!-- Каталог 9 -->
+            <div class="catalog-card">
+                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №9</div>
+                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний IX</div>
+                <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
+                    <img src="108.jpg" alt="Каталог 9" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
+                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+            </div>
+
+            <!-- Каталог 10 -->
+            <div class="catalog-card">
+                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №10</div>
+                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний X</div>
+                <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
+                    <img src="109.jpg" alt="Каталог 10" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
+                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
