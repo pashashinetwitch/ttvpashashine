@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>История изменений</title>
+    <title>История изменений и Лор</title>
     <style>
         :root {
             --bg-color: #050507;
@@ -13,6 +13,11 @@
             --accent-color: #9146FF;
             --border-color: #40197a;
             
+            /* Новые переменные для акцента ЛОРа (янтарно-оранжевый) */
+            --lore-accent: #ff9e3b;
+            --tag-lore-bg: rgba(255, 158, 59, 0.15);
+            --tag-lore-text: #ffb86c;
+
             --tag-new-bg: rgba(145, 70, 255, 0.15);
             --tag-new-text: #bf94ff;
             --tag-imp-bg: rgba(0, 255, 102, 0.15);
@@ -85,6 +90,12 @@
             border: 2px solid var(--card-bg);
         }
 
+        /* Особая точка для блока лора */
+        .timeline-item.lore-item::before {
+            background: var(--lore-accent);
+            box-shadow: 0 0 8px var(--lore-accent);
+        }
+
         .version-title {
             font-size: 16px;
             font-weight: 600;
@@ -119,6 +130,9 @@
         .tag.new { background: var(--tag-new-bg); color: var(--tag-new-text); border: 1px solid var(--accent-color); }
         .tag.improved { background: var(--tag-imp-bg); color: var(--tag-imp-text); border: 1px solid #00ff66; }
         .tag.fixed { background: var(--tag-fix-bg); color: var(--tag-fix-text); border: 1px solid #ff5555; }
+        
+        /* Тег для лора */
+        .tag.lore { background: var(--tag-lore-bg); color: var(--tag-lore-text); border: 1px solid var(--lore-accent); }
 
         /* Спойлер для истории */
         details {
@@ -149,6 +163,15 @@
     </div>
 
     <div class="timeline">
+        <!-- НОВЫЙ БЛОК: Лор главных активов -->
+        <div class="timeline-item lore-item">
+            <h3 class="version-title" style="color: var(--tag-lore-text);">База данных: Лор главных активов</h3>
+            <ul class="changelog-list">
+                <li><span class="tag lore">Активы</span> <strong>Лиланд Койл:</strong> Досье открыто. Первичный анализ досье главного актива, ключевые вехи предыстории и материалы по делу.</li>
+                <li><span class="tag lore">План</span> Раздел находится в разработке. Информация по остальным ключевым активам будет добавляться постепенно по мере их появления в игре.</li>
+            </ul>
+        </div>
+
         <!-- Актуальные изменения -->
         <div class="timeline-item">
             <h3 class="version-title">Интерфейс и адаптивность</h3>
