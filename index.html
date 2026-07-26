@@ -137,6 +137,28 @@
             transform: scale(1.05) rotate(3deg);
         }
 
+        /* Статус-бар со скриптом */
+        .status-box {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+        .dot {
+            height: 10px;
+            width: 10px;
+            background-color: #555;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            box-shadow: 0 0 5px #555;
+            transition: all 0.3s;
+        }
+        .dot.online {
+            background-color: #00ff66;
+            box-shadow: 0 0 10px #00ff66, 0 0 20px #00ff66;
+        }
+
         /* Стили для карточек соцсетей с иконками */
         .social-grid {
             display: flex;
@@ -248,6 +270,9 @@
 
     <!-- ЦЕНТР -->
     <main class="main-content">
+        <!-- Блок статуса трансляции (вернул на место, чтобы скрипт не падал) -->
+   
+
         <div class="cyber-block main-header-block" style="text-align: center;">
             <h1 style="text-align: center;">🔴 Добро пожаловать на хаб стримера PashaShine!</h1>
             <p class="hub-subtitle" style="text-align: center; margin-left: auto; margin-right: auto; max-width: 600px;">
@@ -269,7 +294,7 @@
             </p>
         </div>
 
-        <!-- Блок: Результаты сезонов игры (на месте) -->
+        <!-- Блок: Доска улик (Расследование Murkoff) -->
         <div class="cyber-block investigation-board">
             <h2>📋 Результаты сезонов игры</h2>
             <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 15px;">
@@ -277,7 +302,7 @@
             </p>
 
             <div class="board-grid">
-                <!-- Сезон 5 -->
+                <!-- Карточка 1 -->
                 <div class="evidence-card" onclick="inspectCard(this)">
                     <span class="pin">📌</span>
                     <span class="case-number">SEASON 5</span>
@@ -286,7 +311,7 @@
                     <div class="status-stamp success">ВЫПОЛНЕНО</div>
                 </div>
 
-                <!-- Сезон 6 -->
+                <!-- Карточка 2 -->
                 <div class="evidence-card" onclick="inspectCard(this)">
                     <span class="pin">📌</span>
                     <span class="case-number">SEASON 6</span>
@@ -295,7 +320,7 @@
                     <div class="status-stamp pending">СЕЗОН ЗАКРЫТ</div>
                 </div>
 
-                <!-- Сезон 7 -->
+                <!-- Карточка 3 -->
                 <div class="evidence-card" onclick="inspectCard(this)">
                     <span class="pin">📌</span>
                     <span class="case-number">SEASON 7</span>
@@ -304,7 +329,7 @@
                     <div class="status-stamp">В процессе</div>
                 </div>
 
-                <!-- Сезон 8 -->
+                <!-- Карточка 4 -->
                 <div class="evidence-card" onclick="inspectCard(this)">
                     <span class="pin">📌</span>
                     <span class="case-number">SEASON 8</span>
@@ -315,59 +340,8 @@
             </div>
         </div>
 
-        <!-- НОВЫЙ БЛОК: Каталоги испытаний (размещен НИЖЕ результатов сезонов) -->
-        <div class="cyber-block" style="text-align: center;">
-            <h2>📋 Каталоги испытаний и статусы</h2>
-            <p style="font-size: 0.85em; color: #9090a0; margin-top: 0; margin-bottom: 15px;">
-                Прокрутите вправо, чтобы просмотреть все каталоги
-            </p>
-            
-            <!-- Контейнер с горизонтальной прокруткой -->
-            <div class="catalog-slider" style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; scrollbar-color: #9146FF rgba(0,0,0,0.3); scrollbar-width: thin; text-align: left;">
-                
-                <!-- Карточка каталога 1 -->
-                <div class="catalog-card" style="min-width: 260px; flex: 0 0 auto; background: #14141c; border: 1px dashed #40197a; padding: 20px; border-radius: 6px; position: relative;">
-                    <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №1</div>
-                    <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний I</div>
-                    
-                    <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
-                        <img src="100.jpg" alt="Каталог 1" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-
-                    <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Все цели закрыты</div>
-                    <div style="display: inline-block; border: 1px solid #00ff66; color: #00ff66; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
-                </div>
-
-                <!-- Карточка каталога 2 -->
-                <div class="catalog-card" style="min-width: 260px; flex: 0 0 auto; background: #14141c; border: 1px dashed #40197a; padding: 20px; border-radius: 6px; position: relative;">
-                    <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №2</div>
-                    <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний II</div>
-                    
-                    <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
-                        <img src="101.jpg" alt="Каталог 2" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-
-                    <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Все цели закрыты</div>
-                    <div style="display: inline-block; border: 1px solid #00ff66; color: #00ff66; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
-                </div>
-
-                <!-- Карточка каталога 3 -->
-                <div class="catalog-card" style="min-width: 260px; flex: 0 0 auto; background: #14141c; border: 1px dashed #40197a; padding: 20px; border-radius: 6px; position: relative;">
-                    <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №3</div>
-                    <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний III</div>
-                    
-                    <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
-                        <img src="102.jpg" alt="Каталог 3" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-
-                    <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Все цели закрыты</div>
-                    <div style="display: inline-block; border: 1px solid #00ff66; color: #00ff66; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
-                </div>
-
-            </div>
-        </div>
-
         <style>
+            /* Стили для доски улик */
             .investigation-board {
                 background: #0c0c10;
                 border: 1px solid #502099;
@@ -458,6 +432,9 @@
 
         <script>
             function inspectCard(cardElement) {
+                const title = cardElement.querySelector('h3').innerText;
+                const caseNum = cardElement.querySelector('.case-number').innerText;
+                
                 cardElement.style.borderColor = '#00ff66';
                 setTimeout(() => {
                     cardElement.style.borderColor = '';
@@ -657,6 +634,34 @@
             const randomMsg = easterEggMessages[Math.floor(Math.random() * easterEggMessages.length)];
             alert(randomMsg);
         }
+
+        async function checkStreamStatus() {
+            const dot = document.getElementById('status-dot');
+            const text = document.getElementById('status-text');
+            
+            try {
+                let uptimeRes = await fetch('https://decapi.me/twitch/uptime/pashashine');
+                let uptimeData = await uptimeRes.text();
+
+                let gameRes = await fetch('https://decapi.me/twitch/game/pashashine');
+                let gameData = await gameRes.text();
+
+                if (uptimeData.includes('offline') || uptimeData.includes('not live') || uptimeData.includes('Channel not found')) {
+                    dot.classList.remove('online');
+                    text.innerHTML = '⚫ Стрим оффлайн. Жду на следующем эфире!';
+                } else {
+                    dot.classList.add('online');
+                    let gameInfo = (gameData && !gameData.includes('error')) ? `<br>🎮 Игра: <b>${gameData}</b>` : '';
+                    text.innerHTML = `🟢 <b>Прямой эфир идет!</b> (Аптайм: ${uptimeData})${gameInfo}`;
+                }
+            } catch (error) {
+                dot.classList.remove('online');
+                text.innerHTML = '🔴 Ошибка загрузки статуса трансляции';
+            }
+        }
+
+        checkStreamStatus();
+        setInterval(checkStreamStatus, 60000);
 
         document.addEventListener('click', function unlockAudio() {
             const audioEl = document.getElementById('ambient-audio');
