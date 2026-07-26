@@ -73,8 +73,7 @@
             box-shadow: 0 0 10px #9146FF;
         }
 
-
-/* --- Красный блок Вторжение 2.0 --- */
+        /* --- Красный блок Вторжение 2.0 --- */
         .cyber-block.invasion-danger {
             background-color: #1a080a;
             border-color: #ff3333;
@@ -138,38 +137,6 @@
             transform: scale(1.05) rotate(3deg);
         }
 
-        /* Переключатель статуса игрока */
-        .role-selector {
-            margin-top: 12px;
-            background: #181820;
-            border: 1px solid #40197a;
-            border-radius: 6px;
-            padding: 8px;
-            text-align: left;
-        }
-        .role-selector label {
-            font-size: 0.75em;
-            color: #9090a0;
-            display: block;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .role-selector select {
-            width: 100%;
-            background: #101014;
-            color: #bf94ff;
-            border: 1px solid #502099;
-            padding: 5px;
-            border-radius: 4px;
-            font-size: 0.85em;
-            outline: none;
-            cursor: pointer;
-        }
-        .role-selector select:hover {
-            border-color: #9146FF;
-        }
-
         /* Статус-бар со скриптом */
         .status-box {
             text-align: center;
@@ -190,51 +157,6 @@
         .dot.online {
             background-color: #00ff66;
             box-shadow: 0 0 10px #00ff66, 0 0 20px #00ff66;
-        }
-
-        /* Стили для интерактивной консоли логов */
-        .console-box {
-            background: #08080a;
-            border: 1px solid #40197a;
-            border-radius: 6px;
-            padding: 10px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.8em;
-            color: #00ff66;
-            height: 90px;
-            overflow-y: hidden;
-            text-align: left;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
-            margin-top: 10px;
-        }
-
-        /* Стили для кнопки тревоги */
-        .alarm-btn {
-            width: 100%;
-            background: #250b12;
-            border: 1px solid #ff3333;
-            color: #ff6666;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-        }
-        .alarm-btn:hover {
-            background: #ff3333;
-            color: #fff;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
-        }
-
-        body.alarm-active {
-            animation: redAlert 0.5s infinite alternate;
-        }
-        @keyframes redAlert {
-            0% { background-color: #050507; }
-            100% { background-color: #2b0507; }
         }
 
         /* Стили для карточек соцсетей с иконками */
@@ -325,18 +247,17 @@
             <h1 style="font-size: 1.3em; margin: 0 0 2px 0; color: #fff;">PashaShine</h1>
             <p style="margin: 0 0 10px 0; font-size: 0.85em; color: #a0a0b0;">Twitch Streamer</p>
             
-            <div style="margin-top: 15px;">
+            <div style="margin-top: 10px;">
                 <a href="https://www.twitch.tv/pashashine" target="_blank" style="font-size: 0.9em; font-weight: bold;">Открыть на Twitch ↗</a>
             </div>
         </div>
 
-           <div class="cyber-block invasion-danger">
-    <h2>Вторжение 2.0</h2>
-    <ul class="cyber-list">
-        <li><a href="invasion.html" style="color: #ff9999;">Галерея вторжений</a></li>
-    </ul>
-</div>
-
+        <div class="cyber-block invasion-danger">
+            <h2>Вторжение 2.0</h2>
+            <ul class="cyber-list">
+                <li><a href="invasion.html" style="color: #ff9999;">Галерея вторжений</a></li>
+            </ul>
+        </div>
     
         <div class="cyber-block">
             <h2>Обновления</h2>
@@ -354,15 +275,13 @@
             <span id="status-text">Проверка статуса трансляции...</span>
         </div>
 
-  <div class="cyber-block main-header-block" style="text-align: center;">
-    <h1 style="text-align: center;">🔴 Добро пожаловать на хаб стримера PashaShine!</h1>
-    <p class="hub-subtitle" style="text-align: center; margin-left: auto; margin-right: auto; max-width: 600px;">
-        Сайт посвящен моей стримерской деятельности и, в частности, прохождению суровых и мрачных испытаний в 
-        <strong>The Outlast Trials</strong>. Здесь собраны архивы трансляций, секретные материалы и памятные моменты совместных вылазок.
-    </p>
-    
-</div>
-
+        <div class="cyber-block main-header-block" style="text-align: center;">
+            <h1 style="text-align: center;">🔴 Добро пожаловать на хаб стримера PashaShine!</h1>
+            <p class="hub-subtitle" style="text-align: center; margin-left: auto; margin-right: auto; max-width: 600px;">
+                Сайт посвящен моей стримерской деятельности и, в частности, прохождению суровых и мрачных испытаний в 
+                <strong>The Outlast Trials</strong>. Здесь собраны архивы трансляций, секретные материалы и памятные моменты совместных вылазок.
+            </p>
+        </div>
         
         <div class="cyber-block">
             <h2>Поддержка</h2>
@@ -377,166 +296,153 @@
             </p>
         </div>
 
-<!-- Блок: Доска улик (Расследование Murkoff) -->
-<div class="cyber-block investigation-board">
-    <h2>📋 Результаты сезонов игры</h2>
-    <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 15px;">
-      Цели во вторжении
-    </p>
+        <!-- Блок: Доска улик (Расследование Murkoff) -->
+        <div class="cyber-block investigation-board">
+            <h2>📋 Результаты сезонов игры</h2>
+            <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 15px;">
+              Цели во вторжении
+            </p>
 
-    <div class="board-grid">
-        <!-- Карточка 1 -->
-        <div class="evidence-card" onclick="inspectCard(this)">
-            <span class="pin">📌</span>
-            <span class="case-number">SEASON 5</span>
-            <h3>Цель ВЫПОЛНЕНА</h3>
-            <p>GOLD I достигнуто</p>
-            <div class="status-stamp success">ВЫПОЛНЕНО</div>
+            <div class="board-grid">
+                <!-- Карточка 1 -->
+                <div class="evidence-card" onclick="inspectCard(this)">
+                    <span class="pin">📌</span>
+                    <span class="case-number">SEASON 5</span>
+                    <h3>Цель ВЫПОЛНЕНА</h3>
+                    <p>GOLD I достигнуто</p>
+                    <div class="status-stamp success">ВЫПОЛНЕНО</div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="evidence-card" onclick="inspectCard(this)">
+                    <span class="pin">📌</span>
+                    <span class="case-number">SEASON 6</span>
+                    <h3>Цель не выполнена</h3>
+                    <p>GOLD I не достигнуто</p>
+                    <div class="status-stamp pending">СЕЗОН ЗАКРЫТ</div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="evidence-card" onclick="inspectCard(this)">
+                    <span class="pin">📌</span>
+                    <span class="case-number">SEASON 7</span>
+                    <h3>Цель не выполнена</h3>
+                    <p>GOLD I не достигнуто</p>
+                    <div class="status-stamp">В процессе</div>
+                </div>
+
+                <!-- Карточка 4 -->
+                <div class="evidence-card" onclick="inspectCard(this)">
+                    <span class="pin">📌</span>
+                    <span class="case-number">SEASON 8</span>
+                    <h3>Сезон еще не вышел</h3>
+                    <p>GOLD I не достигнуто</p>
+                    <div class="status-stamp pending">СЕЗОН ЕЩЕ НЕ ВЫШЕЛ</div>
+                </div>
+            </div>
         </div>
 
-        <!-- Карточка 2 -->
-        <div class="evidence-card" onclick="inspectCard(this)">
-            <span class="pin">📌</span>
-            <span class="case-number">SEASON 6</span>
-            <h3>Цель не выполнена</h3>
-            <p>GOLD I не достигнуто</p>
-            <div class="status-stamp pending">СЕЗОН ЗАКРЫТ</div>
-        </div>
+        <style>
+            /* Стили для доски улик */
+            .investigation-board {
+                background: #0c0c10;
+                border: 1px solid #502099;
+                position: relative;
+                overflow: hidden;
+            }
 
-        <!-- Карточка 3 -->
-        <div class="evidence-card" onclick="inspectCard(this)">
-            <span class="pin">📌</span>
-           <span class="case-number">SEASON 7</span>
-            <h3>Цель не выполнена</h3>
-            <p>GOLD I не достигнуто</p>
-            <div class="status-stamp">В процессе</div>
-        </div>
+            .board-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 15px;
+                position: relative;
+                z-index: 1;
+            }
 
+            .evidence-card {
+                background: #14141c;
+                border: 1px dashed #40197a;
+                border-radius: 6px;
+                padding: 12px;
+                position: relative;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            }
 
-   <!-- Карточка 3 -->
-        <div class="evidence-card" onclick="inspectCard(this)">
-            <span class="pin">📌</span>
-           <span class="case-number">SEASON 8</span>
-            <h3>Сезон еще не вышел</h3>
-            <p>GOLD I не достигнуто</p>
-            <div class="status-stamp pending">СЕЗОН ЕЩЕ НЕ ВЫШЕЛ</div>
-        </div>
+            .evidence-card:hover {
+                border-color: #9146FF;
+                transform: translateY(-3px);
+                box-shadow: 0 6px 15px rgba(145, 70, 255, 0.2);
+            }
 
-        
-    </div>
-</div>
+            .evidence-card .pin {
+                position: absolute;
+                top: -8px;
+                right: 10px;
+                font-size: 1.1em;
+                filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+            }
 
-<style>
-    /* Стили для доски улик */
-    .investigation-board {
-        background: #0c0c10;
-        border: 1px solid #502099;
-        position: relative;
-        overflow: hidden;
-    }
+            .evidence-card .case-number {
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 0.7em;
+                color: #ff5555;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                display: block;
+                margin-bottom: 5px;
+            }
 
-    .board-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
-        position: relative;
-        z-index: 1;
-    }
+            .evidence-card h3 {
+                color: #fff;
+                font-size: 0.95em;
+                margin: 0 0 8px 0;
+            }
 
-    .evidence-card {
-        background: #14141c;
-        border: 1px dashed #40197a;
-        border-radius: 6px;
-        padding: 12px;
-        position: relative;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
+            .evidence-card p {
+                color: #b0b0c0;
+                font-size: 0.8em;
+                line-height: 1.4;
+                margin: 0 0 10px 0;
+            }
 
-    .evidence-card:hover {
-        border-color: #9146FF;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 15px rgba(145, 70, 255, 0.2);
-    }
+            .status-stamp {
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 0.65em;
+                padding: 2px 6px;
+                border-radius: 3px;
+                display: inline-block;
+                background: #25180b;
+                color: #ffaa00;
+                border: 1px solid #ffaa00;
+                letter-spacing: 0.5px;
+            }
 
-    .evidence-card .pin {
-        position: absolute;
-        top: -8px;
-        right: 10px;
-        font-size: 1.1em;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
-    }
+            .status-stamp.success {
+                background: #0b2512;
+                color: #00ff66;
+                border-color: #00ff66;
+            }
 
-    .evidence-card .case-number {
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 0.7em;
-        color: #ff5555;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        display: block;
-        margin-bottom: 5px;
-    }
+            .status-stamp.pending {
+                background: #250b12;
+                color: #ff5555;
+                border-color: #ff5555;
+            }
+        </style>
 
-    .evidence-card h3 {
-        color: #fff;
-        font-size: 0.95em;
-        margin: 0 0 8px 0;
-    }
-
-    .evidence-card p {
-        color: #b0b0c0;
-        font-size: 0.8em;
-        line-height: 1.4;
-        margin: 0 0 10px 0;
-    }
-
-    .status-stamp {
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 0.65em;
-        padding: 2px 6px;
-        border-radius: 3px;
-        display: inline-block;
-        background: #25180b;
-        color: #ffaa00;
-        border: 1px solid #ffaa00;
-        letter-spacing: 0.5px;
-    }
-
-    .status-stamp.success {
-        background: #0b2512;
-        color: #00ff66;
-        border-color: #00ff66;
-    }
-
-    .status-stamp.pending {
-        background: #250b12;
-        color: #ff5555;
-        border-color: #ff5555;
-    }
-</style>
-
-<script>
-    // Функция для интерактивности при клике на карточку
-    function inspectCard(cardElement) {
-        const title = cardElement.querySelector('h3').innerText;
-        const caseNum = cardElement.querySelector('.case-number').innerText;
-        
-        // Отправляем лог в твою консоль симулятора, если она есть на странице
-        if (typeof addLog === 'function') {
-            addLog(`АРХИВ: Изучено дело [${caseNum}] — "${title}"`);
-        }
-        
-        // Легкая анимация выбора
-        cardElement.style.borderColor = '#00ff66';
-        setTimeout(() => {
-            cardElement.style.borderColor = '';
-        }, 600);
-    }
-</script>
-
-
-        
+        <script>
+            function inspectCard(cardElement) {
+                const title = cardElement.querySelector('h3').innerText;
+                const caseNum = cardElement.querySelector('.case-number').innerText;
+                
+                cardElement.style.borderColor = '#00ff66';
+                setTimeout(() => {
+                    cardElement.style.borderColor = '';
+                }, 600);
+            }
+        </script>
     </main>
 
     <!-- ПРАВАЯ КОЛОНКА -->
@@ -579,240 +485,147 @@
                         <span>Отслеживать</span>
                     </div>
                 </a>
-
-
-
-
-
-
-<!-- Музыкальный терминал комплексов Murkoff -->
-<div class="cyber-block terminal-player">
-    <h2>🧪 Терминал эмбиента</h2>
-    <p style="font-size: 0.8em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 12px;">
-        Аудио-шлюз изолятора
-    </p>
-
-    <!-- Экран терминала -->
-    <div class="terminal-screen" id="terminal-screen">
-        <span class="terminal-status-dot" id="player-dot"></span>
-        <span id="track-title" class="track-name">Сигнал отключен</span>
-    </div>
-
-    <!-- Панель управления -->
-    <div class="terminal-controls">
-        <button class="term-btn" onclick="togglePlay()" id="play-btn">▶ ПУСК</button>
-        <button class="term-btn" onclick="nextTrack()">⏭ СМЕНИТЬ</button>
-    </div>
-
-    <!-- Скрытый аудиоэлемент -->
-    <audio id="ambient-audio" loop></audio>
-</div>
-
-<style>
-    /* Стили для музыкального терминала */
-    .terminal-player {
-        text-align: center;
-    }
-    .terminal-screen {
-        background: #08080a;
-        border: 1px solid #40197a;
-        border-radius: 6px;
-        padding: 10px;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9);
-        min-height: 25px;
-    }
-    .terminal-status-dot {
-        width: 8px;
-        height: 8px;
-        background-color: #555;
-        border-radius: 50%;
-        box-shadow: 0 0 5px #555;
-        transition: all 0.3s ease;
-    }
-    .terminal-status-dot.playing {
-        background-color: #00ff66;
-        box-shadow: 0 0 10px #00ff66, 0 0 15px #00ff66;
-    }
-    .track-name {
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 0.8em;
-        color: #bf94ff;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .terminal-controls {
-        display: flex;
-        gap: 10px;
-    }
-    .term-btn {
-        flex: 1;
-        background: #181820;
-        border: 1px solid #502099;
-        color: #bf94ff;
-        padding: 8px;
-        border-radius: 4px;
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 0.8em;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        text-transform: uppercase;
-    }
-    .term-btn:hover {
-        background: #9146FF;
-        color: #fff;
-        border-color: #9146FF;
-        box-shadow: 0 0 10px rgba(145, 70, 255, 0.4);
-    }
-</style>
-
-<script>
-    // Список твоих треков (можешь добавлять сюда ссылки или названия файлов)
-    const playlist = [
-        { name: "Outlast Trials", url: "Outlast.mp3" },
-        { name: "Take on me", url: "take_on_me.mp3" },
-        { name: "Outlast Trials", url: "Outlast.mp3" }
-    ];
-
-    let currentTrackIndex = 0;
-    const audio = document.getElementById('ambient-audio');
-    const playBtn = document.getElementById('play-btn');
-    const playerDot = document.getElementById('player-dot');
-    const trackTitle = document.getElementById('track-title');
-
-    function loadTrack(index) {
-        currentTrackIndex = index;
-        audio.src = playlist[currentTrackIndex].url;
-        trackTitle.innerText = playlist[currentTrackIndex].name;
-    }
-
-    function togglePlay() {
-        if (!audio.src || audio.src === window.location.href) {
-            loadTrack(0);
-        }
-
-        if (audio.paused) {
-            audio.play().then(() => {
-                playBtn.innerText = "⏸ СТОП";
-                playerDot.classList.add('playing');
-                trackTitle.innerText = playlist[currentTrackIndex].name;
-                if (typeof addLog === 'function') {
-                    addLog(`АУДИО: Запущен трек "${playlist[currentTrackIndex].name}"`);
-                }
-            }).catch(e => {
-                trackTitle.innerText = "Трек воспроизводиться?";
-                if (typeof addLog === 'function') {
-                    addLog("АУДИО: Ошибка воспроизведения (проверь ссылку на файл)");
-                }
-            });
-        } else {
-            audio.pause();
-            playBtn.innerText = "▶ ПУСК";
-            playerDot.classList.remove('playing');
-            trackTitle.innerText = "На паузе";
-            if (typeof addLog === 'function') {
-                addLog("АУДИО: Воспроизведение приостановлено");
-            }
-        }
-    }
-
-    function nextTrack() {
-        currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-        loadTrack(currentTrackIndex);
-        if (!audio.paused) {
-            audio.play();
-            if (typeof addLog === 'function') {
-                addLog(`АУДИО: Переключение на "${playlist[currentTrackIndex].name}"`);
-            }
-        }
-    }
-
-    // Инициализация первой песни при загрузке
-    trackTitle.innerText = playlist[0].name;
-    audio.src = playlist[0].url;
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
             </div>
         </div>
+
+        <!-- Музыкальный терминал комплексов Murkoff -->
+        <div class="cyber-block terminal-player">
+            <h2>🧪 Терминал эмбиента</h2>
+            <p style="font-size: 0.8em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 12px;">
+                Аудио-шлюз изолятора
+            </p>
+
+            <div class="terminal-screen" id="terminal-screen">
+                <span class="terminal-status-dot" id="player-dot"></span>
+                <span id="track-title" class="track-name">Сигнал отключен</span>
+            </div>
+
+            <div class="terminal-controls">
+                <button class="term-btn" onclick="togglePlay()" id="play-btn">▶ ПУСК</button>
+                <button class="term-btn" onclick="nextTrack()">⏭ СМЕНИТЬ</button>
+            </div>
+
+            <audio id="ambient-audio" loop></audio>
+        </div>
+
+        <style>
+            .terminal-player {
+                text-align: center;
+            }
+            .terminal-screen {
+                background: #08080a;
+                border: 1px solid #40197a;
+                border-radius: 6px;
+                padding: 10px;
+                margin-bottom: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9);
+                min-height: 25px;
+            }
+            .terminal-status-dot {
+                width: 8px;
+                height: 8px;
+                background-color: #555;
+                border-radius: 50%;
+                box-shadow: 0 0 5px #555;
+                transition: all 0.3s ease;
+            }
+            .terminal-status-dot.playing {
+                background-color: #00ff66;
+                box-shadow: 0 0 10px #00ff66, 0 0 15px #00ff66;
+            }
+            .track-name {
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 0.8em;
+                color: #bf94ff;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .terminal-controls {
+                display: flex;
+                gap: 10px;
+            }
+            .term-btn {
+                flex: 1;
+                background: #181820;
+                border: 1px solid #502099;
+                color: #bf94ff;
+                padding: 8px;
+                border-radius: 4px;
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 0.8em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                text-transform: uppercase;
+            }
+            .term-btn:hover {
+                background: #9146FF;
+                color: #fff;
+                border-color: #9146FF;
+                box-shadow: 0 0 10px rgba(145, 70, 255, 0.4);
+            }
+        </style>
+
+        <script>
+            const playlist = [
+                { name: "Outlast Trials", url: "Outlast.mp3" },
+                { name: "Take on me", url: "take_on_me.mp3" },
+                { name: "Outlast Trials", url: "Outlast.mp3" }
+            ];
+
+            let currentTrackIndex = 0;
+            const audio = document.getElementById('ambient-audio');
+            const playBtn = document.getElementById('play-btn');
+            const playerDot = document.getElementById('player-dot');
+            const trackTitle = document.getElementById('track-title');
+
+            function loadTrack(index) {
+                currentTrackIndex = index;
+                audio.src = playlist[currentTrackIndex].url;
+                trackTitle.innerText = playlist[currentTrackIndex].name;
+            }
+
+            function togglePlay() {
+                if (!audio.src || audio.src === window.location.href) {
+                    loadTrack(0);
+                }
+
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        playBtn.innerText = "⏸ СТОП";
+                        playerDot.classList.add('playing');
+                        trackTitle.innerText = playlist[currentTrackIndex].name;
+                    }).catch(e => {
+                        trackTitle.innerText = "Трек не воспроизводится";
+                    });
+                } else {
+                    audio.pause();
+                    playBtn.innerText = "▶ ПУСК";
+                    playerDot.classList.remove('playing');
+                    trackTitle.innerText = "На паузе";
+                }
+            }
+
+            function nextTrack() {
+                currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+                loadTrack(currentTrackIndex);
+                if (!audio.paused) {
+                    audio.play();
+                }
+            }
+
+            trackTitle.innerText = playlist[0].name;
+            audio.src = playlist[0].url;
+        </script>
     </aside>
 
-    <!-- Скрипты -->
+    <!-- Глобальные скрипты управления -->
     <script>
-        function changeRole() {
-            const select = document.getElementById('user-role');
-            localStorage.setItem('pasha_role', select.value);
-            addLog(`Сменен статус реагента: ${select.value}`);
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedRole = localStorage.getItem('pasha_role');
-            if (savedRole) {
-                document.getElementById('user-role').value = savedRole;
-            }
-        });
-
-        const alarmMessages = [
-            "🚨 ВНИМАНИЕ: Зафиксирован побег реагента из блока терапии!",
-            "⚠️ Взломан главный терминал комплекса. Включено протокольное заражение.",
-            "💉 Предупреждение: Уровень психоза в секторе превышен на 84%.",
-            "🔴 Внимание всем сотрудникам: Началась ночь испытаний.",
-            "⚡ Сбой питания в изоляторе. Эксперимент выходит из-под контроля!"
-        ];
-
-        function triggerAlarm() {
-            const body = document.body;
-            const msgBox = document.getElementById('alarm-message');
-            
-            body.classList.add('alarm-active');
-            
-            const randomMsg = alarmMessages[Math.floor(Math.random() * alarmMessages.length)];
-            msgBox.innerHTML = randomMsg;
-            addLog(`ТРЕВОГА: ${randomMsg}`);
-
-            setTimeout(() => {
-                body.classList.remove('alarm-active');
-            }, 2000);
-        }
-
-        // Идея 1: Интерактивная пасхалка на аватарку
         const easterEggMessages = [
             "👁️ Доктор Котеррике наблюдает за вами...",
             "⚡ Подача тока на электроошейник... Всё в норме.",
@@ -822,28 +635,7 @@
         function triggerEasterEgg() {
             const randomMsg = easterEggMessages[Math.floor(Math.random() * easterEggMessages.length)];
             alert(randomMsg);
-            addLog(`[ЭХО] ${randomMsg}`);
         }
-
-        // Идея 3: Живая генерация системных логов в консоли
-        const consoleLogsData = [
-            "SYN: Проверка пинга с сервером Murkoff...",
-            "SEC: Уровень защиты периметра стабилен.",
-            "DATA: Синхронизация трансляции Twitch...",
-            "AI: Обработка психо-триггеров...",
-            "USER: Активность сеанса подтверждена."
-        ];
-        function addLog(text) {
-            const consoleBox = document.getElementById('console-logs');
-            const time = new Date().toLocaleTimeString();
-            consoleBox.innerHTML += `<br>[${time}] ${text}`;
-            consoleBox.scrollTop = consoleBox.scrollHeight;
-        }
-
-        setInterval(() => {
-            const randomLog = consoleLogsData[Math.floor(Math.random() * consoleLogsData.length)];
-            addLog(randomLog);
-        }, 12000);
 
         async function checkStreamStatus() {
             const dot = document.getElementById('status-dot');
@@ -862,9 +654,7 @@
                 } else {
                     dot.classList.add('online');
                     let gameInfo = (gameData && !gameData.includes('error')) ? `<br>🎮 Игра: <b>${gameData}</b>` : '';
-                    let roleInfo = `<br>⚡ Статус: <b>${document.getElementById('user-role').value}</b>`;
-                    text.innerHTML = `🟢 <b>Прямой эфир идет!</b> (Аптайм: ${uptimeData})${gameInfo}${roleInfo}`;
-                    addLog("Статус стрима: Активен (Эфир идет)");
+                    text.innerHTML = `🟢 <b>Прямой эфир идет!</b> (Аптайм: ${uptimeData})${gameInfo}`;
                 }
             } catch (error) {
                 dot.classList.remove('online');
@@ -875,21 +665,14 @@
         checkStreamStatus();
         setInterval(checkStreamStatus, 60000);
 
-
-
-// Авто-активация звукового движка по первому клику на любую область страницы
-    document.addEventListener('click', function unlockAudio() {
-        const audioEl = document.getElementById('ambient-audio');
-        if (audioEl && (audioEl.src === "" || audioEl.src === window.location.href)) {
-            // Если трек еще не выбран, подгружаем первый по умолчанию (но не орём на пользователя)
-            audioEl.src = playlist[0].url;
-            document.getElementById('track-title').innerText = playlist[0].name;
-        }
-        // Убираем этот обработчик после первого же клика
-        document.removeEventListener('click', unlockAudio);
-    }, { once: true });
-
-        
+        document.addEventListener('click', function unlockAudio() {
+            const audioEl = document.getElementById('ambient-audio');
+            if (audioEl && (audioEl.src === "" || audioEl.src === window.location.href)) {
+                audioEl.src = playlist[0].url;
+                document.getElementById('track-title').innerText = playlist[0].name;
+            }
+            document.removeEventListener('click', unlockAudio);
+        }, { once: true });
     </script>
 </body>
 </html>
