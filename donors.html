@@ -27,12 +27,40 @@
             box-sizing: border-box;
         }
 
+        /* --- Общая структура с тремя колонками --- */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr 260px;
+            gap: 20px;
+            width: 100%;
+            max-width: 1400px;
+            align-items: start;
+        }
+
+        .side-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
         .terminal-container {
             width: 100%;
-            max-width: 850px;
             display: flex;
             flex-direction: column;
             gap: 25px;
+        }
+
+        /* Адаптивность для средних и мобильных экранов */
+        @media (max-width: 1250px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                max-width: 850px;
+            }
+            .side-column {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 15px;
+            }
         }
 
         /* Шапка терминала */
@@ -91,6 +119,56 @@
             gap: 10px;
             border-bottom: 1px solid rgba(59, 29, 112, 0.5);
             padding-bottom: 12px;
+        }
+
+        /* Боковые виджеты */
+        .side-widget {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: border-color 0.2s ease;
+        }
+        .side-widget:hover {
+            border-color: rgba(145, 70, 255, 0.6);
+        }
+
+        .side-widget h3 {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85em;
+            color: #d4b8ff;
+            margin: 0 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .side-widget p {
+            font-size: 0.8em;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .side-widget .highlight-val {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .security-stamp {
+            display: inline-block;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7em;
+            background: rgba(145, 70, 255, 0.1);
+            border: 1px solid rgba(145, 70, 255, 0.3);
+            color: #d4b8ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-bottom: 6px;
         }
 
         /* Блок сбора средств */
@@ -328,73 +406,132 @@
 </head>
 <body>
 
-    <div class="terminal-container">
+    <div class="main-layout">
 
-        <!-- Шапка -->
-        <div class="terminal-header">
-            <h1>Архив Меценатов</h1>
-            <p>Защищенный реестр финансирования инфраструктуры Murkoff</p>
+        <!-- ЛЕВАЯ КОЛОНКА (4 виджета) -->
+        <div class="side-column">
+            <div class="side-widget">
+                <span class="security-stamp">LOG // 01</span>
+                <h3>🛡️ Статус Защиты</h3>
+                <p>Все транзакции шифруются протоколом <span class="highlight-val">AES-256</span>. Утечка спонсорских данных исключена.</p>
+            </div>
+
+            <div class="side-widget">
+                <span class="security-stamp">NODE // 02</span>
+                <h3>⚡ Апсайд Сервера</h3>
+                <p>Бесперебойный аптайм бота удерживается на отметке <span class="highlight-val">99.98%</span> благодаря донатам.</p>
+            </div>
+
+            <div class="side-widget">
+                <span class="security-stamp">RANK // 03</span>
+                <h3>🎖️ Уровень Доступа</h3>
+                <p>Каждый инвестор получает пожиметный статус <span class="highlight-val">"VIP-Оперативник"</span> в системе.</p>
+            </div>
+
+            <div class="side-widget">
+                <span class="security-stamp">SYNC // 04</span>
+                <h3>🌐 Авто-Синхронизация</h3>
+                <p>Данные реестра мгновенно передаются на все серверные терминалы Murkoff.</p>
+            </div>
         </div>
 
-        <!-- Блок сбора средств -->
-        <div class="cyber-card funding-card">
-            <h2>🤖 Лицензирование Discord-бота</h2>
-            <p style="font-size: 0.9em; color: var(--text-muted); margin-top: 0; margin-bottom: 20px; line-height: 1.5;">
-                Сбор средств на годовую поддержку и аренду защищенных функций бота (1200 грн/год). Обеспечение стабильной работы автоматики комплекса.
-            </p>
+        <!-- ЦЕНТРАЛЬНЫЙ ТЕРМИНАЛ -->
+        <div class="terminal-container">
 
-            <div class="funding-stats">
-                <div class="stat-row">
-                    <span>Цель контракта:</span>
-                    <strong>Годовая подписка</strong>
+            <!-- Шапка -->
+            <div class="terminal-header">
+                <h1>Архив Меценатов</h1>
+                <p>Защищенный реестр финансирования инфраструктуры Murkoff</p>
+            </div>
+
+            <!-- Блок сбора средств -->
+            <div class="cyber-card funding-card">
+                <h2>🤖 Лицензирование Discord-бота</h2>
+                <p style="font-size: 0.9em; color: var(--text-muted); margin-top: 0; margin-bottom: 20px; line-height: 1.5;">
+                    Сбор средств на годовую поддержку и аренду защищенных функций бота (1200 грн/год). Обеспечение стабильной работы автоматики комплекса.
+                </p>
+
+                <div class="funding-stats">
+                    <div class="stat-row">
+                        <span>Цель контракта:</span>
+                        <strong>Годовая подписка</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Требуемый бюджет:</span>
+                        <strong style="color: var(--accent-green);">1 200 грн</strong>
+                    </div>
+                    
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar-fill" id="progress-bar"></div>
+                    </div>
+                    <span class="progress-info" id="progress-text">Собрано: 0 из 1200 грн (0%)</span>
                 </div>
-                <div class="stat-row">
-                    <span>Требуемый бюджет:</span>
-                    <strong style="color: var(--accent-green);">1 200 грн</strong>
+
+                <div class="btn-group">
+                    <a href="ССЫЛКА_НА_ТВОЮ_БАНКУ_МОНО" target="_blank" class="cyber-btn green">
+                        🟢 Открыть Моно-Банку
+                    </a>
+                    <button class="cyber-btn" onclick="copyCardInfo()">
+                        📋 Копировать карту
+                    </button>
                 </div>
+            </div>
+
+            <!-- Реестр инвесторов -->
+            <div class="cyber-card">
+                <h2>💎 Реестр инвесторов</h2>
                 
-                <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" id="progress-bar"></div>
+                <!-- Форма добавления (админка) -->
+                <div class="admin-panel">
+                    <h3>➕ Добавить запись в реестр</h3>
+                    <div class="form-grid">
+                        <input type="text" id="input-name" class="cyber-input" placeholder="Имя / Ник (например: Агент Flent)">
+                        <input type="text" id="input-amount" class="cyber-input" placeholder="Сумма (например: 300 грн)">
+                    </div>
+                    <input type="text" id="input-comment" class="cyber-input full-width" placeholder="Комментарий или сообщение к донату...">
+                    <button class="cyber-btn" style="width: 100%; margin-top: 5px;" onclick="addDonor()">Записать в архив</button>
                 </div>
-                <span class="progress-info" id="progress-text">Собрано: 0 из 1200 грн (0%)</span>
+
+                <!-- Список -->
+                <div class="donors-stack" id="donors-container">
+                    <!-- Заполняется через скрипт -->
+                </div>
             </div>
 
-            <div class="btn-group">
-                <a href="ССЫЛКА_НА_ТВОЮ_БАНКУ_МОНО" target="_blank" class="cyber-btn green">
-                    🟢 Открыть Моно-Банку
+            <!-- Навигация -->
+            <div class="terminal-footer">
+                <a href="index.html" class="cyber-btn" style="display: inline-flex; width: auto; padding: 12px 30px;">
+                    ◀ Вернуться на главный хаб
                 </a>
-                <button class="cyber-btn" onclick="copyCardInfo()">
-                    📋 Копировать карту
-                </button>
             </div>
+
         </div>
 
-        <!-- Реестр инвесторов -->
-        <div class="cyber-card">
-            <h2>💎 Реестр инвесторов</h2>
-            
-            <!-- Форма добавления (админка) -->
-            <div class="admin-panel">
-                <h3>➕ Добавить запись в реестр</h3>
-                <div class="form-grid">
-                    <input type="text" id="input-name" class="cyber-input" placeholder="Имя / Ник (например: Агент Flent)">
-                    <input type="text" id="input-amount" class="cyber-input" placeholder="Сумма (например: 300 грн)">
-                </div>
-                <input type="text" id="input-comment" class="cyber-input full-width" placeholder="Комментарий или сообщение к донату...">
-                <button class="cyber-btn" style="width: 100%; margin-top: 5px;" onclick="addDonor()">Записать в архив</button>
+        <!-- ПРАВАЯ КОЛОНКА (4 виджета) -->
+        <div class="side-column">
+            <div class="side-widget">
+                <span class="security-stamp">SEC // 05</span>
+                <h3>🔍 Верификация</h3>
+                <p>Все поступления проверяются автоматизированной системой безопасности <span class="highlight-val">Murkoff Core</span>.</p>
             </div>
 
-            <!-- Список -->
-            <div class="donors-stack" id="donors-container">
-                <!-- Заполняется через скрипт -->
+            <div class="side-widget">
+                <span class="security-stamp">QUEUE // 06</span>
+                <h3>⏳ Очередь Задач</h3>
+                <p>Следующий апдейт базы активируется сразу после закрытия текущего финансового сбора.</p>
             </div>
-        </div>
 
-        <!-- Навигация -->
-        <div class="terminal-footer">
-            <a href="index.html" class="cyber-btn" style="display: inline-flex; width: auto; padding: 12px 30px;">
-                ◀ Вернуться на главный хаб
-            </a>
+            <div class="side-widget">
+                <span class="security-stamp">KEY // 07</span>
+                <h3>🔑 Ключи Доступа</h3>
+                <p>Меценаты получают эксклюзивный доступ к закрытым тестовым веткам и фичам.</p>
+            </div>
+
+            <div class="side-widget">
+                <span class="security-stamp">CORE // 08</span>
+                <h3>⚙️ Стабильность</h3>
+                <p>Бекапы базы данных меценатов выполняются каждые <span class="highlight-val">24 часа</span> на защищенный сервер.</p>
+            </div>
         </div>
 
     </div>
