@@ -135,7 +135,7 @@
             box-shadow: 0 0 10px rgba(145, 70, 255, 0.4);
         }
 
-        /* Скрытая админ-панель для добавления */
+        /* Панель управления */
         .admin-controls {
             background: #14141c;
             border: 1px dashed #502099;
@@ -161,6 +161,13 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+        }
+        .empty-notice {
+            text-align: center;
+            color: #707085;
+            font-size: 0.85em;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
         }
         .donor-card {
             background: #14141c;
@@ -238,9 +245,9 @@
                 
                 <!-- Прогресс-бар -->
                 <div class="fund-progress-container">
-                    <div class="fund-progress-bar" id="progress-bar" style="width: 40%;"></div>
+                    <div class="fund-progress-bar" id="progress-bar" style="width: 0%;"></div>
                 </div>
-                <span class="fund-progress-text" id="progress-text">Собрано: 480 из 1200 грн</span>
+                <span class="fund-progress-text" id="progress-text">Собрано: 0 из 1200 грн (0%)</span>
             </div>
 
             <!-- Кнопки действий -->
@@ -258,12 +265,12 @@
         <div class="cyber-block">
             <h2>💎 Инвесторы системы</h2>
             
-            <!-- Форма добавления нового мецената (только для тебя на этом ПК) -->
+            <!-- Форма добавления нового мецената -->
             <div class="admin-controls">
                 <p style="font-size: 0.8em; color: #bf94ff; margin-top: 0; margin-bottom: 10px; text-transform: uppercase; font-weight: bold;">➕ Добавить мецената в список:</p>
-                <input type="text" id="input-name" placeholder="Имя мецената (например: Flent 👑)">
-                <input type="text" id="input-amount" placeholder="Сумма (например: 300 грн или 300)">
-                <input type="text" id="input-comment" placeholder="Комментарий (например: «На бота и нервы»)">
+                <input type="text" id="input-name" placeholder="Имя мецената (например: Агент Murkoff)">
+                <input type="text" id="input-amount" placeholder="Сумма (например: 100 грн)">
+                <input type="text" id="input-comment" placeholder="Комментарий (например: «На развитие базы»)">
                 <button class="term-btn" style="width: 100%; background: #9146FF; color: #fff; border-color: #9146FF;" onclick="addDonor()">ЗАПИСАТЬ В АРХИВ</button>
             </div>
 
@@ -283,23 +290,18 @@
     </div>
 
     <script>
-        // Базовый список на случай, если память пуста
-        let defaultDonors = [
-            { name: "Flent 👑", amount: "300 грн", comment: "«На стабильную работу бота и нервы стримера»" },
-            { name: "Stevenrichter1996 💎", amount: "180 грн", comment: "«Чтобы электроошейники не разряжались»" }
-        ];
+        // Абсолютно пустой массив с нуля
+        let defaultDonors = [];
 
-        // Загружаем данные из памяти браузера или используем базовые
         function getDonors() {
-            let saved = localStorage.getItem('murkoff_donors');
+            let saved = localStorage.getItem('murkoff_donors_clean');
             return saved ? JSON.parse(saved) : defaultDonors;
         }
 
         function saveDonors(donors) {
-            localStorage.setItem('murkoff_donors', JSON.stringify(donors));
+            localStorage.setItem('murkoff_donors_clean', JSON.stringify(donors));
         }
 
-        // Рендер списка на страницу
         function renderDonors() {
             let donors = getDonors();
             let container = document.getElementById('donors-container');
@@ -307,26 +309,28 @@
 
             let totalSum = 0;
 
-            donors.forEach(donor => {
-                // Считаем общую сумму для прогресс-бара (вытаскиваем цифры)
-                let numMatch = donor.amount.match(/\d+/);
-                if (numMatch) {
-                    totalSum += parseInt(numMatch[0]);
-                }
+            if (donors.length === 0) {
+                container.innerHTML = '<div class="empty-notice">> Архив пуст. Ожидание первых поступлений на счёт комплекса...</div>';
+            } else {
+                donors.forEach(donor => {
+                    let numMatch = donor.amount.match(/\d+/);
+                    if (numMatch) {
+                        totalSum += parseInt(numMatch[0]);
+                    }
 
-                let card = document.createElement('div');
-                card.className = 'donor-card';
-                card.innerHTML = `
-                    <div class="donor-info">
-                        <span class="donor-name">${donor.name}</span>
-                        <span class="donor-comment">${donor.comment}</span>
-                    </div>
-                    <span class="donor-amount">${donor.amount}</span>
-                `;
-                container.appendChild(card);
-            });
+                    let card = document.createElement('div');
+                    card.className = 'donor-card';
+                    card.innerHTML = `
+                        <div class="donor-info">
+                            <span class="donor-name">${donor.name}</span>
+                            <span class="donor-comment">${donor.comment}</span>
+                        </div>
+                        <span class="donor-amount">${donor.amount}</span>
+                    `;
+                    container.appendChild(card);
+                });
+            }
 
-            // Обновляем прогресс-бар сбора (цель 1200 грн)
             let goal = 1200;
             let percent = Math.min(Math.round((totalSum / goal) * 100), 100);
             
@@ -334,7 +338,6 @@
             document.getElementById('progress-text').innerText = `Собрано: ${totalSum} из ${goal} грн (${percent}%)`;
         }
 
-        // Добавление нового мецената через форму
         function addDonor() {
             let name = document.getElementById('input-name').value.trim();
             let amount = document.getElementById('input-amount').value.trim();
@@ -345,18 +348,16 @@
                 return;
             }
 
-            // Если пользователь забыл написать валюту, добавим "грн"
             if (!amount.toLowerCase().includes('грн')) {
                 amount += ' грн';
             }
 
             let donors = getDonors();
-            donors.unshift({ name: name, amount: amount, comment: comment || "—" }); // Добавляем наверх списка
+            donors.unshift({ name: name, amount: amount, comment: comment || "—" });
 
             saveDonors(donors);
             renderDonors();
 
-            // Очищаем поля ввода
             document.getElementById('input-name').value = '';
             document.getElementById('input-amount').value = '';
             document.getElementById('input-comment').value = '';
@@ -371,7 +372,6 @@
             });
         }
 
-        // Запускаем отрисовку при загрузке страницы
         window.onload = renderDonors;
     </script>
 </body>
