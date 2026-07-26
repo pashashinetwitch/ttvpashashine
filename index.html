@@ -137,28 +137,6 @@
             transform: scale(1.05) rotate(3deg);
         }
 
-        /* Статус-бар со скриптом */
-        .status-box {
-            text-align: center;
-            padding: 15px;
-            font-size: 0.95em;
-            line-height: 1.4;
-        }
-        .dot {
-            height: 10px;
-            width: 10px;
-            background-color: #555;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
-            box-shadow: 0 0 5px #555;
-            transition: all 0.3s;
-        }
-        .dot.online {
-            background-color: #00ff66;
-            box-shadow: 0 0 10px #00ff66, 0 0 20px #00ff66;
-        }
-
         /* Стили для карточек соцсетей с иконками */
         .social-grid {
             display: flex;
@@ -291,7 +269,7 @@
             </p>
         </div>
 
-        <!-- Блок: Доска улик (Расследование Murkoff) -->
+        <!-- Блок: Результаты сезонов игры (на месте) -->
         <div class="cyber-block investigation-board">
             <h2>📋 Результаты сезонов игры</h2>
             <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 15px;">
@@ -299,7 +277,7 @@
             </p>
 
             <div class="board-grid">
-                <!-- Карточка 1 -->
+                <!-- Сезон 5 -->
                 <div class="evidence-card" onclick="inspectCard(this)">
                     <span class="pin">📌</span>
                     <span class="case-number">SEASON 5</span>
@@ -308,7 +286,7 @@
                     <div class="status-stamp success">ВЫПОЛНЕНО</div>
                 </div>
 
-                <!-- Карточка 2 -->
+                <!-- Сезон 6 -->
                 <div class="evidence-card" onclick="inspectCard(this)">
                     <span class="pin">📌</span>
                     <span class="case-number">SEASON 6</span>
@@ -317,7 +295,7 @@
                     <div class="status-stamp pending">СЕЗОН ЗАКРЫТ</div>
                 </div>
 
-                <!-- Карточка 3 -->
+                <!-- Сезон 7 -->
                 <div class="evidence-card" onclick="inspectCard(this)">
                     <span class="pin">📌</span>
                     <span class="case-number">SEASON 7</span>
@@ -326,7 +304,7 @@
                     <div class="status-stamp">В процессе</div>
                 </div>
 
-                <!-- Карточка 4 -->
+                <!-- Сезон 8 -->
                 <div class="evidence-card" onclick="inspectCard(this)">
                     <span class="pin">📌</span>
                     <span class="case-number">SEASON 8</span>
@@ -337,7 +315,7 @@
             </div>
         </div>
 
-        <!-- НОВЫЙ БЛОК: Каталоги испытаний (с прокруткой, по центру) -->
+        <!-- НОВЫЙ БЛОК: Каталоги испытаний (размещен НИЖЕ результатов сезонов) -->
         <div class="cyber-block" style="text-align: center;">
             <h2>📋 Каталоги испытаний и статусы</h2>
             <p style="font-size: 0.85em; color: #9090a0; margin-top: 0; margin-bottom: 15px;">
@@ -352,7 +330,6 @@
                     <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №1</div>
                     <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний I</div>
                     
-                    <!-- Фото каталога -->
                     <div style="height: 140px; background: #000; border: 1px solid #502099; margin: 12px 0; overflow: hidden; border-radius: 4px;">
                         <img src="100.jpg" alt="Каталог 1" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
@@ -391,7 +368,6 @@
         </div>
 
         <style>
-            /* Стили для доски улик */
             .investigation-board {
                 background: #0c0c10;
                 border: 1px solid #502099;
@@ -482,9 +458,6 @@
 
         <script>
             function inspectCard(cardElement) {
-                const title = cardElement.querySelector('h3').innerText;
-                const caseNum = cardElement.querySelector('.case-number').innerText;
-                
                 cardElement.style.borderColor = '#00ff66';
                 setTimeout(() => {
                     cardElement.style.borderColor = '';
@@ -684,35 +657,6 @@
             const randomMsg = easterEggMessages[Math.floor(Math.random() * easterEggMessages.length)];
             alert(randomMsg);
         }
-
-        async function checkStreamStatus() {
-            const dot = document.getElementById('status-dot');
-            const text = document.getElementById('status-text');
-            
-            try {
-                let uptimeRes = await fetch('https://decapi.me/twitch/uptime/pashashine');
-                let uptimeData = await uptimeRes.text();
-
-                let gameRes = await fetch('https://decapi.me/twitch/game/pashashine');
-                let gameData = await gameRes.text();
-
-                if (uptimeData.includes('offline') || uptimeData.includes('not live') || uptimeData.includes('Channel not found')) {
-                    dot.classList.remove('online');
-                    text.innerHTML = '⚫ Стрим оффлайн. Жду на следующем эфире!';
-                } else {
-                    dot.classList.add('online');
-                    let gameInfo = (gameData && !gameData.includes('error')) ? `<br>🎮 Игра: <b>${gameData}</b>` : '';
-                    text.innerHTML = `🟢 <b>Прямой эфир идет!</b> (Аптайм: ${uptimeData})${gameInfo}`;
-                }
-            } catch (error) {
-                dot.classList.remove('online');
-                text.innerHTML = '🔴 Ошибка загрузки статуса трансляции';
-            }
-        }
-
-        // Если элементы статуса существуют, вызываем проверку
-        // checkStreamStatus();
-        // setInterval(checkStreamStatus, 60000);
 
         document.addEventListener('click', function unlockAudio() {
             const audioEl = document.getElementById('ambient-audio');
