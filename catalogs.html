@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталоги испытаний - PashaShineHouse</title>
+    <title>Каталоги испытаний - PashaShine</title>
     <style>
         body {
             background-color: #050507;
             color: #e0e0e0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            padding: 20px;
             box-sizing: border-box;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         a {
@@ -29,13 +28,15 @@
         .cyber-block {
             background-color: #101014;
             border: 1px solid #502099;
-            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4),
-                        inset 0 0 10px rgba(145, 70, 255, 0.1);
+            box-shadow: 0 0 20px rgba(145, 70, 255, 0.3),
+                        inset 0 0 10px rgba(145, 70, 255, 0.05);
             border-radius: 10px;
             padding: 25px;
             width: 100%;
-            max-width: 1100px;
+            flex: 1;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
 
         .cyber-block h2 {
@@ -43,16 +44,16 @@
             margin-top: 0;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 1.2em;
+            font-size: 1.4em;
             text-align: center;
             border-bottom: 1px solid #40197a;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
             margin-bottom: 15px;
         }
 
         .back-link {
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-size: 0.9em;
             font-weight: bold;
         }
@@ -61,20 +62,35 @@
             display: flex;
             gap: 20px;
             overflow-x: auto;
-            padding-bottom: 15px;
-            scrollbar-color: #9146FF rgba(0,0,0,0.3);
+            padding: 10px 5px 25px 5px;
+            scrollbar-color: #9146FF rgba(0,0,0,0.5);
             scrollbar-width: thin;
+            flex: 1;
+            align-items: center;
+        }
+
+        .catalog-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+        .catalog-slider::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+        .catalog-slider::-webkit-scrollbar-thumb {
+            background: #9146FF;
+            border-radius: 4px;
         }
 
         .catalog-card {
-            min-width: 260px;
-            max-width: 260px;
+            min-width: 280px;
+            max-width: 280px;
             flex: 0 0 auto;
             background: #14141c;
             border: 1px dashed #40197a;
             padding: 20px;
             border-radius: 6px;
             position: relative;
+            box-sizing: border-box;
         }
 
         .catalog-card:hover {
@@ -89,13 +105,11 @@
         <a href="index.html" class="back-link">← На главную хаба</a>
         
         <h2>📋 Каталоги испытаний и их статусы</h2>
-        <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 20px;">
-            Прокрутите вправо, чтобы просмотреть все каталоги (доступно 10 из 15)
+        <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 10px;">
+            Крутите колесико мышки, чтобы пролистывать каталоги вбок (доступно 10 из 15)
         </p>
         
-        <div class="catalog-slider">
-            
-            <!-- Шаблон карточки каталога (просто дублируй нужное количество раз и меняй номера/картинки) -->
+        <div class="catalog-slider" id="slider">
             
             <!-- Каталог 1 -->
             <div class="catalog-card">
@@ -209,6 +223,17 @@
 
         </div>
     </div>
+
+    <script>
+        // Скрипт для прокрутки колесиком мыши по горизонтали
+        const slider = document.getElementById('slider');
+        slider.addEventListener('wheel', (evt) => {
+            if (evt.deltaY !== 0) {
+                evt.preventDefault();
+                slider.scrollLeft += evt.deltaY;
+            }
+        });
+    </script>
 
 </body>
 </html>
