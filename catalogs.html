@@ -33,7 +33,7 @@
             border-radius: 10px;
             padding: 25px;
             width: 100%;
-            max-width: 800px;
+            max-width: 1300px;
             margin: 0 auto;
             box-sizing: border-box;
         }
@@ -57,20 +57,23 @@
             font-weight: bold;
         }
 
+        /* Сетка для отображения по 4-5 штук в ряд */
         .catalog-list {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 20px;
         }
 
         .catalog-card {
-            width: 100%;
             background: #14141c;
-            border: 1px dashed #40197a;
-            padding: 20px;
+            border: 1px solid #40197a;
+            padding: 15px;
             border-radius: 6px;
             position: relative;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .catalog-card:hover {
@@ -82,21 +85,35 @@
             width: 100%;
             background: #000;
             border: 1px solid #502099;
-            margin: 12px 0;
+            margin: 10px 0;
             border-radius: 4px;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10px 0;
+            padding: 8px 0;
+            position: relative;
         }
 
         .img-container img {
             width: 100%;
-            max-width: 320px;
+            max-width: 160px;
             height: auto;
             display: block;
             border-radius: 3px;
+        }
+
+        .lock-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(11, 37, 18, 0.85);
+            border: 1px solid #00ff66;
+            color: #00ff66;
+            padding: 2px 6px;
+            font-size: 10px;
+            border-radius: 3px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -107,279 +124,489 @@
         
         <h2>📋 Каталоги испытаний и их статусы</h2>
         <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 20px;">
-            Полный список каталогов
+            Все каталоги успешно завершены (100%)
         </p>
         
         <div class="catalog-list">
             
             <!-- Каталог 1 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №1</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний I</div>
-                <div class="img-container"><img src="1.png" alt="Каталог 1"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Все цели закрыты</div>
-                <div style="display: inline-block; border: 1px solid #00ff66; color: #00ff66; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №1</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний I</div>
+                    <div class="img-container"><img src="1.png" alt="Каталог 1"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 2 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №2</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний II</div>
-                <div class="img-container"><img src="2.png" alt="Каталог 2"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Все цели закрыты</div>
-                <div style="display: inline-block; border: 1px solid #00ff66; color: #00ff66; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №2</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний II</div>
+                    <div class="img-container"><img src="2.png" alt="Каталог 2"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 3 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №3</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний III</div>
-                <div class="img-container"><img src="3.png" alt="Каталог 3"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Все цели закрыты</div>
-                <div style="display: inline-block; border: 1px solid #00ff66; color: #00ff66; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №3</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний III</div>
+                    <div class="img-container"><img src="3.png" alt="Каталог 3"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 4 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №4</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний IV</div>
-                <div class="img-container"><img src="4.png" alt="Каталог 4"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: В процессе</div>
-                <div style="display: inline-block; border: 1px solid #ffaa00; color: #ffaa00; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #25180b; border-radius: 3px;">АКТИВЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №4</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний IV</div>
+                    <div class="img-container"><img src="4.png" alt="Каталог 4"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 5 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №5</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний V</div>
-                <div class="img-container"><img src="5.png" alt="Каталог 5"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №5</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний V</div>
+                    <div class="img-container"><img src="5.png" alt="Каталог 5"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 6 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №6</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний VI</div>
-                <div class="img-container"><img src="6.png" alt="Каталог 6"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №6</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний VI</div>
+                    <div class="img-container"><img src="6.png" alt="Каталог 6"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 7 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №7</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний VII</div>
-                <div class="img-container"><img src="7.png" alt="Каталог 7"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №7</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний VII</div>
+                    <div class="img-container"><img src="7.png" alt="Каталог 7"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 8 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №8</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний VIII</div>
-                <div class="img-container"><img src="8.png" alt="Каталог 8"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №8</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний VIII</div>
+                    <div class="img-container"><img src="8.png" alt="Каталог 8"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 9 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №9</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний IX</div>
-                <div class="img-container"><img src="9.png" alt="Каталог 9"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №9</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний IX</div>
+                    <div class="img-container"><img src="9.png" alt="Каталог 9"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 10 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №10</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний X</div>
-                <div class="img-container"><img src="10.png" alt="Каталог 10"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №10</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний X</div>
+                    <div class="img-container"><img src="10.png" alt="Каталог 10"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 11 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №11</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XI</div>
-                <div class="img-container"><img src="11.png" alt="Каталог 11"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №11</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XI</div>
+                    <div class="img-container"><img src="11.png" alt="Каталог 11"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 12 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №12</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XII</div>
-                <div class="img-container"><img src="12.png" alt="Каталог 12"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №12</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XII</div>
+                    <div class="img-container"><img src="12.png" alt="Каталог 12"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 13 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №13</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XIII</div>
-                <div class="img-container"><img src="13.png" alt="Каталог 13"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №13</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XIII</div>
+                    <div class="img-container"><img src="13.png" alt="Каталог 13"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 14 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №14</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XIV</div>
-                <div class="img-container"><img src="14.png" alt="Каталог 14"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №14</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XIV</div>
+                    <div class="img-container"><img src="14.png" alt="Каталог 14"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 15 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №15</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XV</div>
-                <div class="img-container"><img src="15.png" alt="Каталог 15"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №15</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XV</div>
+                    <div class="img-container"><img src="15.png" alt="Каталог 15"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 16 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №16</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XVI</div>
-                <div class="img-container"><img src="16.png" alt="Каталог 16"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №16</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XVI</div>
+                    <div class="img-container"><img src="16.png" alt="Каталог 16"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 17 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №17</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XVII</div>
-                <div class="img-container"><img src="17.png" alt="Каталог 17"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №17</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XVII</div>
+                    <div class="img-container"><img src="17.png" alt="Каталог 17"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 18 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №18</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XVIII</div>
-                <div class="img-container"><img src="18.png" alt="Каталог 18"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №18</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XVIII</div>
+                    <div class="img-container"><img src="18.png" alt="Каталог 18"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 19 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №19</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XIX</div>
-                <div class="img-container"><img src="19.png" alt="Каталог 19"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №19</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XIX</div>
+                    <div class="img-container"><img src="19.png" alt="Каталог 19"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 20 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №20</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XX</div>
-                <div class="img-container"><img src="120.jpg" alt="Каталог 20"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №20</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XX</div>
+                    <div class="img-container"><img src="20.png" alt="Каталог 20"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 21 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №21</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XXI</div>
-                <div class="img-container"><img src="121.jpg" alt="Каталог 21"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №21</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XXI</div>
+                    <div class="img-container"><img src="21.png" alt="Каталог 21"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 22 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №22</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XXII</div>
-                <div class="img-container"><img src="122.jpg" alt="Каталог 22"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №22</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XXII</div>
+                    <div class="img-container"><img src="22.png" alt="Каталог 22"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 23 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №23</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XXIII</div>
-                <div class="img-container"><img src="123.jpg" alt="Каталог 23"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №23</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XXIII</div>
+                    <div class="img-container"><img src="23.png" alt="Каталог 23"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 24 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №24</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XXIV</div>
-                <div class="img-container"><img src="124.jpg" alt="Каталог 24"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №24</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XXIV</div>
+                    <div class="img-container"><img src="24.png" alt="Каталог 24"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 25 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №25</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XXV</div>
-                <div class="img-container"><img src="125.jpg" alt="Каталог 25"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №25</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XXV</div>
+                    <div class="img-container"><img src="25.png" alt="Каталог 25"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 26 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №26</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XXVI</div>
-                <div class="img-container"><img src="126.jpg" alt="Каталог 26"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №26</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XXVI</div>
+                    <div class="img-container"><img src="26.png" alt="Каталог 26"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 27 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №27</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XXVII</div>
-                <div class="img-container"><img src="127.jpg" alt="Каталог 27"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №27</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XXVII</div>
+                    <div class="img-container"><img src="27.png" alt="Каталог 27"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 28 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №28</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XXVIII</div>
-                <div class="img-container"><img src="128.jpg" alt="Каталог 28"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №28</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XXVIII</div>
+                    <div class="img-container"><img src="28.png" alt="Каталог 28"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 29 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №29</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XXIX</div>
-                <div class="img-container"><img src="129.jpg" alt="Каталог 29"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №29</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XXIX</div>
+                    <div class="img-container"><img src="29.png" alt="Каталог 29"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
             <!-- Каталог 30 -->
             <div class="catalog-card">
-                <div style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №30</div>
-                <div style="font-size: 16px; font-weight: bold; color: #fff; margin: 8px 0;">Каталог испытаний XXX</div>
-                <div class="img-container"><img src="109.jpg" alt="Каталог 30"></div>
-                <div style="font-size: 12px; color: #b0b0c0; margin-bottom: 15px;">Статус: Скоро выйдет</div>
-                <div style="display: inline-block; border: 1px solid #ff5555; color: #ff5555; padding: 4px 10px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: #250b12; border-radius: 3px;">НЕ ДОСТУПЕН</div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #ff5555; text-transform: uppercase; letter-spacing: 1px;">Каталог №30</span>
+                        <span class="lock-badge">🔒 Закрыто</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: bold; color: #fff; margin: 6px 0;">Каталог испытаний XXX</div>
+                    <div class="img-container"><img src="30.png" alt="Каталог 30"></div>
+                    <div style="font-size: 11px; color: #b0b0c0; margin-bottom: 10px;">Статус: Все цели закрыты</div>
+                </div>
+                <div>
+                    <div style="width: 100%; text-align: center; border: 1px solid #00ff66; color: #00ff66; padding: 4px 0; font-size: 10px; text-transform: uppercase; font-weight: bold; background: #0b2512; border-radius: 3px;">ЗАКРЫТО (100%)</div>
+                </div>
             </div>
 
         </div>
