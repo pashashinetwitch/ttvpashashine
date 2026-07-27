@@ -3,622 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Murkoff Systems // Зал Меценатов</title>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Поддержка проекта / Меценаты</title>
     <style>
-        :root {
-            --bg-color: #030305;
-            --panel-bg: #09090e;
-            --border-color: #3b1d70;
-            --accent-green: #00ff66;
-            --accent-purple: #9146ff;
-            --text-main: #f0f0f5;
-            --text-muted: #8a8a9e;
-        }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
+            background-color: #050507;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 30px 15px;
-            display: flex;
-            justify-content: center;
+            padding: 20px;
             box-sizing: border-box;
         }
 
-        /* --- Общая структура с тремя колонками --- */
-        .main-layout {
-            display: grid;
-            grid-template-columns: 260px 1fr 260px;
-            gap: 20px;
-            width: 100%;
-            max-width: 1400px;
-            align-items: start;
+        a {
+            color: #bf94ff;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #ffffff;
         }
 
-        .side-column {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .terminal-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        /* Адаптивность для средних и мобильных экранов */
-        @media (max-width: 1250px) {
-            .main-layout {
-                grid-template-columns: 1fr;
-                max-width: 850px;
-            }
-            .side-column {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-                gap: 15px;
-            }
-        }
-
-        /* Шапка терминала */
-        .terminal-header {
-            background: linear-gradient(135deg, #0d0d14 0%, #161026 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(145, 70, 255, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .terminal-header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
-        }
-
-        .terminal-header h1 {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.8em;
-            color: #fff;
-            margin: 0 0 8px 0;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .terminal-header p {
-            color: var(--text-muted);
-            font-size: 0.9em;
-            margin: 0;
-        }
-
-        /* Карточки-секции */
-        .cyber-card {
-            background-color: var(--panel-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-        }
-
-        .cyber-card h2 {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.15em;
-            color: #d4b8ff;
-            margin-top: 0;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid rgba(59, 29, 112, 0.5);
-            padding-bottom: 12px;
-        }
-
-        /* Боковые виджеты */
-        .side-widget {
-            background-color: var(--panel-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 16px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            transition: border-color 0.2s ease;
-        }
-        .side-widget:hover {
-            border-color: rgba(145, 70, 255, 0.6);
-        }
-
-        .side-widget h3 {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.85em;
-            color: #d4b8ff;
-            margin: 0 0 8px 0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .side-widget p {
-            font-size: 0.8em;
-            color: var(--text-muted);
-            margin: 0;
-            line-height: 1.4;
-        }
-
-        .side-widget .highlight-val {
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--accent-green);
-            font-weight: bold;
-        }
-
-        .security-stamp {
-            display: inline-block;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7em;
-            background: rgba(145, 70, 255, 0.1);
-            border: 1px solid rgba(145, 70, 255, 0.3);
-            color: #d4b8ff;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-bottom: 6px;
-        }
-
-        /* Блок сбора средств */
-        .funding-card {
-            border-color: rgba(0, 255, 102, 0.3);
-        }
-        .funding-card h2 {
-            color: var(--accent-green);
-            border-bottom-color: rgba(0, 255, 102, 0.2);
-        }
-
-        .funding-stats {
-            background: #050508;
-            border: 1px solid rgba(0, 255, 102, 0.15);
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 20px;
-        }
-
-        .stat-row {
+        /* Верхняя навигация */
+        .top-navbar {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.9em;
-            color: var(--text-muted);
-        }
-
-        .stat-row strong {
-            font-family: 'Share Tech Mono', monospace;
-            color: #fff;
-            font-size: 1.1em;
-        }
-
-        .progress-bar-wrapper {
-            width: 100%;
-            height: 10px;
-            background: #12121c;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-top: 15px;
-            border: 1px solid rgba(0, 255, 102, 0.2);
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #00b347, var(--accent-green));
-            border-radius: 5px;
-            box-shadow: 0 0 12px var(--accent-green);
-            width: 0%;
-            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .progress-info {
-            display: block;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.8em;
-            color: var(--text-muted);
-            text-align: right;
-            margin-top: 8px;
-        }
-
-        /* Кнопки */
-        .btn-group {
-            display: flex;
-            gap: 12px;
+            align-items: center;
+            background: #101014;
+            border: 1px solid #502099;
+            border-radius: 10px;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4), inset 0 0 10px rgba(145, 70, 255, 0.1);
+            gap: 10px;
             flex-wrap: wrap;
         }
 
-        .cyber-btn {
-            flex: 1;
-            min-width: 160px;
-            background: #14141f;
-            border: 1px solid var(--border-color);
-            color: #d4b8ff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.9em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.25s ease;
+        .nav-btn {
+            background: rgba(145, 70, 255, 0.1);
+            border: 1px solid #40197a;
+            color: #e0e0e0;
+            padding: 8px 14px;
+            font-size: 11px;
+            font-weight: 600;
             text-transform: uppercase;
-            text-align: center;
+            letter-spacing: 0.5px;
+            border-radius: 6px;
+            cursor: pointer;
             text-decoration: none;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
+            transition: all 0.2s ease;
+            display: inline-block;
         }
 
-        .cyber-btn:hover {
-            background: var(--accent-purple);
+        .nav-btn:hover {
+            background: #9146FF;
             color: #fff;
-            border-color: var(--accent-purple);
-            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4);
-            transform: translateY(-2px);
+            border-color: #9146FF;
+            box-shadow: 0 0 10px rgba(145, 70, 255, 0.6);
         }
 
-        .cyber-btn.green {
-            background: rgba(0, 255, 102, 0.08);
-            border-color: rgba(0, 255, 102, 0.3);
-            color: var(--accent-green);
-        }
-        .cyber-btn.green:hover {
-            background: var(--accent-green);
-            color: #000;
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
-        }
-
-        /* Панель добавления мецената */
-        .admin-panel {
-            background: #0d0d14;
-            border: 1px dashed var(--border-color);
-            border-radius: 8px;
-            padding: 16px;
+        /* Информационный блок */
+        .cyber-block {
+            background-color: #101014;
+            border: 1px solid #502099;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4), inset 0 0 10px rgba(145, 70, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
             margin-bottom: 20px;
         }
 
-        .admin-panel h3 {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.9em;
-            color: var(--accent-purple);
-            margin: 0 0 12px 0;
+        .cyber-block h2 {
+            color: #c39bff;
+            margin-top: 0;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1em;
+            border-bottom: 1px solid #40197a;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        .form-grid {
+        .info-text {
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: #d0d0d0;
+            margin-bottom: 15px;
+        }
+
+        /* Варианты донатов */
+        .donate-options {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        @media (max-width: 600px) {
-            .form-grid { grid-template-columns: 1fr; }
-        }
-
-        .cyber-input {
-            width: 100%;
-            background: #050508;
-            border: 1px solid var(--border-color);
-            color: #fff;
-            padding: 10px 14px;
+        .donate-option {
+            background: #181820;
+            border: 1px solid #40197a;
+            padding: 10px 15px;
             border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9em;
-            box-sizing: border-box;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .cyber-input:focus {
-            border-color: var(--accent-purple);
-            box-shadow: 0 0 8px rgba(145, 70, 255, 0.2);
-        }
-
-        .cyber-input.full-width {
-            grid-column: 1 / -1;
-            margin-bottom: 10px;
-        }
-
-        /* Список меценатов */
-        .donors-stack {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .empty-archive {
-            text-align: center;
-            color: var(--text-muted);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.9em;
-            padding: 30px;
-            background: #050508;
-            border-radius: 8px;
-            border: 1px dashed rgba(59, 29, 112, 0.4);
-        }
-
-        .donor-row {
-            background: #12121c;
-            border: 1px solid rgba(59, 29, 112, 0.4);
-            border-radius: 8px;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            transition: all 0.25s ease;
+            gap: 10px;
+            cursor: pointer;
+            color: #e0e0e0;
         }
 
-        .donor-row:hover {
-            border-color: var(--accent-green);
-            transform: translateX(4px);
-            background: #161624;
-            box-shadow: 0 4px 15px rgba(0, 255, 102, 0.1);
+        .donate-option:hover {
+            border-color: #9146FF;
         }
 
-        .donor-details {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .donor-tag {
-            font-weight: 700;
-            color: #fff;
-            font-size: 1em;
-            letter-spacing: 0.5px;
-        }
-
-        .donor-note {
-            font-size: 0.85em;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        .donor-badge {
-            font-family: 'Share Tech Mono', monospace;
+        .cyber-btn {
+            background: #9146FF;
+            border: none;
+            color: white;
+            padding: 10px 20px;
             font-weight: bold;
-            color: var(--accent-green);
-            font-size: 1.1em;
-            background: rgba(0, 255, 102, 0.08);
-            padding: 6px 12px;
-            border: 1px solid rgba(0, 255, 102, 0.2);
             border-radius: 6px;
-            white-space: nowrap;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px rgba(145, 70, 255, 0.5);
+            transition: background 0.2s;
         }
 
-        /* Футер */
-        .terminal-footer {
-            text-align: center;
-            margin-top: 10px;
+        .cyber-btn:hover {
+            background: #a866ff;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.8);
+        }
+
+        /* Таблицы истории */
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+
+        .history-table th, .history-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #40197a;
+            text-align: left;
+        }
+
+        .history-table th {
+            color: #c39bff;
+            text-transform: uppercase;
+            font-size: 0.85em;
+        }
+
+        .history-table td {
+            color: #b0b0c0;
+        }
+
+        @media (max-width: 768px) {
+            .donate-options {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="main-layout">
+<div class="container">
 
-        <!-- ЛЕВАЯ КОЛОНКА (4 виджета) -->
-        <div class="side-column">
-            <div class="side-widget">
-                <span class="security-stamp">LOG // 01</span>
-                <h3>🛡️ Статус Защиты</h3>
-                <p>Все транзакции шифруются протоколом <span class="highlight-val">AES-256</span>. Утечка спонсорских данных исключена.</p>
-            </div>
+    <!-- Навигация -->
+    <nav class="top-navbar">
+        <a href="index.html" class="nav-btn">Главная</a>
+        <a href="archives.html" class="nav-btn">Вторжения</a>
+        <a href="changelog.html" class="nav-btn">Список изменений</a>
+        <a href="lore.html" class="nav-btn">Лор активов</a>
+        <a href="donors.html" class="nav-btn" style="background: #9146FF; color: #fff;">Меценаты</a>
+    </nav>
 
-            <div class="side-widget">
-                <span class="security-stamp">NODE // 02</span>
-                <h3>⚡ Апсайд Сервера</h3>
-                <p>Бесперебойный аптайм бота удерживается на отметке <span class="highlight-val">99.98%</span> благодаря донатам.</p>
-            </div>
-
-            <div class="side-widget">
-                <span class="security-stamp">RANK // 03</span>
-                <h3>🎖️ Уровень Доступа</h3>
-                <p>Каждый инвестор получает пожиметный статус <span class="highlight-val">"VIP-Оперативник"</span> в системе.</p>
-            </div>
-
-            <div class="side-widget">
-                <span class="security-stamp">SYNC // 04</span>
-                <h3>🌐 Авто-Синхронизация</h3>
-                <p>Данные реестра мгновенно передаются на все серверные терминалы Murkoff.</p>
-            </div>
+    <!-- Основной баланс и описание -->
+    <div class="cyber-block">
+        <h2>Голоса и рейтинг</h2>
+        <div class="info-text">
+            На Вашем счете <strong>384 голосов</strong>. Просим Вас, по возможности, помогать проекту, поддержка Меценатов важна и необходима. Помогая проекту, Вы получаете голоса, с помощью которых можно оставлять отзывы в профилях Пользователей и создавать им репутацию, благодарить за интересные и полезные комментарии и рецензии, делать подарки своим друзьям на проекте, дарить им голоса и переводить рейтинг. За полученные голоса доступны статус Мецената, звание ВИП. Статус Мецената позволяет скачивать <strong>+32 раздачи в сутки</strong>, ВИП <strong>80 раздач</strong>.
         </div>
-
-        <!-- ЦЕНТРАЛЬНЫЙ ТЕРМИНАЛ -->
-        <div class="terminal-container">
-
-            <!-- Шапка -->
-            <div class="terminal-header">
-                <h1>Архив Меценатов</h1>
-                <p>Защищенный реестр финансирования инфраструктуры Murkoff</p>
-            </div>
-
-            <!-- Блок сбора средств -->
-            <div class="cyber-card funding-card">
-                <h2>🤖 Лицензирование Discord-бота</h2>
-                <p style="font-size: 0.9em; color: var(--text-muted); margin-top: 0; margin-bottom: 20px; line-height: 1.5;">
-                    Сбор средств на годовую поддержку и аренду защищенных функций бота (1200 грн/год). Обеспечение стабильной работы автоматики комплекса.
-                </p>
-
-                <div class="funding-stats">
-                    <div class="stat-row">
-                        <span>Цель контракта:</span>
-                        <strong>Годовая подписка</strong>
-                    </div>
-                    <div class="stat-row">
-                        <span>Требуемый бюджет:</span>
-                        <strong style="color: var(--accent-green);">1 200 грн</strong>
-                    </div>
-                    
-                    <div class="progress-bar-wrapper">
-                        <div class="progress-bar-fill" id="progress-bar"></div>
-                    </div>
-                    <span class="progress-info" id="progress-text">Собрано: 0 из 1200 грн (0%)</span>
-                </div>
-
-                <div class="btn-group">
-                    <a href="ССЫЛКА_НА_ТВОЮ_БАНКУ_МОНО" target="_blank" class="cyber-btn green">
-                        🟢 Открыть Моно-Банку
-                    </a>
-                    <button class="cyber-btn" onclick="copyCardInfo()">
-                        📋 Копировать карту
-                    </button>
-                </div>
-            </div>
-
-            <!-- Реестр инвесторов -->
-            <div class="cyber-card">
-                <h2>💎 Реестр инвесторов</h2>
-                
-                <!-- Форма добавления (админка) -->
-                <div class="admin-panel">
-                    <h3>➕ Добавить запись в реестр</h3>
-                    <div class="form-grid">
-                        <input type="text" id="input-name" class="cyber-input" placeholder="Имя / Ник (например: Агент Flent)">
-                        <input type="text" id="input-amount" class="cyber-input" placeholder="Сумма (например: 300 грн)">
-                    </div>
-                    <input type="text" id="input-comment" class="cyber-input full-width" placeholder="Комментарий или сообщение к донату...">
-                    <button class="cyber-btn" style="width: 100%; margin-top: 5px;" onclick="addDonor()">Записать в архив</button>
-                </div>
-
-                <!-- Список -->
-                <div class="donors-stack" id="donors-container">
-                    <!-- Заполняется через скрипт -->
-                </div>
-            </div>
-
-            <!-- Навигация -->
-            <div class="terminal-footer">
-                <a href="index.html" class="cyber-btn" style="display: inline-flex; width: auto; padding: 12px 30px;">
-                    ◀ Вернуться на главный хаб
-                </a>
-            </div>
-
-        </div>
-
-        <!-- ПРАВАЯ КОЛОНКА (4 виджета) -->
-        <div class="side-column">
-            <div class="side-widget">
-                <span class="security-stamp">SEC // 05</span>
-                <h3>🔍 Верификация</h3>
-                <p>Все поступления проверяются автоматизированной системой безопасности <span class="highlight-val">Murkoff Core</span>.</p>
-            </div>
-
-            <div class="side-widget">
-                <span class="security-stamp">QUEUE // 06</span>
-                <h3>⏳ Очередь Задач</h3>
-                <p>Следующий апдейт базы активируется сразу после закрытия текущего финансового сбора.</p>
-            </div>
-
-            <div class="side-widget">
-                <span class="security-stamp">KEY // 07</span>
-                <h3>🔑 Ключи Доступа</h3>
-                <p>Меценаты получают эксклюзивный доступ к закрытым тестовым веткам и фичам.</p>
-            </div>
-
-            <div class="side-widget">
-                <span class="security-stamp">CORE // 08</span>
-                <h3>⚙️ Стабильность</h3>
-                <p>Бекапы базы данных меценатов выполняются каждые <span class="highlight-val">24 часа</span> на защищенный сервер.</p>
-            </div>
-        </div>
-
     </div>
 
-    <script>
-        let defaultDonors = [];
+    <!-- Способ оплаты -->
+    <div class="cyber-block">
+        <h2>Поддержать через Twitch / Донат</h2>
+        <div class="info-text">
+            Получите голоса и рейтинг при помощи прямой поддержки стрима или перевода. Рекомендуемый способ (<strong>+20% бонуса</strong>).
+        </div>
+        <div class="donate-options">
+            <label class="donate-option"><input type="radio" name="tier" checked> 10$ — получить 50 голосов и 100 ГБ</label>
+            <label class="donate-option"><input type="radio" name="tier"> 30$ — получить 150 голосов и 300 ГБ + 15%</label>
+            <label class="donate-option"><input type="radio" name="tier"> 20$ — получить 100 голосов и 200 ГБ + 10%</label>
+            <label class="donate-option"><input type="radio" name="tier"> 60$ — получить 300 голосов и 600 ГБ + 20%</label>
+        </div>
+        <button class="cyber-btn">Получить голоса</button>
+    </div>
 
-        function getDonors() {
-            let saved = localStorage.getItem('murkoff_donors_v2');
-            return saved ? JSON.parse(saved) : defaultDonors;
-        }
+    <!-- Топ донатеров -->
+    <div class="cyber-block">
+        <h2>⚡ ТОП ДОНАТЕРОВ ⚡</h2>
+        <div class="info-text" style="color: #fff; word-spacing: 8px;">
+            <span>🥇 Flent 👑</span>, <span>🥈 Stevenrichter1996 💎</span>, <span>🥉 Ravenous_vest</span>, <span>🚀 au_hero_wormix_54</span>
+        </div>
+    </div>
 
-        function saveDonors(donors) {
-            localStorage.setItem('murkoff_donors_v2', JSON.stringify(donors));
-        }
+    <!-- История помощи -->
+    <div class="cyber-block">
+        <h2>Ваша помощь проекту за последнее время</h2>
+        <table class="history-table">
+            <tr>
+                <th>Способ</th>
+                <th>Начисление</th>
+                <th>Дата</th>
+            </tr>
+            <tr>
+                <td>Twitch / Донат</td>
+                <td style="color: #55ff55;">+50 голосов</td>
+                <td>3 июня 2026 в 15:47</td>
+            </tr>
+            <tr>
+                <td>Twitch / Донат</td>
+                <td style="color: #55ff55;">+50 голосов</td>
+                <td>30 декабря 2025 в 23:31</td>
+            </tr>
+            <tr>
+                <td>Twitch / Донат</td>
+                <td style="color: #55ff55;">+50 голосов</td>
+                <td>15 мая 2025 в 20:24</td>
+            </tr>
+        </table>
+    </div>
 
-        function renderDonors() {
-            let donors = getDonors();
-            let container = document.getElementById('donors-container');
-            container.innerHTML = '';
+</div>
 
-            let totalSum = 0;
-
-            if (donors.length === 0) {
-                container.innerHTML = '<div class="empty-archive">> Архив пуст. Ожидание первых транзакций в системе...</div>';
-            } else {
-                donors.forEach(donor => {
-                    let numMatch = donor.amount.match(/\d+/);
-                    if (numMatch) {
-                        totalSum += parseInt(numMatch[0]);
-                    }
-
-                    let row = document.createElement('div');
-                    row.className = 'donor-row';
-                    row.innerHTML = `
-                        <div class="donor-details">
-                            <span class="donor-tag">${donor.name}</span>
-                            <span class="donor-note">${donor.comment}</span>
-                        </div>
-                        <span class="donor-badge">${donor.amount}</span>
-                    `;
-                    container.appendChild(row);
-                });
-            }
-
-            let goal = 1200;
-            let percent = Math.min(Math.round((totalSum / goal) * 100), 100);
-            
-            document.getElementById('progress-bar').style.width = percent + '%';
-            document.getElementById('progress-text').innerText = `Собрано: ${totalSum} из ${goal} грн (${percent}%)`;
-        }
-
-        function addDonor() {
-            let name = document.getElementById('input-name').value.trim();
-            let amount = document.getElementById('input-amount').value.trim();
-            let comment = document.getElementById('input-comment').value.trim();
-
-            if (!name || !amount) {
-                alert("⚠ Обязательно укажите имя и сумму!");
-                return;
-            }
-
-            if (!amount.toLowerCase().includes('грн')) {
-                amount += ' грн';
-            }
-
-            let donors = getDonors();
-            donors.unshift({ name: name, amount: amount, comment: comment || "—" });
-
-            saveDonors(donors);
-            renderDonors();
-
-            document.getElementById('input-name').value = '';
-            document.getElementById('input-amount').value = '';
-            document.getElementById('input-comment').value = '';
-
-            alert("✔ Данные успешно зафиксированы в системе!");
-        }
-
-        function copyCardInfo() {
-            const cardNum = "4874100030762697";
-            navigator.clipboard.writeText(cardNum).then(() => {
-                alert("✔ Номер карты скопирован в буфер обмена!");
-            });
-        }
-
-        window.onload = renderDonors;
-    </script>
 </body>
 </html>
