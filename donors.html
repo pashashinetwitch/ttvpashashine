@@ -7,11 +7,30 @@
     <style>
         body {
             background-color: #050507;
+            background-image: url('https://assetsio.gnwcdn.com/TheOutlastTrails.jpg?width=690&quality=85&format=jpg&dpr=3&auto=webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             color: #e0e0e0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Затемнение фона для лучшей читаемости текста */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 5, 7, 0.85);
+            z-index: -1;
+            pointer-events: none;
         }
 
         a {
@@ -32,7 +51,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #101014;
+            background: rgba(16, 16, 20, 0.9);
+            backdrop-filter: blur(5px);
             border: 1px solid #502099;
             border-radius: 10px;
             padding: 12px 20px;
@@ -67,7 +87,8 @@
 
         /* Информационный блок */
         .cyber-block {
-            background-color: #101014;
+            background-color: rgba(16, 16, 20, 0.9);
+            backdrop-filter: blur(5px);
             border: 1px solid #502099;
             box-shadow: 0 0 15px rgba(145, 70, 255, 0.4), inset 0 0 10px rgba(145, 70, 255, 0.1);
             border-radius: 10px;
@@ -95,7 +116,8 @@
 
         /* Улучшенный блок Монобанки */
         .monobank-box {
-            background: linear-gradient(135deg, #161015 0%, #101014 100%);
+            background: linear-gradient(135deg, rgba(22, 16, 21, 0.95) 0%, rgba(16, 16, 20, 0.95) 100%);
+            backdrop-filter: blur(5px);
             border: 1px solid #ff334b;
             box-shadow: 0 0 20px rgba(255, 51, 75, 0.35), inset 0 0 12px rgba(255, 51, 75, 0.12);
             position: relative;
@@ -159,7 +181,7 @@
         }
 
         .mono-btn:hover {
-            background: linear-gradient(135deg, #ff4d63.webp 0%, #ff334b 100%);
+            background: linear-gradient(135deg, #ff4d63 0%, #ff334b 100%);
             box-shadow: 0 0 25px rgba(255, 51, 75, 0.9);
             transform: translateY(-2px);
             color: #ffffff;
@@ -195,8 +217,8 @@
 
     <!-- Навигация -->
     <nav class="top-navbar">
-        <a href="index.html" class="nav-btn ">Главная</a>
-        <a href="invasion.html" class="nav-btn style="background: #de0d0d; color: #fff;">Вторжения</a>
+        <a href="index.html" class="nav-btn">Главная</a>
+        <a href="invasion.html" class="nav-btn" style="background: #de0d0d; color: #fff;">Вторжения</a>
         <a href="updates.html" class="nav-btn">Патчи игры</a>
         <a href="catalogs.html" class="nav-btn">Игровые каталоги</a>
         <a href="news.html" class="nav-btn">Список изменений</a>
@@ -212,18 +234,15 @@
         </div>
         
         <!-- Карточка награды за продление БОТа -->
-    <div class="bot-reward-card">
-    ⚡ <strong>Награда Меценатам:</strong> Каждый вклад вносит прямой вклад в стабильность трансляций. За активную помощь в продлении работы сервера и стримера PashaShine меценаты награждаются <strong>особыми бонусами, эксклюзивным статусом и благодарностью</strong> на канале!<br><br>
-    🌍 <span style="color: #ffcccc;">Карта Monobank доступна только в Украине и Европе.</span>
-</div>
+        <div class="bot-reward-card">
+        ⚡ <strong>Награда Меценатам:</strong> Каждый вклад вносит прямой вклад в стабильность трансляций. За активную помощь в продлении работы сервера и стримера PashaShine меценаты награждаются <strong>особыми бонусами, эксклюзивным статусом и благодарностью</strong> на канале!<br><br>
+        🌍 <span style="color: #ffcccc;">Карта Monobank доступна только в Украине и Европе.</span>
+        </div>
 
         <div class="mono-btn-container">
-            <a href="https://send.monobank.ua/jar/85ZzRFwoWJ" target="_blank" class="mono-btn">🛡️ Monobank</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.donationalerts.com/r/ttvpashashine" target="_blank" class="mono-btn">🛡️ DonationAlerts</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://boosty.to/pashash1ne/donate?" target="_blank" class="mono-btn">🛡️ Boosty</a></a>
+            <a href="https://send.monobank.ua/jar/85ZzRFwoWJ" target="_blank" class="mono-btn">🛡️ Monobank</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.donationalerts.com/r/ttvpashashine" target="_blank" class="mono-btn">🛡️ DonationAlerts</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://boosty.to/pashash1ne/donate?" target="_blank" class="mono-btn">🛡️ Boosty</a>
         </div>
     </div>
-
-
-    
 
     <!-- Топ донатеров -->
     <div class="cyber-block">
@@ -243,7 +262,7 @@
                 <th>Дата</th>
             </tr>
             <tr>
-                <td>PayPal </td>
+                <td>PayPal</td>
                 <td style="color: #55ff55;">+ 8084 UAH</td>
                 <td>За весь период</td>
             </tr>
