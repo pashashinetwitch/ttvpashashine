@@ -169,16 +169,274 @@
     <div class="cyber-block">
     
 
-    <!-- Блок Монобанки -->
-    <div class="cyber-block monobank-box">
-        <h2>Поддержать через Monobank (Монобанка)</h2>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поддержка проекта / Меценаты</title>
+    <style>
+        body {
+            background-color: #050507;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        a {
+            color: #bf94ff;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Верхняя навигация */
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #101014;
+            border: 1px solid #502099;
+            border-radius: 10px;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4), inset 0 0 10px rgba(145, 70, 255, 0.1);
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(145, 70, 255, 0.1);
+            border: 1px solid #40197a;
+            color: #e0e0e0;
+            padding: 8px 14px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #9146FF;
+            color: #fff;
+            border-color: #9146FF;
+            box-shadow: 0 0 10px rgba(145, 70, 255, 0.6);
+        }
+
+        /* Информационный блок */
+        .cyber-block {
+            background-color: #101014;
+            border: 1px solid #502099;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4), inset 0 0 10px rgba(145, 70, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .cyber-block h2 {
+            color: #c39bff;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1em;
+            border-bottom: 1px solid #40197a;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .info-text {
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: #d0d0d0;
+            margin-bottom: 15px;
+        }
+
+        /* Улучшенный блок Монобанки */
+        .monobank-box {
+            background: linear-gradient(135deg, #161015 0%, #101014 100%);
+            border: 1px solid #ff334b;
+            box-shadow: 0 0 20px rgba(255, 51, 75, 0.35), inset 0 0 12px rgba(255, 51, 75, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .monobank-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,51,75,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .monobank-box h2 {
+            color: #ff334b;
+            border-bottom-color: #5a1922;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Блок награды за продление бота */
+        .bot-reward-card {
+            background: rgba(255, 51, 75, 0.06);
+            border-left: 3px solid #ff334b;
+            padding: 12px 15px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 18px;
+            font-size: 0.93em;
+            color: #ff99a4;
+        }
+
+        .bot-reward-card strong {
+            color: #ffffff;
+        }
+
+        .mono-btn-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .mono-btn {
+            background: linear-gradient(135deg, #ff334b 0%, #d9142d 100%);
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 51, 75, 0.6);
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .mono-btn:hover {
+            background: linear-gradient(135deg, #ff4d63.webp 0%, #ff334b 100%);
+            box-shadow: 0 0 25px rgba(255, 51, 75, 0.9);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        /* Таблицы истории */
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+
+        .history-table th, .history-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #40197a;
+            text-align: left;
+        }
+
+        .history-table th {
+            color: #c39bff;
+            text-transform: uppercase;
+            font-size: 0.85em;
+        }
+
+        .history-table td {
+            color: #b0b0c0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Навигация -->
+    <nav class="top-navbar">
+        <a href="index.html" class="nav-btn">Главная</a>
+        <a href="archives.html" class="nav-btn">Вторжения</a>
+        <a href="changelog.html" class="nav-btn">Список изменений</a>
+        <a href="lore.html" class="nav-btn">Лор активов</a>
+        <a href="donors.html" class="nav-btn" style="background: #9146FF; color: #fff;">Меценаты</a>
+    </nav>
+
+    <!-- Основной баланс и описание -->
+    <div class="cyber-block">
+        <h2>Голоса и рейтинг</h2>
         <div class="info-text">
-            Помощь проекту через прямую ссылку на банку Monobank. Поддерживая проект, вы помогаете его развитию и получаете бонусы.
+            На Вашем счете <strong>384 голосов</strong>. Просим Вас, по возможности, помогать проекту, поддержка Меценатов важна и необходима. Помогая проекту, Вы получаете голоса, с помощью которых можно оставлять отзывы в профилях Пользователей и создавать им репутацию, благодарить за интересные и полезные комментарии и рецензии, делать подарки своим друзьям на проекте, дарить им голоса и переводить рейтинг. За полученные голоса доступны статус Мецената, звание ВИП. Статус Мецената позволяет скачивать <strong>+32 раздачи в сутки</strong>, ВИП <strong>80 раздач</strong>.
         </div>
-        <!-- Замени ссылку # на ссылку на свою реальную банку -->
-        <a href="https://send.monobank.ua/jar/2mXzYKQymJ" target="_blank" class="mono-btn">Открыть банку Monobank</a>
     </div>
 
+    <!-- Улучшенный блок Монобанки с украшениями и наградой за бота -->
+    <div class="cyber-block monobank-box">
+        <h2><span>💳</span> Поддержать через Monobank (Монобанка)</h2>
+        <div class="info-text">
+            Помощь проекту через прямую ссылку на банку Monobank. Поддерживая проект, вы помогаете его бесперебойной работе и развитию.
+        </div>
+        
+        <!-- Карточка награды за продление БОТа -->
+        <div class="bot-reward-card">
+            ⚡ <strong>Награда за продление БОТа:</strong> Каждый вклад вносит прямой вклад в стабильность систем. За активную помощь в продлении работы и поддержании функционала БОТа меценаты награждаются <strong>особыми бонусами, эксклюзивным статусом и повышением лимитов</strong> на проекте!
+        </div>
+
+        <div class="mono-btn-container">
+            <a href="https://send.monobank.ua/jar/2mXzYKQymJ" target="_blank" class="mono-btn">🛡️ Открыть банку Monobank</a>
+        </div>
+    </div>
+
+    <!-- Топ донатеров -->
+    <div class="cyber-block">
+        <h2>⚡ ТОП ДОНАТЕРОВ ⚡</h2>
+        <div class="info-text" style="color: #fff; word-spacing: 8px;">
+            <span>🥇 Flent 👑</span>, <span>🥈 Stevenrichter1996 💎</span>, <span>🥉 Ravenous_vest</span>, <span>🚀 au_hero_wormix_54</span>
+        </div>
+    </div>
+
+    <!-- История помощи -->
+    <div class="cyber-block">
+        <h2>Ваша помощь проекту за последнее время</h2>
+        <table class="history-table">
+            <tr>
+                <th>Способ</th>
+                <th>Начисление</th>
+                <th>Дата</th>
+            </tr>
+            <tr>
+                <td>Monobank</td>
+                <td style="color: #55ff55;">+50 голосов</td>
+                <td>3 июня 2026 в 15:47</td>
+            </tr>
+            <tr>
+                <td>Monobank</td>
+                <td style="color: #55ff55;">+50 голосов</td>
+                <td>30 декабря 2025 в 23:31</td>
+            </tr>
+            <tr>
+                <td>Monobank</td>
+                <td style="color: #55ff55;">+50 голосов</td>
+                <td>15 мая 2025 в 20:24</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
 
         
     <!-- Блок ДонейшнАлертс -->
