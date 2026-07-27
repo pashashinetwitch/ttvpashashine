@@ -93,47 +93,39 @@
             margin-bottom: 15px;
         }
 
-        /* Варианты донатов */
-        .donate-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
+        /* Блок Монобанки */
+        .monobank-box {
+            background: linear-gradient(135deg, #1a1a24 0%, #101014 100%);
+            border: 1px solid #ff334b;
+            box-shadow: 0 0 15px rgba(255, 51, 75, 0.3), inset 0 0 10px rgba(255, 51, 75, 0.1);
         }
 
-        .donate-option {
-            background: #181820;
-            border: 1px solid #40197a;
-            padding: 10px 15px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            color: #e0e0e0;
+        .monobank-box h2 {
+            color: #ff334b;
+            border-bottom-color: #5a1922;
         }
 
-        .donate-option:hover {
-            border-color: #9146FF;
-        }
-
-        .cyber-btn {
-            background: #9146FF;
+        .mono-btn {
+            background: #ff334b;
             border: none;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 0 10px rgba(145, 70, 255, 0.5);
-            transition: background 0.2s;
+            box-shadow: 0 0 12px rgba(255, 51, 75, 0.5);
+            transition: all 0.2s;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
         }
 
-        .cyber-btn:hover {
-            background: #a866ff;
-            box-shadow: 0 0 15px rgba(145, 70, 255, 0.8);
+        .mono-btn:hover {
+            background: #ff5266;
+            box-shadow: 0 0 18px rgba(255, 51, 75, 0.8);
+            color: #white;
         }
 
         /* Таблицы истории */
@@ -158,12 +150,6 @@
         .history-table td {
             color: #b0b0c0;
         }
-
-        @media (max-width: 768px) {
-            .donate-options {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 <body>
@@ -187,19 +173,14 @@
         </div>
     </div>
 
-    <!-- Способ оплаты -->
-    <div class="cyber-block">
-        <h2>Поддержать через Twitch / Донат</h2>
+    <!-- Блок Монобанки -->
+    <div class="cyber-block monobank-box">
+        <h2>Поддержать через Monobank (Монобанка)</h2>
         <div class="info-text">
-            Получите голоса и рейтинг при помощи прямой поддержки стрима или перевода. Рекомендуемый способ (<strong>+20% бонуса</strong>).
+            Помощь проекту через прямую ссылку на банку Monobank. Поддерживая проект, вы помогаете его развитию и получаете бонусные голоса и рейтинг.
         </div>
-        <div class="donate-options">
-            <label class="donate-option"><input type="radio" name="tier" checked> 10$ — получить 50 голосов и 100 ГБ</label>
-            <label class="donate-option"><input type="radio" name="tier"> 30$ — получить 150 голосов и 300 ГБ + 15%</label>
-            <label class="donate-option"><input type="radio" name="tier"> 20$ — получить 100 голосов и 200 ГБ + 10%</label>
-            <label class="donate-option"><input type="radio" name="tier"> 60$ — получить 300 голосов и 600 ГБ + 20%</label>
-        </div>
-        <button class="cyber-btn">Получить голоса</button>
+        <!-- Замени ссылку # на ссылку на свою реальную банку -->
+        <a href="#" target="_blank" class="mono-btn">Открыть банку Monobank</a>
     </div>
 
     <!-- Топ донатеров -->
@@ -220,17 +201,17 @@
                 <th>Дата</th>
             </tr>
             <tr>
-                <td>Twitch / Донат</td>
+                <td>Monobank</td>
                 <td style="color: #55ff55;">+50 голосов</td>
                 <td>3 июня 2026 в 15:47</td>
             </tr>
             <tr>
-                <td>Twitch / Донат</td>
+                <td>Monobank</td>
                 <td style="color: #55ff55;">+50 голосов</td>
                 <td>30 декабря 2025 в 23:31</td>
             </tr>
             <tr>
-                <td>Twitch / Донат</td>
+                <td>Monobank</td>
                 <td style="color: #55ff55;">+50 голосов</td>
                 <td>15 мая 2025 в 20:24</td>
             </tr>
