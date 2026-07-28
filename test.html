@@ -328,106 +328,49 @@
         </aside>
 
         <!-- ЦЕНТР -->
-        <main class="main-content">
-            <div class="cyber-block main-header-block" style="text-align: center;">
-                <h1 style="text-align: center;">🔴 Добро пожаловать на хаб стримера PashaShine!</h1>
-                <p class="hub-subtitle" style="text-align: center; margin-left: auto; margin-right: auto; max-width: 600px;">
-                    Сайт посвящен моей стримерской деятельности и, в частности, прохождению суровых и мрачных испытаний в 
-                    <strong>The Outlast Trials</strong>. Здесь собраны архивы трансляций, секретные материалы и памятные моменты совместных вылазок.
-                </p>
-            </div>
-            
-            <div class="cyber-block">
-                <h2>Поддержка</h2>
-                <p style="font-size: 0.9em; color: #aaa; text-align: left; line-height: 1.6; padding-left: 10px;">
-                    👑💎 ЗАЛ СЛАВЫ КАНАЛА 💎👑<br>
-                    Список самых легендарных, щедрых и невероятных людей нашей галактики!<br><br>
-                    ⚡ <b>ТОП ДОНАТЕРОВ</b> ⚡<br>
-                    🥇 Flent 👑<br>
-                    🥈 Stevenrichter1996 💎<br>
-                    🥉 Ravenous_vest<br>
-                    🚀 au_hero_wormix_54
-                </p>
-            </div>
+        <!-- Секция обратной связи / Запросы в администрацию -->
+<div class="support-section">
+    <div class="support-tabs">
+        <span class="tab active">Помощь Администрации</span>
+        <span class="tab">Запросы в Администрацию [2]</span>
+        <span class="tab">Запросы без ответа [0]</span>
+    </div>
+    
+    <div class="support-notice">
+        При отправке сообщения, будьте добры, указывайте подробную информацию — это позволит нам быстрее решить проблему. Важно! Заголовок запроса доступен всем, сообщение и ответ только Вам и Администрации.
+    </div>
 
-            <div class="cyber-block" style="border-color: #502099; background: #101014; margin-bottom: 20px;">
-                <h2 style="color: #c39bff; border-bottom: 1px solid #40197a; padding-bottom: 10px; margin-top: 0; font-size: 1.1em; text-transform: uppercase; letter-spacing: 1px;">
-                    ⚙️ Аппаратное обеспечение / Спецификации сетапа
-                </h2>
-                <div style="font-size: 0.9em; line-height: 1.7; color: #d0d0d0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    
-                    <!-- Левая колонка: Консоль и Периферия -->
-                    <div>
-                        <p style="color: #9146FF; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; font-size: 0.95em;">🎮 Консоль и девайсы</p>
-                        <ul style="padding-left: 18px; margin: 0; color: #b0b0c0;">
-                            <li><strong>Консоль:</strong> PlayStation 5 Slim</li>
-                            <li><strong>Наушники:</strong> PlayStation PULSE 3D</li>
-                            <li><strong>Веб-камера:</strong> PlayStation HD Camera</li>
-                            <li><strong>Микрофон:</strong> Fifine TAM8W</li>
-                            <li><strong>Клавиатура:</strong> Ajazz AF98 Black</li>
-                            <li><strong>Монитор:</strong> Xiaomi G27i</li>
-                        </ul>
-                    </div>
+    <form class="support-form">
+        <label>Заголовок:</label>
+        <input type="text" placeholder="Введите тему запроса..." required>
 
-                    <!-- Правая колонка: Начинка ПК -->
-                    <div>
-                        <p style="color: #ff334b; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; font-size: 0.95em;">💻 Характеристики ПК</p>
-                        <ul style="padding-left: 18px; margin: 0; color: #b0b0c0;">
-                            <li><strong>Видеокарта:</strong> AMD Radeon RX 580</li>
-                            <li><strong>Процессор:</strong> Intel Core i7-3770K</li>
-                            <li><strong>Оперативная память:</strong> 16 GB</li>
-                            <li><strong>Монитор:</strong> Xiaomi A27i</li>
-                        </ul>
-                    </div>
+        <label>Сообщение:</label>
+        <div class="editor-toolbar">
+            <button type="button">b</button>
+            <button type="button">i</button>
+            <button type="button">u</button>
+            <button type="button">[c]</button>
+            <button type="button">quote</button>
+            <button type="button">url</button>
+            <button type="button">img</button>
+            <button type="button">py</button>
+        </div>
+        <textarea rows="5" placeholder="Опишите суть вопроса..." required></textarea>
 
-                </div>
-            </div>
+        <button type="submit" class="submit-btn">Отправить сообщение</button>
+    </form>
 
-            <!-- Блок: Результаты сезонов игры -->
-            <div class="cyber-block investigation-board">
-                <h2>📋 Результаты сезонов игры</h2>
-                <p style="font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 0; margin-bottom: 15px;">
-                    Цели во вторжении
-                </p>
-
-                <div class="board-grid">
-                    <!-- Сезон 5 -->
-                    <div class="evidence-card" onclick="inspectCard(this)">
-                        <span class="pin">📌</span>
-                        <span class="case-number">SEASON 5</span>
-                        <h3>Цель ВЫПОЛНЕНА</h3>
-                        <p>GOLD I достигнуто</p>
-                        <div class="status-stamp success">ВЫПОЛНЕНО</div>
-                    </div>
-
-                    <!-- Сезон 6 -->
-                    <div class="evidence-card" onclick="inspectCard(this)">
-                        <span class="pin">📌</span>
-                        <span class="case-number">SEASON 6</span>
-                        <h3>Цель не выполнена</h3>
-                        <p>GOLD I не достигнуто</p>
-                        <div class="status-stamp pending">СЕЗОН ЗАКРЫТ</div>
-                    </div>
-
-                    <!-- Сезон 7 -->
-                    <div class="evidence-card" onclick="inspectCard(this)">
-                        <span class="pin">📌</span>
-                        <span class="case-number">SEASON 7</span>
-                        <h3>Цель не выполнена</h3>
-                        <p>GOLD I не достигнуто</p>
-                        <div class="status-stamp">В процессе</div>
-                    </div>
-
-                    <!-- Сезон 8 -->
-                    <div class="evidence-card" onclick="inspectCard(this)">
-                        <span class="pin">📌</span>
-                        <span class="case-number">SEASON 8</span>
-                        <h3>Сезон еще не вышел</h3>
-                        <p>GOLD I не достигнуто</p>
-                        <div class="status-stamp pending">СЕЗОН ЕЩЕ НЕ ВЫШЕЛ</div>
-                    </div>
-               </div>
-            </div>
+    <div class="support-users-list">
+        <div class="user-row">
+            <span class="user-name online">PashaShine</span>
+            <span class="status-online">✉ ОнЛайн</span>
+        </div>
+        <div class="user-row">
+            <span class="user-name online">Wormix54</span>
+            <span class="status-online">✉ ОнЛайн</span>
+        </div>
+    </div>
+</div>
 
             <style>
                 .investigation-board {
