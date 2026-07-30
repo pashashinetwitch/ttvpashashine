@@ -137,7 +137,7 @@
             box-shadow: 0 0 10px var(--accent-color);
         }
 
-        /* Сетка испытания: Описание + Фото слева, Код справа (или на всю ширину) */
+        /* Сетка испытания */
         .challenge-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -178,10 +178,57 @@
             line-height: 1.6;
         }
 
+        /* Блок наград с кубком */
+        .rewards-card {
+            background: linear-gradient(135deg, rgba(145, 70, 255, 0.08) 0%, rgba(19, 16, 34, 0.9) 100%);
+            border: 1px solid rgba(145, 70, 255, 0.4);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.1);
+        }
+
+        .reward-trophy-icon {
+            font-size: 42px;
+            background: #1a152d;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 12px rgba(145, 70, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .reward-details h4 {
+            margin: 0 0 5px 0;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #bf94ff;
+            letter-spacing: 1px;
+        }
+
+        .reward-details .reward-title {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-bright);
+        }
+
+        .reward-details .reward-sub {
+            margin: 0;
+            font-size: 12px;
+            color: var(--text-color);
+        }
+
         /* Место под фото */
         .challenge-image-placeholder {
             width: 100%;
-            height: 220px;
+            height: 180px;
             background: #161229;
             border: 2px dashed var(--border-color);
             border-radius: 8px;
@@ -197,7 +244,7 @@
             background-position: center;
         }
 
-        /* Красивое место для кода в фиолетовом стиле */
+        /* Терминал с кодом */
         .code-terminal {
             background: #090710;
             border: 1px solid var(--accent-color);
@@ -206,6 +253,7 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            height: 100%;
         }
 
         .terminal-header {
@@ -242,10 +290,11 @@
             margin: 0;
             font-family: 'Courier New', Courier, monospace;
             font-size: 13px;
-            color: #00ff66; /* Неоново-зеленый код как в матрице/терминале */
+            color: #00ff66;
             line-height: 1.5;
             overflow-x: auto;
             white-space: pre-wrap;
+            flex-grow: 1;
         }
 
         .comment { color: #62558f; }
@@ -273,27 +322,37 @@
             </h1>
             
             <p class="page-desc">
-                Добро пожаловать в центр испытаний! <br> За успешно пройденные испытания вы сможете получать валюту <strong>ShineCoin</strong> на сервере PashaShineHouse и обменивать их на уникальные роли, доступ в закрытые войс-чаты и другие крутые бонусы (функция в разработке). <br> Выбирайте активное задание ниже.
+                Добро пожаловать в центр испытаний! За успешно пройденные испытания вы сможете получать <strong>ShineCoin</strong> на сервере PashaShineHouse и обменивать их на уникальные роли, доступ в закрытые войс-чаты и другие крутые бонусы. Выбирайте активное задание ниже.
             </p>
 
             <!-- Переключатель испытаний -->
             <div class="challenges-selector">
-                <button class="challenge-tab active" onclick="switchChallenge(1)">Испытание #1: Тюремная ферма</button>
-                <button class="challenge-tab" onclick="switchChallenge(2)">Испытание #2: В разработке</button>
-                <button class="challenge-tab" onclick="switchChallenge(3)">Испытание #3: В разработке</button>
+                <button class="challenge-tab active" onclick="switchChallenge(1)">Испытание #1: Выживание в блоке</button>
+                <button class="challenge-tab" onclick="switchChallenge(2)">Испытание #2: Скоростной раш</button>
+                <button class="challenge-tab" onclick="switchChallenge(3)">Испытание #3: Секретный протокол</button>
             </div>
 
             <!-- Контент выбранного испытания -->
             <div class="challenge-grid">
-                <!-- Левая колонка: Описание и Картинка -->
+                <!-- Левая колонка: Описание, Награда и Картинка -->
                 <div class="challenge-info-box">
                     <div class="info-card">
                         <h3>📋 Условия и задачи</h3>
                         <ul id="challenge-tasks">
-                            <li>Пройти испытание на сложности Психохирургия на А+</li>
-                            <li>Обязательно выполнить два побочных задания</li>
-                            <li>Уложиться в лимит времени: <strong>до 50 минут</strong>.</li>
+                            <li>Пройти кастомную зону без единой смерти.</li>
+                            <li>Собрать все скрытые терминалы данных на карте.</li>
+                            <li>Уложиться в лимит времени: <strong>до 15 минут</strong>.</li>
                         </ul>
+                    </div>
+
+                    <!-- Красивый блок наград с кубком -->
+                    <div class="rewards-card">
+                        <div class="reward-trophy-icon">🏆</div>
+                        <div class="reward-details">
+                            <h4>Награда за прохождение</h4>
+                            <div class="reward-title" id="reward-amount">+500 ShineCoin</div>
+                            <p class="reward-sub" id="reward-desc">Роль в Discord + доступ к закрытому чату</p>
+                        </div>
                     </div>
 
                     <!-- Место под фото испытания -->
@@ -320,11 +379,10 @@
   <span class="keyword">"difficulty"</span>: <span class="string">"Hard"</span>,
   <span class="keyword">"objectives"</span>: {
     <span class="keyword">"no_deaths"</span>: <span class="string">true</span>,
-    <span class="keyword">"max_time_min"</span>: <span class="string">50</span>,
-    <span class="keyword">"target_zone"</span>: <span class="string">"prison_farm"</span>
+    <span class="keyword">"max_time_min"</span>: <span class="string">15</span>,
+    <span class="keyword">"target_zone"</span>: <span class="string">"Sector_G"</span>
   },
   <span class="keyword">"status"</span>: <span class="string">"ACTIVE"</span>
-                        <span class="keyword">"code_trials"</span>: <span class="string">"???"</span>
 }
                     </pre>
                 </div>
@@ -333,18 +391,20 @@
     </div>
 
     <script>
-        // Простой скрипт переключения между испытаниями (чтобы можно было добавлять свои)
         function switchChallenge(id) {
-            // Убираем активный класс со всех кнопок
             document.querySelectorAll('.challenge-tab').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
             const tasks = document.getElementById('challenge-tasks');
             const code = document.getElementById('challenge-code');
             const filename = document.getElementById('terminal-filename');
+            const rewardAmount = document.getElementById('reward-amount');
+            const rewardDesc = document.getElementById('reward-desc');
 
             if (id === 1) {
                 filename.textContent = "challenge_config_v1.json";
+                rewardAmount.textContent = "+500 ShineCoin";
+                rewardDesc.textContent = "Роль в Discord + доступ к закрытому чату";
                 tasks.innerHTML = `
                     <li>Пройти кастомную зону без единой смерти.</li>
                     <li>Собрать все скрытые терминалы данных на карте.</li>
@@ -364,6 +424,8 @@
 }`;
             } else if (id === 2) {
                 filename.textContent = "speedrun_params_v2.json";
+                rewardAmount.textContent = "+750 ShineCoin";
+                rewardDesc.textContent = "Уникальный скин в профиль + бонус к опыту";
                 tasks.innerHTML = `
                     <li>Пройти маршрут по чекпоинтам на максимальной скорости.</li>
                     <li>Избегать получения урона от ловушек.</li>
@@ -383,6 +445,8 @@
 }`;
             } else if (id === 3) {
                 filename.textContent = "secret_override_03.json";
+                rewardAmount.textContent = "+1200 ShineCoin";
+                rewardDesc.textContent = "Элитная роль «Hunter» + кастомный цвет никнейма";
                 tasks.innerHTML = `
                     <li>Найти скрытый триггер на локации.</li>
                     <li>Активировать консоль управления без активации тревоги.</li>
