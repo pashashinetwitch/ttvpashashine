@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Поддержка проекта</title>
     <style>
+        :root {
+            --card-bg: rgba(16, 16, 20, 0.9);
+            --border-color: #502099;
+            --text-color: #d0d0d0;
+        }
+
         body {
             background-color: #050507;
             background-image: url('https://abrakadabra.fun/uploads/posts/2022-02/1645669006_1-abrakadabra-fun-p-fon-dlya-doneishen-alerts-2.jpg');
@@ -42,8 +48,10 @@
         }
 
         .container {
-            max-width: 900px;
+            width: 100%;
+            max-width: 100%;
             margin: 0 auto;
+            box-sizing: border-box;
         }
 
         /* Верхняя навигация */
@@ -60,6 +68,7 @@
             box-shadow: 0 0 15px rgba(145, 70, 255, 0.4), inset 0 0 10px rgba(145, 70, 255, 0.1);
             gap: 10px;
             flex-wrap: wrap;
+            box-sizing: border-box;
         }
 
         .nav-btn {
@@ -94,6 +103,8 @@
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
+            box-sizing: border-box;
+            width: 100%;
         }
 
         .cyber-block h2 {
@@ -209,6 +220,12 @@
         .history-table td {
             color: #b0b0c0;
         }
+
+        @media (max-width: 768px) {
+            .support-info-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -219,7 +236,7 @@
     <nav class="top-navbar">
           <a href="index.html" class="nav-btn">Главная Хаба</a>
         <a href="shop.html" class="nav-btn">Магазин хаба</a>
-        <a href="invasion.html" class="nav-btn" style="background: #de0d0d; color: #fff;">Каталог вторжения 🔪</h1></a>
+        <a href="invasion.html" class="nav-btn" style="background: #de0d0d; color: #fff;">Каталог вторжения 🔪</a>
         <a href="updates.html" class="nav-btn">Игровые патчи</a>
         <a href="news.html" class="nav-btn">Список изменений</a>
         <a href="catalogs.html" class="nav-btn">Игровые каталоги</a>
@@ -280,86 +297,72 @@
             </tr>
         </table>
 
-<!-- Блок связи по вопросам поддержки -->
-<div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; margin-top: 20px; box-shadow: 0 0 15px rgba(145, 70, 255, 0.15); box-sizing: border-box;">
-    <h3 style="font-size: 13px; text-transform: uppercase; color: #bf94ff; margin-top: 0; margin-bottom: 10px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
-        📡 Обратная связь
-    </h3>
-    <p style="font-size: 13px; color: var(--text-color); line-height: 1.5; margin: 0;">
-        Если донат по какой-то причине не отобразился в таблице или возникли вопросы по переводу — пиши в чат во время стрима или в личные сообщения канала. Всё оперативно проверим и поправим!
-    </p>
-</div>
-
-        
-<!-- Полезная памятка для донатеров -->
-<div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; margin-top: 20px; box-shadow: 0 0 15px rgba(145, 70, 255, 0.15); box-sizing: border-box;">
-    <h3 style="font-size: 13px; text-transform: uppercase; color: #bf94ff; margin-top: 0; margin-bottom: 12px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
-        💡 Полезная информация для переводов
-    </h3>
-    <p style="font-size: 13px; color: var(--text-color); line-height: 1.5; margin: 0;">
-        При переводе через зарубежные карты или PayPal конвертация в гривну происходит автоматически по курсу твоего банка. Если хочешь поддержать без комиссии систем — лучше всего использовать прямую ссылку на Монобанку (доступна в Украине и по ЕС). Огромное спасибо за каждый вклад!
-    </p>
-</div>
-
-        
-
-      <!-- Полезный блок FAQ / Часто задаваемые вопросы -->
-<div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; margin-top: 20px; box-shadow: 0 0 15px rgba(145, 70, 255, 0.15); box-sizing: border-box;">
-    <h3 style="font-size: 13px; text-transform: uppercase; color: #bf94ff; margin-top: 0; margin-bottom: 15px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
-        ❓ Часто задаваемые вопросы
-    </h3>
-    <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px; color: var(--text-color);">
-        <div>
-            <strong style="color: #fff; display: block; margin-bottom: 3px;">Как сделать анонимный донат?</strong>
-            Просто укажи любое кастомное имя или оставь поле пустым при переводе через DonationAlerts - в таблице и на стриме высветится только то, что ты захочешь.
+        <!-- Блок связи по вопросам поддержки -->
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; margin-top: 20px; box-shadow: 0 0 15px rgba(145, 70, 255, 0.15); box-sizing: border-box;">
+            <h3 style="font-size: 13px; text-transform: uppercase; color: #bf94ff; margin-top: 0; margin-bottom: 10px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
+                📡 Обратная связь
+            </h3>
+            <p style="font-size: 13px; color: var(--text-color); line-height: 1.5; margin: 0;">
+                Если донат по какой-то причине не отобразился в таблице или возникли вопросы по переводу — пиши в чат во время стрима или в личные сообщения канала. Всё оперативно проверим и поправим!
+            </p>
         </div>
-        <div>
-            <strong style="color: #fff; display: block; margin-bottom: 3px;">Куда летят уведомления?</strong>
-            Все донаты сразу триггерят алерт на трансляции, так что стример увидит твое сообщение в реальном времени.
+
+        <!-- Полезная памятка для донатеров -->
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; margin-top: 20px; box-shadow: 0 0 15px rgba(145, 70, 255, 0.15); box-sizing: border-box;">
+            <h3 style="font-size: 13px; text-transform: uppercase; color: #bf94ff; margin-top: 0; margin-bottom: 12px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
+                💡 Полезная информация для переводов
+            </h3>
+            <p style="font-size: 13px; color: var(--text-color); line-height: 1.5; margin: 0;">
+                При переводе через зарубежные карты или PayPal конвертация в гривну происходит автоматически по курсу твоего банка. Если хочешь поддержать без комиссии систем — лучше всего использовать прямую ссылку на Монобанку (доступна в Украине и по ЕС). Огромное спасибо за каждый вклад!
+            </p>
         </div>
-    </div>
-</div>
-<!-- Контейнер для бонусов и целей сбора -->
-<div class="support-info-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
 
-    <!-- Блок 1: Бонусы за поддержку -->
-    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; box-shadow: 0 0 15px rgba(145, 70, 255, 0.15); box-sizing: border-box;">
-        <h3 style="font-size: 13px; text-transform: uppercase; color: #bf94ff; margin-top: 0; margin-bottom: 15px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
-            ⚡ Бонусы за поддержку
-        </h3>
-        <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: var(--text-color); display: flex; flexDirection: column; gap: 8px;">
-            <li>Приоритетный вывод сообщений на стриме (TTS / Алерт).</li>
-            <li>Доступ к кастомным эмоциям и ролям на канале.</li>
-            <li>Влияние на выбор игр и контента для прохождения.</li>
-        </ul>
-    </div>
+        <!-- Полезный блок FAQ / Часто задаваемые вопросы -->
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; margin-top: 20px; box-shadow: 0 0 15px rgba(145, 70, 255, 0.15); box-sizing: border-box;">
+            <h3 style="font-size: 13px; text-transform: uppercase; color: #bf94ff; margin-top: 0; margin-bottom: 15px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
+                ❓ Часто задаваемые вопросы
+            </h3>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px; color: var(--text-color);">
+                <div>
+                    <strong style="color: #fff; display: block; margin-bottom: 3px;">Как сделать анонимный донат?</strong>
+                    Просто укажи любое кастомное имя или оставь поле пустым при переводе через DonationAlerts - в таблице и на стриме высветится только то, что ты захочешь.
+                </div>
+                <div>
+                    <strong style="color: #fff; display: block; margin-bottom: 3px;">Куда летят уведомления?</strong>
+                    Все донаты сразу триггерят алерт на трансляции, так что стример увидит твое сообщение в реальном времени.
+                </div>
+            </div>
+        </div>
 
-    <!-- Блок 2: На что идут средства -->
-    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; box-shadow: 0 0 15px rgba(145, 70, 255, 0.15); box-sizing: border-box;">
-        <h3 style="font-size: 13px; text-transform: uppercase; color: #bf94ff; margin-top: 0; margin-bottom: 15px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
-            🎯 Цели и инвестиции
-        </h3>
-        <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: var(--text-color); display: flex; flexDirection: column; gap: 8px;">
-            <li>Оплата стабильной работы сервера и ботов.</li>
-            <li>Технический апгрейд железа и периферии.</li>
-            <li>Покупка новых игр для стримов.</li>
-        </ul>
-    </div>
+        <!-- Контейнер для бонусов и целей сбора -->
+        <div class="support-info-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
 
-</div>
+            <!-- Блок 1: Бонусы за поддержку -->
+            <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; box-shadow: 0 0 15px rgba(145, 70, 255, 0.15); box-sizing: border-box;">
+                <h3 style="font-size: 13px; text-transform: uppercase; color: #bf94ff; margin-top: 0; margin-bottom: 15px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
+                    ⚡ Бонусы за поддержку
+                </h3>
+                <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: var(--text-color); display: flex; flex-direction: column; gap: 8px;">
+                    <li>Приоритетный вывод сообщений на стриме (TTS / Алерт).</li>
+                    <li>Доступ к кастомным эмоциям и ролям на канале.</li>
+                    <li>Влияние на выбор игр и контента для прохождения.</li>
+                </ul>
+            </div>
 
+            <!-- Блок 2: На что идут средства -->
+            <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; box-shadow: 0 0 15px rgba(145, 70, 255, 0.15); box-sizing: border-box;">
+                <h3 style="font-size: 13px; text-transform: uppercase; color: #bf94ff; margin-top: 0; margin-bottom: 15px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
+                    🎯 Цели и инвестиции
+                </h3>
+                <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: var(--text-color); display: flex; flex-direction: column; gap: 8px;">
+                    <li>Оплата стабильной работы сервера и ботов.</li>
+                    <li>Технический апгрейд железа и периферии.</li>
+                    <li>Покупка новых игр для стримов.</li>
+                </ul>
+            </div>
 
+        </div>
 
-
-
-
-
-
-
-
-
-
-      
     </div>
 
 </div>
