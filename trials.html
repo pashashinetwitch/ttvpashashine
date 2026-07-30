@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Испытания от PashaShine</title>
+    <style>
+        :root {
+            --bg-color: #0b0914;
+            --card-bg: #131022;
+            --border-color: #2d244f;
+            --accent-color: #9146ff;
+            --accent-hover: #772ce8;
+            --text-color: #d0cce1;
+            --text-bright: #ffffff;
+            --neon-glow: rgba(145, 70, 255, 0.25);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100vw;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .wrapper {
+            width: 100%;
+            min-height: 100vh;
+            padding: 30px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Шапка / Навигация */
+        .header-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            background: var(--card-bg);
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .nav-btn {
+            background: #1a152d;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--accent-color);
+            color: var(--text-bright);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Главный контейнер контента на всю ширину */
+        .main-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 0 20px var(--neon-glow);
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .page-title {
+            margin: 0;
+            font-size: 24px;
+            color: var(--text-bright);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .page-desc {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: rgba(19, 16, 34, 0.6);
+            padding: 15px;
+            border-left: 3px solid var(--accent-color);
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* Выбор испытаний (Табы) */
+        .challenges-selector {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .challenge-tab {
+            background: #1a152d;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .challenge-tab:hover {
+            border-color: var(--accent-color);
+            color: var(--text-bright);
+        }
+
+        .challenge-tab.active {
+            background: var(--accent-color);
+            color: var(--text-bright);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Сетка испытания: Описание + Фото слева, Код справа (или на всю ширину) */
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 1024px) {
+            .challenge-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .challenge-info-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card {
+            background: rgba(11, 9, 20, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .info-card h3 {
+            margin-top: 0;
+            font-size: 15px;
+            color: #bf94ff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-card ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* Место под фото */
+        .challenge-image-placeholder {
+            width: 100%;
+            height: 220px;
+            background: #161229;
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c63ff;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Красивое место для кода в фиолетовом стиле */
+        .code-terminal {
+            background: #090710;
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            box-shadow: inset 0 0 15px rgba(145, 70, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #161229;
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #bf94ff;
+            font-family: monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 20px;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: #00ff66; /* Неоново-зеленый код как в матрице/терминале */
+            line-height: 1.5;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .comment { color: #62558f; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- Навигация по сайту -->
+        <div class="header-nav">
+            <a href="index.html" class="nav-btn">Главная</a>
+            <a href="#" class="nav-btn">Игры</a>
+            <a href="#" class="nav-btn">Патчи игры</a>
+            <a href="#" class="nav-btn">Лор активов</a>
+            <a href="donations.html" class="nav-btn">Меценаты</a>
+            <a href="challenges.html" class="nav-btn active">Испытания</a>
+        </div>
+
+        <!-- Основной блок -->
+        <div class="main-container">
+            <h1 class="page-title">
+                ⚡ Испытания от PashaShine
+            </h1>
+            
+            <p class="page-desc">
+                Добро пожаловать в центр испытаний! За успешно пройденные испытания вы сможете получать <strong>ShineCoin</strong> на сервере PashaShineHouse и обменивать их на уникальные роли, доступ в закрытые войс-чаты и другие крутые бонусы (функция в разработке). Выбирайте активное задание ниже.
+            </p>
+
+            <!-- Переключатель испытаний -->
+            <div class="challenges-selector">
+                <button class="challenge-tab active" onclick="switchChallenge(1)">Испытание #1: Выживание в блоке</button>
+                <button class="challenge-tab" onclick="switchChallenge(2)">Испытание #2: Скоростной раш</button>
+                <button class="challenge-tab" onclick="switchChallenge(3)">Испытание #3: Секретный протокол</button>
+            </div>
+
+            <!-- Контент выбранного испытания -->
+            <div class="challenge-grid">
+                <!-- Левая колонка: Описание и Картинка -->
+                <div class="challenge-info-box">
+                    <div class="info-card">
+                        <h3>📋 Условия и задачи</h3>
+                        <ul id="challenge-tasks">
+                            <li>Пройти кастомную зону без единой смерти.</li>
+                            <li>Собрать все скрытые терминалы данных на карте.</li>
+                            <li>Уложиться в лимит времени: <strong>до 15 минут</strong>.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Место под фото испытания -->
+                    <div class="challenge-image-placeholder" id="challenge-img">
+                        [ Место для фото / скриншота испытания ]
+                    </div>
+                </div>
+
+                <!-- Правая колонка: Терминал с кодом -->
+                <div class="code-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="terminal-dot dot-red"></span>
+                            <span class="terminal-dot dot-yellow"></span>
+                            <span class="terminal-dot dot-green"></span>
+                        </div>
+                        <span id="terminal-filename">challenge_config_v1.json</span>
+                    </div>
+                    <pre class="terminal-body" id="challenge-code">
+<span class="comment">// Конфигурация испытания #1: System Survival</span>
+{
+  <span class="keyword">"challenge_id"</span>: <span class="string">"ps_trial_01"</span>,
+  <span class="keyword">"reward_coins"</span>: <span class="string">500</span>,
+  <span class="keyword">"difficulty"</span>: <span class="string">"Hard"</span>,
+  <span class="keyword">"objectives"</span>: {
+    <span class="keyword">"no_deaths"</span>: <span class="string">true</span>,
+    <span class="keyword">"max_time_min"</span>: <span class="string">15</span>,
+    <span class="keyword">"target_zone"</span>: <span class="string">"Sector_G"</span>
+  },
+  <span class="keyword">"status"</span>: <span class="string">"ACTIVE"</span>
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Простой скрипт переключения между испытаниями (чтобы можно было добавлять свои)
+        function switchChallenge(id) {
+            // Убираем активный класс со всех кнопок
+            document.querySelectorAll('.challenge-tab').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const tasks = document.getElementById('challenge-tasks');
+            const code = document.getElementById('challenge-code');
+            const filename = document.getElementById('terminal-filename');
+
+            if (id === 1) {
+                filename.textContent = "challenge_config_v1.json";
+                tasks.innerHTML = `
+                    <li>Пройти кастомную зону без единой смерти.</li>
+                    <li>Собрать все скрытые терминалы данных на карте.</li>
+                    <li>Уложиться в лимит времени: <strong>до 15 минут</strong>.</li>
+                `;
+                code.innerHTML = `<span class="comment">// Конфигурация испытания #1: System Survival</span>
+{
+  <span class="keyword">"challenge_id"</span>: <span class="string">"ps_trial_01"</span>,
+  <span class="keyword">"reward_coins"</span>: <span class="string">500</span>,
+  <span class="keyword">"difficulty"</span>: <span class="string">"Hard"</span>,
+  <span class="keyword">"objectives"</span>: {
+    <span class="keyword">"no_deaths"</span>: <span class="string">true</span>,
+    <span class="keyword">"max_time_min"</span>: <span class="string">15</span>,
+    <span class="keyword">"target_zone"</span>: <span class="string">"Sector_G"</span>
+  },
+  <span class="keyword">"status"</span>: <span class="string">"ACTIVE"</span>
+}`;
+            } else if (id === 2) {
+                filename.textContent = "speedrun_params_v2.json";
+                tasks.innerHTML = `
+                    <li>Пройти маршрут по чекпоинтам на максимальной скорости.</li>
+                    <li>Избегать получения урона от ловушек.</li>
+                    <li>Награда х2 при прохождении в группе.</li>
+                `;
+                code.innerHTML = `<span class="comment">// Конфигурация испытания #2: Speedrun Protocol</span>
+{
+  <span class="keyword">"challenge_id"</span>: <span class="string">"ps_trial_02"</span>,
+  <span class="keyword">"reward_coins"</span>: <span class="string">750</span>,
+  <span class="keyword">"difficulty"</span>: <span class="string">"Expert"</span>,
+  <span class="keyword">"objectives"</span>: {
+    <span class="keyword">"no_damage"</span>: <span class="string">true</span>,
+    <span class="keyword">"multiplier"</span>: <span class="string">2.0</span>,
+    <span class="keyword">"mode"</span>: <span class="string">"Invasion_Rush"</span>
+  },
+  <span class="keyword">"status"</span>: <span class="string">"ACTIVE"</span>
+}`;
+            } else if (id === 3) {
+                filename.textContent = "secret_override_03.json";
+                tasks.innerHTML = `
+                    <li>Найти скрытый триггер на локации.</li>
+                    <li>Активировать консоль управления без активации тревоги.</li>
+                    <li>Получить секретный бонусный кит на сервере.</li>
+                `;
+                code.innerHTML = `<span class="comment">// Конфигурация испытания #3: Hidden Override</span>
+{
+  <span class="keyword">"challenge_id"</span>: <span class="string">"ps_trial_03"</span>,
+  <span class="keyword">"reward_coins"</span>: <span class="string">1200</span>,
+  <span class="keyword">"difficulty"</span>: <span class="string">"Master"</span>,
+  <span class="keyword">"objectives"</span>: {
+    <span class="keyword">"stealth_required"</span>: <span class="string">true</span>,
+    <span class="keyword">"alarm_triggered"</span>: <span class="string">false</span>
+  },
+  <span class="keyword">"status"</span>: <span class="string">"LOCKED_BY_ADMIN"</span>
+}`;
+            }
+        }
+    </script>
+</body>
+</html>
