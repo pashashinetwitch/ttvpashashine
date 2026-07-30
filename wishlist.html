@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Желаемые игры</title>
+    <style>
+        :root {
+            --bg-color: #0b0914;
+            --card-bg: #131022;
+            --border-color: #2d244f;
+            --accent-color: #9146ff;
+            --text-color: #d0cce1;
+            --text-bright: #ffffff;
+            --neon-glow: rgba(145, 70, 255, 0.2);
+            --code-color: #00ff66;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100vw;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .wrapper {
+            width: 100%;
+            min-height: 100vh;
+            padding: 30px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Навигация */
+        .header-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            background: var(--card-bg);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .nav-btn {
+            background: #1a152d;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--accent-color);
+            color: var(--text-bright);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .main-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .page-header {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 20px var(--neon-glow);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .page-title {
+            margin: 0;
+            font-size: 26px;
+            color: var(--text-bright);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .page-desc {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        /* Сетка игр */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 15px var(--neon-glow);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
+        }
+
+        .game-poster {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+            filter: brightness(0.9);
+        }
+
+        .game-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .game-title {
+            margin: 0;
+            font-size: 18px;
+            color: var(--text-bright);
+            font-weight: 700;
+        }
+
+        .game-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+            width: fit-content;
+        }
+
+        .status-preorder {
+            background: rgba(0, 255, 102, 0.15);
+            color: var(--code-color);
+            border: 1px solid rgba(0, 255, 102, 0.4);
+        }
+
+        .status-dev {
+            background: rgba(145, 70, 255, 0.15);
+            color: #bf94ff;
+            border: 1px solid rgba(145, 70, 255, 0.4);
+        }
+
+        .game-info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-color);
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px solid rgba(45, 36, 79, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- Навигация -->
+        <div class="header-nav">
+            <a href="index.html" class="nav-btn">Главная</a>
+            <a href="#" class="nav-btn">Магазин</a>
+            <a href="donations.html" class="nav-btn">Меценаты</a>
+            <a href="challenges.html" class="nav-btn">Испытания</a>
+            <a href="wishlist.html" class="nav-btn active">Желаемое</a>
+        </div>
+
+        <div class="main-container">
+            <div class="page-header">
+                <h1 class="page-title">🎯 Желаемые и ожидаемые игры</h1>
+                <p class="page-desc">
+                    Список релизов, которые планируются к покупке или прохождению на трансляциях. Статусы и даты отслеживаются в реальном времени.
+                </p>
+            </div>
+
+            <!-- Список игр -->
+            <div class="games-grid">
+                
+                <!-- Игра 1 -->
+                <div class="game-card">
+                    <img src="alien2.jpg" alt="Alien Isolation 2" class="game-poster">
+                    <div class="game-content">
+                        <span class="game-status status-dev">В разработке</span>
+                        <h3 class="game-title">Alien: Isolation 2</h3>
+                        <p class="page-desc" style="font-size: 13px;">Продолжение культового космического хоррора. Ждем больше информации от разработчиков.</p>
+                        <div class="game-info-row">
+                            <span>Ожидание:</span>
+                            <strong style="color: var(--text-bright);">Высокое</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Игра 2 -->
+                <div class="game-card">
+                    <img src="heretic.jpg" alt="Intergalactic Heretic Prophet" class="game-poster">
+                    <div class="game-content">
+                        <span class="game-status status-dev">Анонсировано</span>
+                        <h3 class="game-title">Intergalactic Heretic Prophet</h3>
+                        <p class="page-desc" style="font-size: 13px;">Мрачный научно-фантастический проект с глубоким погружением в атмосферу.</p>
+                        <div class="game-info-row">
+                            <span>Релиз:</span>
+                            <strong style="color: var(--text-bright);">TBA</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Игра 3 -->
+                <div class="game-card">
+                    <img src="starwars.jpg" alt="Star Wars Galactic Racer" class="game-poster">
+                    <div class="game-content">
+                        <span class="game-status status-preorder">⚡ Доступен предзаказ</span>
+                        <h3 class="game-title">Star Wars: Galactic Racer</h3>
+                        <p class="page-desc" style="font-size: 13px;">Динамичные гонки по далёкой галактике. Предзаказ уже открыт в магазинах.</p>
+                        <div class="game-info-row">
+                            <span>Статус:</span>
+                            <strong style="color: var(--code-color);">Предзаказ активен</strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
