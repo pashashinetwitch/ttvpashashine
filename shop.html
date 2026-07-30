@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лавка Резидента - PashaShine</title>
+    <style>
+        :root {
+            --bg-color: #0b0914;
+            --card-bg: #131022;
+            --border-color: #2d244f;
+            --accent-color: #9146ff;
+            --accent-hover: #772ce8;
+            --text-color: #d0cce1;
+            --text-bright: #ffffff;
+            --neon-glow: rgba(145, 70, 255, 0.2);
+            --code-color: #00ff66;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100vw;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .wrapper {
+            width: 100%;
+            min-height: 100vh;
+            padding: 30px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Навигация */
+        .header-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            background: var(--card-bg);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .nav-btn {
+            background: #1a152d;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--accent-color);
+            color: var(--text-bright);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .main-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .page-header {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 20px var(--neon-glow);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .page-title {
+            margin: 0;
+            font-size: 26px;
+            color: var(--text-bright);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .page-desc {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        /* Сетка товаров */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .shop-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 0 15px var(--neon-glow);
+            transition: transform 0.2s, border-color 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shop-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
+        }
+
+        .shop-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .shop-item-icon {
+            font-size: 32px;
+            background: #1a152d;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .shop-item-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #00ff66;
+            background: rgba(0, 255, 102, 0.1);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            padding: 6px 12px;
+            border-radius: 8px;
+        }
+
+        .shop-item-title {
+            margin: 0;
+            font-size: 18px;
+            color: var(--text-bright);
+            font-weight: 700;
+        }
+
+        .shop-item-desc {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-color);
+            flex-grow: 1;
+        }
+
+        .shop-buy-btn {
+            background: #1a152d;
+            border: 1px solid var(--accent-color);
+            color: var(--text-bright);
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .shop-buy-btn:hover {
+            background: var(--accent-color);
+            box-shadow: 0 0 12px var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- Навигация -->
+        <div class="header-nav">
+            <a href="index.html" class="nav-btn">Главная</a>
+            <a href="shop.html" class="nav-btn active">Магазин</a>
+            <a href="donations.html" class="nav-btn">Меценаты</a>
+            <a href="challenges.html" class="nav-btn">Испытания</a>
+            <a href="wishlist.html" class="nav-btn">Желаемое</a>
+        </div>
+
+        <div class="main-container">
+            <div class="page-header">
+                <h1 class="page-title">🛒 Лавка Резидента (Черный рынок)</h1>
+                <p class="page-desc">
+                    Трать накопленную дискорд-валюту на кастомизацию, уникальные роли и привилегии. 
+                    Все покупки синхронизируются с сервером автоматически.
+                </p>
+            </div>
+
+            <!-- Список товаров -->
+            <div class="shop-grid">
+                
+                <!-- Товар 1 -->
+                <div class="shop-card">
+                    <div class="shop-card-header">
+                        <div class="shop-item-icon">🎨</div>
+                        <div class="shop-item-price">1000 SC</div>
+                    </div>
+                    <h3 class="shop-item-title">Цветной ник в Discord</h3>
+                    <p class="shop-item-desc">Выдели свой никнейм на сервере уникальным неоновым цветом на выбор сроком на 30 дней.</p>
+                    <a href="#" onclick="alert('Для покупки напишите боту в Discord команду или обратитесь к администратору.'); return false;" class="shop-buy-btn">Приобрести лот</a>
+                </div>
+
+                <!-- Товар 2 -->
+                <div class="shop-card">
+                    <div class="shop-card-header">
+                        <div class="shop-item-icon">🏷️</div>
+                        <div class="shop-item-price">1500 SC</div>
+                    </div>
+                    <h3 class="shop-item-title">Кастомный префикс / Клеймо</h3>
+                    <p class="shop-item-desc">Получи персональный статус-роль перед ником (например, [Пациент #666] или [Стукач]).</p>
+                    <a href="#" onclick="alert('Для покупки напишите боту в Discord команду или обратитесь к администратору.'); return false;" class="shop-buy-btn">Приобрести лот</a>
+                </div>
+
+                <!-- Товар 3 -->
+                <div class="shop-card">
+                    <div class="shop-card-header">
+                        <div class="shop-item-icon">🔊</div>
+                        <div class="shop-item-price">500 SC</div>
+                    </div>
+                    <h3 class="shop-item-title">Пак звуковых триггеров</h3>
+                    <p class="shop-item-desc">Доступ к эксклюзивным звукам и командам для взаимодействия на стримах.</p>
+                    <a href="#" onclick="alert('Для покупки напишите боту в Discord команду или обратитесь к администратору.'); return false;" class="shop-buy-btn">Приобрести лот</a>
+                </div>
+
+                <!-- Товар 4 -->
+                <div class="shop-card">
+                    <div class="shop-card-header">
+                        <div class="shop-item-icon">💉</div>
+                        <div class="shop-item-price">5000 SC</div>
+                    </div>
+                    <h3 class="shop-item-title">Экспериментальная сыворотка (VIP)</h3>
+                    <p class="shop-item-desc">Элитный статус резидента на сервере с повышенным коэффициентом фарма валюты и особым доступом.</p>
+                    <a href="#" onclick="alert('Для покупки напишите боту в Discord команду или обратитесь к администратору.'); return false;" class="shop-buy-btn">Приобрести лот</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
