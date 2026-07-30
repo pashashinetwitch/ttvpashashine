@@ -107,7 +107,7 @@
             color: var(--text-color);
         }
 
-        /* Список испытаний (5-6 штук на выбор) */
+        /* Список испытаний */
         .challenges-selector {
             display: flex;
             gap: 10px;
@@ -141,7 +141,7 @@
             box-shadow: 0 0 12px var(--accent-color);
         }
 
-        /* Сбалансированная сетка 2 колонки (никакой пустоты справа) */
+        /* Сетка */
         .content-grid {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -160,7 +160,7 @@
             gap: 25px;
         }
 
-        /* Карточка с фото */
+        /* Блок скриншота */
         .media-card {
             width: 100%;
             height: 240px;
@@ -169,8 +169,13 @@
             border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
-            background-size: cover;
-            background-position: center;
+        }
+
+        .media-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85);
         }
 
         .media-overlay {
@@ -200,7 +205,7 @@
             margin: 0;
         }
 
-        /* Карточка условий (со скроллом для 10 пунктов) */
+        /* Карточка условий */
         .conditions-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -238,7 +243,7 @@
         .conditions-list::-webkit-scrollbar-track { background: #1a152d; border-radius: 3px; }
         .conditions-list::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 3px; }
 
-        /* Блок наград (от 200 до 2000 ShineCoin) */
+        /* Блок наград */
         .reward-card {
             background: linear-gradient(135deg, rgba(145, 70, 255, 0.1) 0%, rgba(19, 16, 34, 0.95) 100%);
             border: 1px solid rgba(145, 70, 255, 0.4);
@@ -284,7 +289,7 @@
             margin: 0;
         }
 
-        /* Терминал кода справа */
+        /* Терминал кода */
         .code-terminal {
             background: #090710;
             border: 1px solid var(--accent-color);
@@ -331,7 +336,7 @@
         </div>
 
         <div class="main-container">
-            <!-- Шапка с выбором 6 испытаний -->
+            <!-- Шапка с выбором испытаний -->
             <div class="page-header">
                 <h1 class="page-title">⚡ Центр Испытаний Меркофа</h1>
                 <p class="page-desc">
@@ -339,50 +344,43 @@
                     Награды масштабируются от базовых (200 SC) до безумной психохирургии (2000 SC).
                 </p>
 
-                <!-- 6 испытаний на выбор -->
-              <!-- 6 испытаний на выбор с правильными вызовами -->
-<div class="challenges-selector">
-    <button class="challenge-tab active" onclick="loadTrial(1)">1. Ознакомительный тест</button>
-    <button class="challenge-tab" onclick="loadTrial(2)">2. Проверка на прочность</button>
-    <button class="challenge-tab" onclick="loadTrial(3)">3. Ночной кошмар</button>
-    <button class="challenge-tab" onclick="loadTrial(4)">4. Протокол «Чистка»</button>
-    <button class="challenge-tab" onclick="loadTrial(5)">5. Зона изоляции</button>
-    <button class="challenge-tab" onclick="loadTrial(6)">6. Психохирургия</button>
-</div>
+                <!-- Твои новые кнопки испытаний -->
+                <div class="challenges-selector">
+                    <button class="challenge-tab active" onclick="loadTrial(1)">1. Убить стукача</button>
+                    <button class="challenge-tab" onclick="loadTrial(2)">2. Парк развлечений</button>
+                    <button class="challenge-tab" onclick="loadTrial(3)">3. Аукцион</button>
+                    <button class="challenge-tab" onclick="loadTrial(4)">4. Тюремная ферма</button>
+                    <button class="challenge-tab" onclick="loadTrial(5)">5. МК "Уничтожить дело Минотавра"</button>
+                    <button class="challenge-tab" onclick="loadTrial(6)">6. Психохирургия</button>
+                </div>
             </div>
 
-            <!-- СЕТКА: Левая и Правая колонка заполнены равномерно -->
+            <!-- СЕТКА -->
             <div class="content-grid">
                 
                 <!-- ЛЕВАЯ КОЛОНКА -->
                 <div class="column">
-                    <!-- Блок картинки -->
-                    <div class="media-card" id="trial-img">
+                    <!-- Блок скриншота -->
+                    <div class="media-card">
+                        <img id="trial-img" src="trial1.jpg" alt="Скриншот испытания">
                         <div class="media-overlay">
                             <span class="media-badge" id="trial-category">Уровень: Базовый</span>
-                            <h2 class="media-title" id="trial-name">Испытание #1: Ознакомительный тест</h2>
+                            <h2 class="media-title" id="trial-name">Испытание #1: Убить стукача</h2>
                         </div>
                     </div>
 
-                    <!-- Блок условий (вмещает много пунктов со скроллом) -->
+                    <!-- Блок условий со скроллом -->
                     <div class="conditions-card">
                         <h3 class="card-heading">📋 Условия и задачи миссии</h3>
                         <ul class="conditions-list" id="trial-tasks">
-                            <li>Пройти стартовый инструктаж без паники.</li>
-                            <li>Собрать минимум 3 расходника на локации.</li>
-                            <li>Не попасться в поле зрения патруля в первые 3 минуты.</li>
-                            <li>Открыть главный шлюз с помощью найденного ключа.</li>
-                            <li>Использовать не более 1 бинта для лечения.</li>
-                            <li>Пройти темный коридор с включенным прибором.</li>
-                            <li>Завершить зону без критического уровня психоза.</li>
-                            <li>Активировать аварийный терминал связи.</li>
+                            <!-- Заполняется автоматически из JS -->
                         </ul>
                     </div>
                 </div>
 
                 <!-- ПРАВАЯ КОЛОНКА -->
                 <div class="column">
-                    <!-- Блок награды (от 200 до 2000 SC) -->
+                    <!-- Блок награды -->
                     <div class="reward-card">
                         <div class="reward-icon-box">🏆</div>
                         <div class="reward-info">
@@ -392,7 +390,7 @@
                         </div>
                     </div>
 
-                    <!-- Терминал конфигурации кода -->
+                    <!-- Терминал кода -->
                     <div class="code-terminal">
                         <div class="terminal-header">
                             <span id="trial-file">config_trial_01.json</span>
@@ -414,125 +412,167 @@
     </div>
 
     <script>
+        // Единая база испытаний: теперь тебе не нужно переписывать функции, 
+        // просто меняй тексты или картинки прямо здесь в массиве данных!
+        const trialsData = {
+            1: {
+                name: "Испытание #1: Убить стукача",
+                category: "Уровень: Базовый (Старт)",
+                img: "trial1.jpg",
+                rewardVal: "+200 ShineCoin",
+                rewardText: "Базовая роль + доступ к чату новичков",
+                file: "config_trial_01.json",
+                difficulty: "Easy",
+                baseReward: 200,
+                status: "READY",
+                tasks: [
+                    "Пройти стартовый инструктаж без паники.",
+                    "Собрать минимум 3 расходника на локации.",
+                    "Не попасться в поле зрения патруля в первые 3 минуты.",
+                    "Открыть главный шлюз с помощью найденного ключа.",
+                    "Использовать не более 1 бинта для лечения.",
+                    "Пройти темный коридор с включенным прибором.",
+                    "Завершить зону без критического уровня психоза.",
+                    "Активировать аварийный терминал связи."
+                ]
+            },
+            2: {
+                name: "Испытание #2: Парк развлечений",
+                category: "Уровень: Средний",
+                img: "trial2.jpg",
+                rewardVal: "+500 ShineCoin",
+                rewardText: "Роль 'Испытуемый' + кастомный цвет никнейма",
+                file: "config_trial_02.json",
+                difficulty: "Medium",
+                baseReward: 500,
+                status: "ACTIVE",
+                tasks: [
+                    "Пройти зону без использования укрытий длиннее 10 секунд.",
+                    "Собрать все скрытые кассеты с записями.",
+                    "Уклониться от 3 атак ближнего боя.",
+                    "Сохранить здоровье выше 50% до конца этапа.",
+                    "Не издавать лишнего шума при взломе замков.",
+                    "Обезвредь ловушку в узком проходе.",
+                    "Найти тайник в комнате охраны.",
+                    "Уложиться в строгий лимит времени (12 минут).",
+                    "Эвакуироваться через запасной люк."
+                ]
+            },
+            3: {
+                name: "Испытание #3: Аукцион",
+                category: "Уровень: Сложный",
+                img: "trial3.jpg",
+                rewardVal: "+900 ShineCoin",
+                rewardText: "Доступ к закрытому войс-чату + префикс",
+                file: "config_trial_03.json",
+                difficulty: "Hard",
+                baseReward: 900,
+                status: "LOCKED",
+                tasks: [
+                    "Полное отсутствие света на всей локации.",
+                    "Лимит батареек для прибора ночного видения (максимум 2).",
+                    "Избегать прямых столкновений с преследователем.",
+                    "Собрать 4 шифра для отключения тока.",
+                    "Не совершать ошибок при взломе панелей.",
+                    "Пройти секцию с галлюцинациями без потери рассудка.",
+                    "Спасти напарника из камеры заточения.",
+                    "Выйти к точке эвакуации раненым, но живым."
+                ]
+            },
+            4: {
+                name: "Испытание #4: Тюремная ферма",
+                category: "Уровень: Эксперт",
+                img: "trial4.jpg",
+                rewardVal: "+1400 ShineCoin",
+                rewardText: "Элитная роль + выбор цвета никнейма в Discord",
+                file: "config_trial_04.json",
+                difficulty: "Expert",
+                baseReward: 1400,
+                status: "RESTRICTED",
+                tasks: [
+                    "Уничтожить все ключевые объекты инфраструктуры.",
+                    "Действовать в условиях постоянной тревоги.",
+                    "Не использовать аптечки на протяжении всей миссии.",
+                    "Одолеть мини-босса в закрытой арене.",
+                    "Собрать секретную документацию проекта «Меркоф».",
+                    "Пройти зону на максимальной скорости (Speedrun).",
+                    "Не допустить срабатывания ловушек-растяжек.",
+                    "Завершить миссию в одиночку.",
+                    "Набрать наивысший ранг эффективности (S+)."
+                ]
+            },
+            5: {
+                name: "Испытание #5: МК 'Уничтожить дело Минотавра'",
+                category: "Уровень: Мастер",
+                img: "trial5.jpg",
+                rewardVal: "+1750 ShineCoin",
+                rewardText: "Уникальный значок профиля + кастомные роли",
+                file: "config_trial_05.json",
+                difficulty: "Master",
+                baseReward: 1750,
+                status: "CLASSIFIED",
+                tasks: [
+                    "Полная изоляция от внешнего мира и поддержки.",
+                    "Постоянный урон от токсичного газа (требуется тайминг дыхания).",
+                    "Собрать антидот в разрушенном секторе.",
+                    "Пройти лабиринт без права на ошибку.",
+                    "Уклониться от перекрестного огня охраны.",
+                    "Активировать резервный генератор под давлением.",
+                    "Найти выход за 8 минут.",
+                    "Выжить при критическом уровне стресса."
+                ]
+            },
+            6: {
+                name: "Испытание #6: Психохирургия",
+                category: "Уровень: Экстремальный (Максимум)",
+                img: "trial6.jpg",
+                rewardVal: "+2000 ShineCoin",
+                rewardText: "Легендарный статус + личная роль и все бонусы",
+                file: "config_trial_06.json",
+                difficulty: "Psychosurgery",
+                baseReward: 2000,
+                status: "MAXIMUM_THREAT",
+                tasks: [
+                    "Пройти финальный этап психохирургии без смертей.",
+                    "Максимальный уровень агрессии всех противников.",
+                    "Отсутствие интерфейса и подсказок на экране.",
+                    "Собрать все 10 улик доктора Эриха Зиглера.",
+                    "Выдержать финальный допрос без потери контроля.",
+                    "Пройти зону за минимальное время среди всех участников.",
+                    "Активировать протокол полного уничтожения комплекса.",
+                    "Сохранить рассудок до самого конца процедуры.",
+                    "Победить главного босса в открытом противостоянии.",
+                    "Успешно эвакуироваться через главный сектор."
+                ]
+            }
+        };
+
         function loadTrial(id) {
+            // Переключаем активную кнопку в меню
             document.querySelectorAll('.challenge-tab').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            const name = document.getElementById('trial-name');
-            const category = document.getElementById('trial-category');
-            const tasks = document.getElementById('trial-tasks');
-            const rewardVal = document.getElementById('trial-reward-val');
-            const rewardText = document.getElementById('trial-reward-text');
-            const file = document.getElementById('trial-file');
-            const code = document.getElementById('trial-code');
+            const trial = trialsData[id];
+            if (!trial) return;
 
-            if (id === 1) {
-                name.textContent = "Испытание #1: Ознакомительный тест";
-                category.textContent = "Уровень: Базовый (Старт)";
-                rewardVal.textContent = "+200 ShineCoin";
-                rewardText.textContent = "Базовая роль + доступ к чату новичков";
-                file.textContent = "config_trial_01.json";
-                tasks.innerHTML = `
-                    <li>Пройти стартовый инструктаж без паники.</li>
-                    <li>Собрать минимум 3 расходника на локации.</li>
-                    <li>Не попасться в поле зрения патруля в первые 3 минуты.</li>
-                    <li>Открыть главный шлюз с помощью найденного ключа.</li>
-                    <li>Использовать не более 1 бинта для лечения.</li>
-                    <li>Пройти темный коридор с включенным прибором.</li>
-                    <li>Завершить зону без критического уровня психоза.</li>
-                    <li>Активировать аварийный терминал связи.</li>
-                `;
-                code.textContent = `{\n  "trial_id": 1,\n  "difficulty": "Easy",\n  "base_reward": 200,\n  "status": "READY"\n}`;
-            } else if (id === 2) {
-                name.textContent = "Испытание #2: Проверка на прочность";
-                category.textContent = "Уровень: Средний";
-                rewardVal.textContent = "+500 ShineCoin";
-                rewardText.textContent = "Роль 'Испытуемый' + кастомный цвет никнейма";
-                file.textContent = "config_trial_02.json";
-                tasks.innerHTML = `
-                    <li>Пройти зону без использования укрытий длиннее 10 секунд.</li>
-                    <li>Собрать все скрытые кассеты с записями.</li>
-                    <li>Уклониться от 3 атак ближнего боя.</li>
-                    <li>Сохранить здоровье выше 50% до конца этапа.</li>
-                    <li>Не издавать лишнего шума при взломе замков.</li>
-                    <li>Обезвредь ловушку в узком проходе.</li>
-                    <li>Найти тайник в комнате охраны.</li>
-                    <li>Уложиться в строгий лимит времени (12 минут).</li>
-                    <li>Эвакуироваться через запасной люк.</li>
-                `;
-                code.textContent = `{\n  "trial_id": 2,\n  "difficulty": "Medium",\n  "base_reward": 500,\n  "status": "ACTIVE"\n}`;
-            } else if (id === 3) {
-                name.textContent = "Испытание #3: Ночной кошмар";
-                category.textContent = "Уровень: Сложный";
-                rewardVal.textContent = "+900 ShineCoin";
-                rewardText.textContent = "Доступ к закрытому войс-чату + префикс";
-                file.textContent = "config_trial_03.json";
-                tasks.innerHTML = `
-                    <li>Полное отсутствие света на всей локации.</li>
-                    <li>Лимит батареек для прибора ночного видения (максимум 2).</li>
-                    <li>Избегать прямых столкновений с преследователем.</li>
-                    <li>Собрать 4 шифра для отключения тока.</li>
-                    <li>Не совершать ошибок при взломе панелей.</li>
-                    <li>Пройти секцию с галлюцинациями без потери рассудка.</li>
-                    <li>Спасти напарника из камеры заточения.</li>
-                    <li>Выйти к точке эвакуации раненым, но живым.</li>
-                `;
-                code.textContent = `{\n  "trial_id": 3,\n  "difficulty": "Hard",\n  "base_reward": 900,\n  "status": "LOCKED"\n}`;
-            } else if (id === 4) {
-                name.textContent = "Испытание #4: Протокол «Чистка»";
-                category.textContent = "Уровень: Эксперт";
-                rewardVal.textContent = "+1400 ShineCoin";
-                rewardText.textContent = "Элитная роль + выбор цвета никнейма в Discord";
-                file.textContent = "config_trial_04.json";
-                tasks.innerHTML = `
-                    <li>Уничтожить все ключевые объекты инфраструктуры.</li>
-                    <li>Действовать в условиях постоянной тревоги.</li>
-                    <li>Не использовать аптечки на протяжении всей миссии.</li>
-                    <li>Одолеть мини-босса в закрытой арене.</li>
-                    <li>Собрать секретную документацию проекта «Меркоф».</li>
-                    <li>Пройти зону на максимальной скорости (Speedrun).</li>
-                    <li>Не допустить срабатывания ловушек-растяжек.</li>
-                    <li>Завершить миссию в одиночку.</li>
-                    <li>Набрать наивысший ранг эффективности (S+).</li>
-                `;
-                code.textContent = `{\n  "trial_id": 4,\n  "difficulty": "Expert",\n  "base_reward": 1400,\n  "status": "RESTRICTED"\n}`;
-            } else if (id === 5) {
-                name.textContent = "Испытание #5: Зона изоляции";
-                category.textContent = "Уровень: Мастер";
-                rewardVal.textContent = "+1750 ShineCoin";
-                rewardText.textContent = "Уникальный значок профиля + кастомные роли";
-                file.textContent = "config_trial_05.json";
-                tasks.innerHTML = `
-                    <li>Полная изоляция от внешнего мира и поддержки.</li>
-                    <li>Постоянный урон от токсичного газа (требуется тайминг дыхания).</li>
-                    <li>Собрать антидот в разрушенном секторе.</li>
-                    <li>Пройти лабиринт без права на ошибку.</li>
-                    <li>Уклониться от перекрестного огня охраны.</li>
-                    <li>Активировать резервный генератор под давлением.</li>
-                    <li>Найти выход за 8 минут.</li>
-                    <li>Выжить при критическом уровне стресса.</li>
-                `;
-                code.textContent = `{\n  "trial_id": 5,\n  "difficulty": "Master",\n  "base_reward": 1750,\n  "status": "CLASSIFIED"\n}`;
-            } else if (id === 6) {
-                name.textContent = "Испытание #6: Психохирургия";
-                category.textContent = "Уровень: Экстремальный (Максимум)";
-                rewardVal.textContent = "+2000 ShineCoin";
-                rewardText.textContent = "Легендарный статус + личная роль и все бонусы";
-                file.textContent = "config_trial_06.json";
-                tasks.innerHTML = `
-                    <li>Пройти финальный этап психохирургии без смертей.</li>
-                    <li>Максимальный уровень агрессии всех противников.</li>
-                    <li>Отсутствие интерфейса и подсказок на экране.</li>
-                    <li>Собрать все 10 улик доктора Эриха Зиглера.</li>
-                    <li>Выдержать финальный допрос без потери контроля.</li>
-                    <li>Пройти зону за минимальное время среди всех участников.</li>
-                    <li>Активировать протокол полного уничтожения комплекса.</li>
-                    <li>Сохранить рассудок до самого конца процедуры.</li>
-                    <li>Победить главного босса в открытом противостоянии.</li>
-                    <li>Успешно эвакуироваться через главный сектор.</li>
-                `;
-                code.textContent = `{\n  "trial_id": 6,\n  "difficulty": "Psychosurgery",\n  "base_reward": 2000,\n  "status": "MAXIMUM_THREAT"\n}`;
-            }
+            // Заполняем элементы данными из массива
+            document.getElementById('trial-name').textContent = trial.name;
+            document.getElementById('trial-category').textContent = trial.category;
+            document.getElementById('trial-img').src = trial.img;
+            document.getElementById('trial-reward-val').textContent = trial.rewardVal;
+            document.getElementById('trial-reward-text').textContent = trial.rewardText;
+            document.getElementById('trial-file').textContent = trial.file;
+
+            // Рендерим список условий
+            let tasksHtml = '';
+            trial.tasks.forEach(task => {
+                tasksHtml += `<li>${task}</li>`;
+            });
+            document.getElementById('trial-tasks').innerHTML = tasksHtml;
+
+            // Генерируем код для терминала
+            document.getElementById('trial-code').textContent = 
+`{\n  "trial_id": ${id},\n  "difficulty": "${trial.difficulty}",\n  "base_reward": ${trial.baseReward},\n  "status": "${trial.status}"\n}`;
         }
     </script>
 </body>
