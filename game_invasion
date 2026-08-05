@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Импостеры Outlast Trials</title>
+    <style>
+        :root {
+            --bg-color: #0f1015;
+            --panel-bg: #161821;
+            --panel-border: #232633;
+            --accent-color: #9146ff;
+            --accent-hover: #772ce8;
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --imposter-bg: #1f1b2c;
+            --imposter-border: #3b2a5a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .panel {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Левая панель: Секция заданий */
+        .tasks-section h2 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--panel-border);
+            padding-bottom: 8px;
+        }
+
+        .tasks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .task-item {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .task-item:hover {
+            border-color: var(--accent-color);
+            background-color: rgba(145, 70, 255, 0.05);
+        }
+
+        .task-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .task-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .task-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .task-action {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .task-action:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Правая панель: Список Импостеров */
+        .imposters-section h2 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--panel-border);
+            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .imposters-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 450px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .imposters-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .imposters-list::-webkit-scrollbar-thumb {
+            background-color: var(--panel-border);
+            border-radius: 3px;
+        }
+
+        .imposter-card {
+            background-color: var(--imposter-bg);
+            border: 1px solid var(--imposter-border);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .imposter-login {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #d8b4fe;
+            letter-spacing: 0.5px;
+        }
+
+        .imposter-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 6px 8px;
+            border-radius: 4px;
+        }
+
+        .stat-badge span {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <!-- Левая колонка: Задания -->
+        <div class="panel tasks-section">
+            <h2>Список заданий</h2>
+            <div class="tasks-list">
+                <div class="task-item">
+                    <div class="task-info">
+                        <span class="task-title">Задание №1</span>
+                        <span class="task-desc">Описание или цель текущего испытания</span>
+                    </div>
+                    <button class="task-action">Выполнить</button>
+                </div>
+                <div class="task-item">
+                    <div class="task-info">
+                        <span class="task-title">Задание №2</span>
+                        <span class="task-desc">Описание или цель текущего испытания</span>
+                    </div>
+                    <button class="task-action">Выполнить</button>
+                </div>
+                <div class="task-item">
+                    <div class="task-info">
+                        <span class="task-title">Задание №3</span>
+                        <span class="task-desc">Описание или цель текущего испытания</span>
+                    </div>
+                    <button class="task-action">Выполнить</button>
+                </div>
+                <div class="task-item">
+                    <div class="task-info">
+                        <span class="task-title">Задание №4</span>
+                        <span class="task-desc">Описание или цель текущего испытания</span>
+                    </div>
+                    <button class="task-action">Выполнить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правая колонка: Список Импостеров -->
+        <div class="panel imposters-section">
+            <h2>Импостеры</h2>
+            <div class="imposters-list">
+                <!-- Карточка импостера 1 -->
+                <div class="imposter-card">
+                    <div class="imposter-login">@Username_One</div>
+                    <div class="imposter-stats">
+                        <div class="stat-badge">Уровень: <span>50</span></div>
+                        <div class="stat-badge">Relapse: <span>3</span></div>
+                    </div>
+                </div>
+
+                <!-- Карточка импостера 2 -->
+                <div class="imposter-card">
+                    <div class="imposter-login">@Username_Two</div>
+                    <div class="imposter-stats">
+                        <div class="stat-badge">Уровень: <span>42</span></div>
+                        <div class="stat-badge">Relapse: <span>1</span></div>
+                    </div>
+                </div>
+
+                <!-- Карточка импостера 3 -->
+                <div class="imposter-card">
+                    <div class="imposter-login">@Username_Three</div>
+                    <div class="imposter-stats">
+                        <div class="stat-badge">Уровень: <span>75</span></div>
+                        <div class="stat-badge">Relapse: <span>5</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
