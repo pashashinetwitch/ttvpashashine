@@ -12,9 +12,13 @@
         }
 
         body {
-            background-color: #050507;
-            background-image: radial-gradient(circle at center, #1a1a24 0%, #050507 100%);
-            color: #e2e8f0;
+            /* Праздничный фон с огромным тортом и темным праздничным градиентом */
+            background-color: #0b0214;
+            background-image: linear-gradient(rgba(11, 2, 20, 0.85), rgba(26, 5, 43, 0.9)), url('https://images.unsplash.com/photo-1535141192574-5d4897c13136?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             min-height: 100vh;
             display: flex;
@@ -22,35 +26,50 @@
             align-items: center;
             padding: 20px;
             overflow-x: hidden;
-        }
-
-        .card-container {
-            background: rgba(15, 15, 22, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 40px 30px;
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 40px rgba(99, 102, 241, 0.1);
-            animation: fadeIn 1.2s ease-out;
             position: relative;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Гирлянда сверху */
+        .garland {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: repeating-linear-gradient(45deg, #ff0055, #ffcc00 20px, #00ffcc 40px, #9900ff 60px);
+            opacity: 0.8;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.6);
+        }
+
+        .card-container {
+            background: rgba(20, 10, 35, 0.88);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 620px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 0 50px rgba(255, 0, 128, 0.3), 0 0 100px rgba(255, 215, 0, 0.15);
+            animation: bounceIn 1s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            60% { opacity: 1; transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
 
         .avatar-box {
-            width: 130px;
-            height: 130px;
-            margin: 0 auto 24px auto;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px auto;
             border-radius: 50%;
             overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+            border: 3px solid #ffd700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
             background: #000;
         }
 
@@ -62,55 +81,62 @@
 
         .greeting-badge {
             display: inline-block;
-            background: rgba(234, 179, 8, 0.15);
-            border: 1px solid rgba(234, 179, 8, 0.4);
-            color: #facc15;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
+            background: linear-gradient(135deg, #ff007f, #7928ca);
+            color: #ffffff;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 16px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.4);
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 40px;
             font-weight: 900;
             color: #ffffff;
             margin-bottom: 20px;
-            letter-spacing: 0.5px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
         .congrats-text {
-            font-size: 16px;
+            font-size: 17px;
             line-height: 1.6;
-            color: #cbd5e1;
+            color: #e2e8f0;
             margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .congrats-text p {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+        }
+        .congrats-text p:last-child {
+            margin-bottom: 0;
         }
 
         .music-section {
-            background: rgba(25, 25, 35, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 20px;
         }
 
         .music-title {
-            font-size: 13px;
-            color: #94a3b8;
+            font-size: 14px;
+            color: #ffd700;
             margin-bottom: 10px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* Место под твою музыку (аудиоэлемент или ссылка) */
+        /* Место под твою музыку */
         audio {
             width: 100%;
             outline: none;
@@ -118,37 +144,40 @@
         }
 
         .footer-note {
-            font-size: 13px;
-            color: #64748b;
-            font-style: italic;
+            font-size: 14px;
+            color: #a78bfa;
+            font-weight: bold;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
 
+    <!-- Праздничная верхняя линия -->
+    <div class="garland"></div>
+
     <div class="card-container">
-        <!-- Аватарка / Логотип -->
+        <!-- Аватарка / Логотип (носорог) -->
         <div class="avatar-box">
-            <img src="https://i.ibb.co/s9kC8Vs7/image.png" alt="Игорь">
+            <img src="ССЫЛКА_НА_ТВОЮ_КАРТИНКУ_НОСОРОГА" alt="Игорь">
         </div>
 
-        <div class="greeting-badge">С Днем Рождения!</div>
+        <div class="greeting-badge">🎉 С Днем Рождения! 🎉</div>
         
         <h1>Игорь, с праздником!</h1>
 
         <div class="congrats-text">
-            <p>Желаю тебе железобетонного здоровья, нереальной энергии и чтобы любые преграды на пути разлетались в щепки, как будто их и не было.</p>
-            <p>Пусть каждый день приносит кайф от жизни, крутые победы, верных людей рядом и максимум позитива. Уверенно иди к своим целям — у тебя всё по плечу!</p>
+            <p>Желаю тебе мощнейшего здоровья, бешеной энергии и чтобы любые жизненные преграды сносились на пути, как бронированный танк!</p>
+            <p>Пусть каждый день приносит кайф, крутые возможности, верных людей рядом и жирный фарт во всех делах. Зажигай по полной!</p>
         </div>
 
         <!-- Блок для музыки -->
         <div class="music-section">
-            <div class="music-title">🎵 Музыкальное сопровождение</div>
-            <!-- Сюда вставь тег <audio controls src="https://www.youtube.com/watch?v=KwZ7cVWqjGI"></audio> когда подготовишь музыку -->
-            <p style="font-size: 14px; color: #94a3b8;">[ Место для твоего трека ]</p>
+            <div class="music-title">🎶 Музыкальное сопровождение</div>
+       <audio controls src="igor.mp3"></audio>
         </div>
 
-        <div class="footer-note">Успехов во всем и абсолютного фарта!</div>
+        <div class="footer-note">Ура! Праздник удался на славу! 🥂</div>
     </div>
 
 </body>
