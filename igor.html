@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днем Рождения, Игорь!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #050507;
+            background-image: radial-gradient(circle at center, #1a1a24 0%, #050507 100%);
+            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .card-container {
+            background: rgba(15, 15, 22, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 40px rgba(99, 102, 241, 0.1);
+            animation: fadeIn 1.2s ease-out;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .avatar-box {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 24px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+            background: #000;
+        }
+
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .greeting-badge {
+            display: inline-block;
+            background: rgba(234, 179, 8, 0.15);
+            border: 1px solid rgba(234, 179, 8, 0.4);
+            color: #facc15;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .congrats-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+
+        .congrats-text p {
+            margin-bottom: 12px;
+        }
+
+        .music-section {
+            background: rgba(25, 25, 35, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 25px;
+        }
+
+        .music-title {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Место под твою музыку (аудиоэлемент или ссылка) */
+        audio {
+            width: 100%;
+            outline: none;
+            border-radius: 8px;
+        }
+
+        .footer-note {
+            font-size: 13px;
+            color: #64748b;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <!-- Аватарка / Логотип -->
+        <div class="avatar-box">
+            <img src="https://i.ibb.co/s9kC8Vs7/image.png" alt="Игорь">
+        </div>
+
+        <div class="greeting-badge">С Днем Рождения!</div>
+        
+        <h1>Игорь, с праздником!</h1>
+
+        <div class="congrats-text">
+            <p>Желаю тебе железобетонного здоровья, нереальной энергии и чтобы любые преграды на пути разлетались в щепки, как будто их и не было.</p>
+            <p>Пусть каждый день приносит кайф от жизни, крутые победы, верных людей рядом и максимум позитива. Уверенно иди к своим целям — у тебя всё по плечу!</p>
+        </div>
+
+        <!-- Блок для музыки -->
+        <div class="music-section">
+            <div class="music-title">🎵 Музыкальное сопровождение</div>
+            <!-- Сюда вставь тег <audio controls src="https://www.youtube.com/watch?v=KwZ7cVWqjGI"></audio> когда подготовишь музыку -->
+            <p style="font-size: 14px; color: #94a3b8;">[ Место для твоего трека ]</p>
+        </div>
+
+        <div class="footer-note">Успехов во всем и абсолютного фарта!</div>
+    </div>
+
+</body>
+</html>
