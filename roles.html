@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Система ролей — PashaShineHouse</title>
+    <title>Иерархия ролей — PashaShineHouse</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #07080b;
-            --surface: rgba(20, 21, 28, 0.65);
-            --surface-hover: rgba(30, 32, 42, 0.85);
+            --surface: rgba(20, 21, 28, 0.7);
+            --surface-hover: rgba(30, 32, 42, 0.9);
             --border: rgba(255, 255, 255, 0.07);
-            --border-hover: rgba(255, 51, 75, 0.3);
+            --border-hover: rgba(255, 51, 75, 0.4);
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
             --accent: #ff334b;
-            --accent-glow: rgba(255, 51, 75, 0.15);
+            --accent-glow: rgba(255, 51, 75, 0.2);
             --font: 'Plus Jakarta Sans', sans-serif;
             --radius: 18px;
         }
@@ -36,240 +36,201 @@
         /* Живой фоновый свет и шумовая текстура */
         .bg-glow-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: -1; overflow: hidden;
         }
 
         .glow-orb {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.12;
+            position: absolute; width: 600px; height: 600px; border-radius: 50%;
+            filter: blur(130px); opacity: 0.12;
             animation: floatOrb 15s infinite alternate ease-in-out;
         }
 
-        .orb-1 {
-            background: #ff334b;
-            top: -10%;
-            left: -10%;
-        }
-
-        .orb-2 {
-            background: #8b5cf6;
-            bottom: -10%;
-            right: -10%;
-            animation-delay: -5s;
-        }
+        .orb-1 { background: #ff334b; top: -10%; left: -10%; }
+        .orb-2 { background: #8b5cf6; bottom: -10%; right: -10%; animation-delay: -5s; }
 
         @keyframes floatOrb {
             0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(50px, 50px) scale(1.1); }
         }
 
-        /* Интерактивный свет за курсором */
         #cursor-light {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 51, 75, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            transition: opacity 0.3s;
+            position: fixed; width: 450px; height: 450px;
+            background: radial-gradient(circle, rgba(255, 51, 75, 0.07) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none;
+            transform: translate(-50%, -50%); z-index: -1; transition: opacity 0.3s;
         }
 
         /* Шапка */
         header {
-            padding: 60px 24px 30px;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
+            padding: 50px 24px 24px; text-align: center; max-width: 900px; margin: 0 auto; position: relative; z-index: 2;
         }
 
         .header-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            background: rgba(255, 51, 75, 0.1);
-            border: 1px solid rgba(255, 51, 75, 0.25);
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
+            display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
+            background: rgba(255, 51, 75, 0.1); border: 1px solid rgba(255, 51, 75, 0.25);
+            border-radius: 30px; font-size: 12px; font-weight: 700; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
             box-shadow: 0 0 20px rgba(255, 51, 75, 0.15);
         }
 
         header h1 {
-            font-size: 38px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
+            font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px;
             background: linear-gradient(135deg, #fff 30%, var(--text-muted) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        header p {
-            font-size: 15px;
-            color: var(--text-muted);
+        header p { font-size: 15px; color: var(--text-muted); }
+
+        /* Панель управления: Поиск и Фильтры */
+        .controls-container {
+            max-width: 900px; width: 100%; margin: 0 auto 30px; padding: 0 24px;
+            display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 2;
         }
 
-        /* Основной контейнер */
+        .search-box {
+            position: relative; width: 100%;
+        }
+
+        .search-input {
+            width: 100%; padding: 14px 20px 14px 46px;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 14px; color: var(--text-main); font-family: var(--font); font-size: 14px;
+            backdrop-filter: blur(10px); transition: all 0.2s; outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(255, 51, 75, 0.15);
+        }
+
+        .search-icon {
+            position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+            color: var(--text-muted); font-size: 16px; pointer-events: none;
+        }
+
+        .filters-grid {
+            display: flex; gap: 8px; flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--surface); border: 1px solid var(--border);
+            padding: 8px 16px; border-radius: 20px; color: var(--text-muted);
+            font-family: var(--font); font-size: 12.5px; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover {
+            color: var(--text-main); border-color: rgba(255,255,255,0.2);
+        }
+
+        .filter-btn.active {
+            background: var(--accent); color: #fff; border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* Контейнер карточек */
         main {
-            flex: 1;
-            max-width: 900px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 24px 60px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            position: relative;
-            z-index: 2;
+            flex: 1; max-width: 900px; width: 100%; margin: 0 auto; padding: 0 24px 60px;
+            display: flex; flex-direction: column; gap: 14px; position: relative; z-index: 2;
         }
 
-        .section-header {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin: 28px 0 10px 4px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-header::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        /* Карточка роли */
+        /* Карточка роли (с поддержкой 3D Tilt) */
         .role-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 22px 26px;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 20px;
-            align-items: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 22px 26px;
+            display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center;
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.1s ease, background 0.3s, border-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2); position: relative; overflow: hidden;
+            transform-style: preserve-3d; will-change: transform;
         }
 
         .role-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
+            content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
             background: var(--role-color, var(--accent));
         }
 
         .role-card:hover {
-            background: var(--surface-hover);
-            border-color: var(--border-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
+            background: var(--surface-hover); border-color: var(--border-hover);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4), 0 0 25px var(--accent-glow);
         }
 
         .role-info h3 {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--role-color, #fff);
+            font-size: 17px; font-weight: 700; margin-bottom: 6px;
+            display: flex; align-items: center; gap: 8px; color: var(--role-color, #fff);
         }
 
         .role-info p {
-            font-size: 13.5px;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 10px;
+            font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 8px;
         }
 
         .role-meta {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.45);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
+            font-size: 12px; color: rgba(255, 255, 255, 0.45); display: flex; flex-wrap: wrap; gap: 14px;
         }
 
-        .role-meta span b {
-            color: var(--text-muted);
-            font-weight: 600;
-        }
+        .role-meta span b { color: var(--text-muted); font-weight: 600; }
 
-        .role-tags {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            align-items: flex-end;
-            min-width: 150px;
+        .role-actions {
+            display: flex; flex-direction: column; gap: 8px; align-items: flex-end; min-width: 150px;
         }
 
         .perk-tag {
-            font-size: 11px;
-            font-weight: 600;
-            padding: 5px 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            color: var(--text-muted);
-            white-space: nowrap;
-            transition: all 0.2s;
+            font-size: 11px; font-weight: 600; padding: 5px 12px;
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px; color: var(--text-muted); white-space: nowrap;
         }
 
-        .role-card:hover .perk-tag {
-            border-color: rgba(255, 255, 255, 0.15);
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.06);
+        .details-btn {
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main); padding: 5px 12px; border-radius: 8px; font-size: 11.5px;
+            font-weight: 600; cursor: pointer; font-family: var(--font); transition: all 0.2s;
         }
+
+        .details-btn:hover {
+            background: var(--accent); border-color: var(--accent);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        /* Модальное окно */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(7, 8, 11, 0.8); backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .modal-content {
+            background: #11131a; border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px; padding: 32px; max-width: 500px; width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6); transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative;
+        }
+
+        .modal-overlay.active .modal-content { transform: scale(1); }
+
+        .modal-close {
+            position: absolute; top: 20px; right: 20px; background: none; border: none;
+            color: var(--text-muted); font-size: 20px; cursor: pointer; transition: color 0.2s;
+        }
+
+        .modal-close:hover { color: #fff; }
+
+        .modal-title { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+        .modal-body { font-size: 14px; color: var(--text-muted); line-height: 1.6; display: flex; flex-direction: column; gap: 12px; }
+        .modal-body b { color: var(--text-main); }
 
         @media (max-width: 768px) {
-            .role-card {
-                grid-template-columns: 1fr;
-            }
-            .role-tags {
-                align-items: flex-start;
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            header h1 {
-                font-size: 28px;
-            }
+            .role-card { grid-template-columns: 1fr; }
+            .role-actions { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+            header h1 { font-size: 28px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Фоновые украшения -->
     <div class="bg-glow-container">
         <div class="glow-orb orb-1"></div>
         <div class="glow-orb orb-2"></div>
@@ -282,58 +243,70 @@
         <p>Полный свод статусов, прав и условий получения привилегий в нашем комьюнити</p>
     </header>
 
-    <main>
-        <div class="section-header">Управление и контроль</div>
+    <!-- Поиск и фильтры -->
+    <div class="controls-container">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="roleSearch" class="search-input" placeholder="Найти роль по названию или описанию...">
+        </div>
+        <div class="filters-grid">
+            <button class="filter-btn active" data-filter="all">Все роли</button>
+            <button class="filter-btn" data-filter="management">Управление</button>
+            <button class="filter-btn" data-filter="support">Заслуги и донаты</button>
+            <button class="filter-btn" data-filter="games">Игровые</button>
+            <button class="filter-btn" data-filter="base">Базовые</button>
+        </div>
+    </div>
+
+    <main id="rolesContainer">
 
         <!-- Администратор -->
-        <div class="role-card" style="--role-color: #ff334b;">
+        <div class="role-card tilt-card" data-category="management" style="--role-color: #ff334b;">
             <div class="role-info">
                 <h3>@Администратор</h3>
                 <p>Человек, который знает всё, решает всё и обычно появляется раньше, чем проблема успевает начаться.</p>
                 <div class="role-meta">
-                    <span><b>Обязанности:</b> Принятие решений в порядке исключения, курирование модераторов, подстраховка в чатах.</span>
+                    <span><b>Обязанности:</b> Принятие решений в порядке исключения, курирование модераторов.</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag" style="color: #ff334b; border-color: rgba(255,51,75,0.3);">Высший доступ</span>
+                <button class="details-btn" onclick="openModal('Администратор', 'Единолично может принимать решения в порядке исключения, курирует деятельность Модераторов, а также выполняет функции модератора в форс-мажорных ситуациях.')">Подробнее</button>
             </div>
         </div>
 
         <!-- Модератор -->
-        <div class="role-card" style="--role-color: #3b82f6;">
+        <div class="role-card tilt-card" data-category="management" style="--role-color: #3b82f6;">
             <div class="role-info">
                 <h3>@Модератор (Twitch / Discord)</h3>
                 <p>Активный участник сообщества, которому Стример доверяет следить за порядком и помогать другим.</p>
                 <div class="role-meta">
-                    <span><b>Требования:</b> От 6 мес. в Discord, без нарушений на Twitch.</span>
-                    <span><b>Выдача:</b> Решение Стримера / рекомендации Админов.</span>
+                    <span><b>Требования:</b> От 6 мес. в Discord, без банов на Twitch.</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag">Муты / Баны</span>
-                <span class="perk-tag">Контроль чата</span>
+                <button class="details-btn" onclick="openModal('Модератор (Twitch/Discord)', '<b>Обязанности Дискорд:</b> следить за правилами, удалять спам, выдавать муты, гасить конфликты.<br><br><b>Обязанности Твич:</b> тайм-ауты, баны, работа с Automod, режим только для фолловеров, запуск прогнозов.')">Подробнее</button>
             </div>
         </div>
 
-        <div class="section-header">Поддержка и особые заслуги</div>
-
         <!-- Меценат -->
-        <div class="role-card" style="--role-color: #fbbf24;">
+        <div class="role-card tilt-card" data-category="support" style="--role-color: #fbbf24;">
             <div class="role-info">
                 <h3>@👑 Меценат</h3>
                 <p>Легендарные люди, оказывающие постоянную или единоразовую финансовую поддержку канала.</p>
                 <div class="role-meta">
-                    <span><b>Выдача:</b> Стример или система за особый донат.</span>
+                    <span><b>Выдача:</b> Стримером или системой за особый донат.</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag">Личное общение</span>
                 <span class="perk-tag">Закрытая ветка</span>
             </div>
         </div>
 
         <!-- Бустер -->
-        <div class="role-card" style="--role-color: #ec4899;">
+        <div class="role-card tilt-card" data-category="support" style="--role-color: #ec4899;">
             <div class="role-info">
                 <h3>@Boster 💜</h3>
                 <p>Тот, кто помогает серверу становиться лучше с помощью буста.</p>
@@ -341,28 +314,28 @@
                     <span><b>Выдача:</b> Автоматически системой.</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag">Буст сервера 🚀</span>
             </div>
         </div>
 
         <!-- ВИП -->
-        <div class="role-card" style="--role-color: #a855f7;">
+        <div class="role-card tilt-card" data-category="support" style="--role-color: #a855f7;">
             <div class="role-info">
                 <h3>@💎 ВИП (Twitch / Discord)</h3>
                 <p>Активные участники, создающие приятную атмосферу и рекомендующие интересные игры.</p>
                 <div class="role-meta">
-                    <span><b>Как получить:</b> 25k ShineCoin / активность / покупка (5k) / подарок другу (15k).</span>
+                    <span><b>Как получить:</b> 25k ShineCoin / покупка (5k) / подарок (15k).</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag">Без лимитов чата</span>
-                <span class="perk-tag">Ссылки без фильтров</span>
+                <button class="details-btn" onclick="openModal('@💎 ВИП', '<b>Привилегии:</b> общение независимо от медленного режима или режима фолловеров, отправка ссылок без фильтров, доступ к закрытой ветке на сервере.')">Подробнее</button>
             </div>
         </div>
 
         <!-- Художник -->
-        <div class="role-card" style="--role-color: #06b6d4;">
+        <div class="role-card tilt-card" data-category="support" style="--role-color: #06b6d4;">
             <div class="role-info">
                 <h3>@Художник</h3>
                 <p>Мастера визуального стиля, отвечающие за графическое оформление Твич-канала и Discord-сервера.</p>
@@ -370,13 +343,13 @@
                     <span><b>Выдача:</b> Лично Стримером за постоянную помощь в дизайне.</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag">Дизайн и арт</span>
             </div>
         </div>
 
         <!-- Медиа -->
-        <div class="role-card" style="--role-color: #10b981;">
+        <div class="role-card tilt-card" data-category="support" style="--role-color: #10b981;">
             <div class="role-info">
                 <h3>@🎬 Медиа</h3>
                 <p>Партнеры и создатели контента для совместных проектов, взаимного продвижения и активностей.</p>
@@ -384,15 +357,13 @@
                     <span><b>Выдача:</b> За сотрудничество и коллаборации.</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag">Партнерство</span>
             </div>
         </div>
 
-        <div class="section-header">Специальные и игровые роли</div>
-
         <!-- Red Barrels Team -->
-        <div class="role-card" style="--role-color: #ef4444;">
+        <div class="role-card tilt-card" data-category="games" style="--role-color: #ef4444;">
             <div class="role-info">
                 <h3>@Red Barrels Team 🎮</h3>
                 <p>Проверенные друзья, с которыми регулярной командой отправляемся на испытания в Outlast Trials.</p>
@@ -400,13 +371,13 @@
                     <span><b>Выдача:</b> Администратором за активное участие в совместных вылазках.</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag">Outlast Trials</span>
             </div>
         </div>
 
         <!-- Кровавый Койл -->
-        <div class="role-card" style="--role-color: #991b1b; opacity: 0.9;">
+        <div class="role-card tilt-card" data-category="games" style="--role-color: #991b1b; opacity: 0.9;">
             <div class="role-info">
                 <h3>@Кровавый Койл</h3>
                 <p>Участники, успешно прошедшие ивент «Сдача крови» в 7 сезоне и закрывшие все поставленные задачи.</p>
@@ -414,13 +385,13 @@
                     <span><b>Статус:</b> Получение роли закрыто.</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag">Ивент Сезон 7</span>
             </div>
         </div>
 
         <!-- Геймер -->
-        <div class="role-card" style="--role-color: #6366f1;">
+        <div class="role-card tilt-card" data-category="games" style="--role-color: #6366f1;">
             <div class="role-info">
                 <h3>@🎮 Геймер</h3>
                 <p>Активные участники игрового сообщества хаба.</p>
@@ -428,13 +399,13 @@
                     <span><b>Выдача:</b> Администратором за активность в играх.</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag">Игровое комьюнити</span>
             </div>
         </div>
 
         <!-- Девушка -->
-        <div class="role-card" style="--role-color: #f472b6;">
+        <div class="role-card tilt-card" data-category="base" style="--role-color: #f472b6;">
             <div class="role-info">
                 <h3>@💖 Девушка</h3>
                 <p>Прекрасная половина нашего сообщества. Уважение к участникам обязательно независимо от роли.</p>
@@ -442,16 +413,14 @@
                     <span><b>Выдача:</b> Администратором участницам сервера.</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag">Создание опросов</span>
                 <span class="perk-tag">Трибуна</span>
             </div>
         </div>
 
-        <div class="section-header">Базовые роли участников</div>
-
         <!-- Активный -->
-        <div class="role-card" style="--role-color: #84cc16;">
+        <div class="role-card tilt-card" data-category="base" style="--role-color: #84cc16;">
             <div class="role-info">
                 <h3>@🔥 Активный</h3>
                 <p>Постоянный участник сообщества, доказавший преданность хабу временем.</p>
@@ -459,13 +428,13 @@
                     <span><b>Выдача:</b> Системой за нахождение на сервере более 3 месяцев.</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag">Стаж 3+ месяца</span>
             </div>
         </div>
 
         <!-- Новенький -->
-        <div class="role-card" style="--role-color: #94a3b8;">
+        <div class="role-card tilt-card" data-category="base" style="--role-color: #94a3b8;">
             <div class="role-info">
                 <h3>@⭐ Новенький</h3>
                 <p>Начальная роль при первом вступлении на сервер.</p>
@@ -473,18 +442,96 @@
                     <span><b>Выдача:</b> Автоматически системой при присоединении.</span>
                 </div>
             </div>
-            <div class="role-tags">
+            <div class="role-actions">
                 <span class="perk-tag">Старт</span>
             </div>
         </div>
+
     </main>
 
-    <!-- Скрипт для интерактивного следящего за курсором света -->
+    <!-- Модальное окно -->
+    <div class="modal-overlay" id="roleModal" onclick="closeModalOutside(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-title" id="modalTitle">Заголовок</div>
+            <div class="modal-body" id="modalBody">Текст описания...</div>
+        </div>
+    </div>
+
+    <!-- Скрипты: Свет за курсором, Фильтры, Поиск, Модалки и 3D Наклон -->
     <script>
+        // 1. Курсор
         const cursorLight = document.getElementById('cursor-light');
         window.addEventListener('mousemove', (e) => {
             cursorLight.style.left = e.clientX + 'px';
             cursorLight.style.top = e.clientY + 'px';
+        });
+
+        // 2. Модальные окна
+        function openModal(title, text) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerHTML = text;
+            document.getElementById('roleModal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('roleModal').classList.remove('active');
+        }
+        function closeModalOutside(e) {
+            if (e.target.id === 'roleModal') closeModal();
+        }
+
+        // 3. Фильтрация и поиск
+        const searchInput = document.getElementById('roleSearch');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const roleCards = document.querySelectorAll('.role-card');
+
+        let currentFilter = 'all';
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.getAttribute('data-filter');
+                filterCards();
+            });
+        });
+
+        searchInput.addEventListener('input', filterCards);
+
+        function filterCards() {
+            const query = searchInput.value.toLowerCase();
+            roleCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const text = card.innerText.toLowerCase();
+                const matchesFilter = (currentFilter === 'all' || category === currentFilter);
+                const matchesSearch = text.includes(query);
+
+                if (matchesFilter && matchesSearch) {
+                    card.style.display = 'grid';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 4. 3D Tilt эффект при наведении мыши на карточки
+        const cards = document.querySelectorAll('.tilt-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const xc = rect.width / 2;
+                const yc = rect.height / 2;
+                const dx = (x - xc) / xc;
+                const dy = (y - yc) / yc;
+
+                card.style.transform = `perspective(1000px) rotateY(${dx * 3}deg) rotateX(${-dy * 3}deg) translateY(-3px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0px)';
+            });
         });
     </script>
 </body>
