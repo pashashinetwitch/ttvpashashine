@@ -3,465 +3,886 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PashaShine Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>PashaShineHub // 2026 Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0c10;
-            --surface: rgba(255, 255, 255, 0.03);
-            --surface-hover: rgba(255, 255, 255, 0.06);
-            --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 255, 255, 0.15);
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --accent: #ff334b;
-            --accent-glow: rgba(255, 51, 75, 0.25);
-            --font: 'Plus Jakarta Sans', sans-serif;
-            --radius: 16px;
+            --bg-deep: #030305;
+            --bg-card: rgba(16, 14, 23, 0.7);
+            --bg-card-hover: rgba(24, 20, 35, 0.85);
+            --accent-primary: #9146FF;
+            --accent-glow: rgba(145, 70, 255, 0.35);
+            --accent-bright: #b882ff;
+            --danger-primary: #ff334b;
+            --danger-glow: rgba(255, 51, 75, 0.35);
+            --text-main: #f3f0ff;
+            --text-muted: #9c94b0;
+            --border-color: rgba(145, 70, 255, 0.2);
+            --border-hover: rgba(145, 70, 255, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* --- Базовые стили --- */
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
-            font-family: var(--font);
-            background-color: var(--bg-color);
+            background-color: var(--bg-deep);
             color: var(--text-main);
-            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 51, 75, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(138, 43, 226, 0.04) 0%, transparent 40%);
+            position: relative;
         }
 
-        /* Навигация */
-        header {
+        /* Фоновые живые эффекты (неоновые сферы) */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+        body::before {
+            background: var(--accent-primary);
+            top: -200px;
+            left: -200px;
+            animation: floatOrb 10s ease-in-out infinite alternate;
+        }
+        body::after {
+            background: #502099;
+            bottom: -200px;
+            right: -200px;
+            animation: floatOrb 14s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(50px) scale(1.1); }
+        }
+
+        a {
+            color: var(--accent-bright);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        a:hover {
+            color: #ffffff;
+        }
+
+        /* --- Стили для верхней навигации --- */
+        .top-navbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(8, 7, 12, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(145, 70, 255, 0.1);
+            width: 100%;
             position: sticky;
             top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
-            background: rgba(11, 12, 16, 0.75);
-            border-bottom: 1px solid var(--border);
-            padding: 16px 32px;
-            display: flex;
-            justify-content: center;
+            z-index: 1000;
         }
 
-        .nav-container {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            max-width: 1400px;
-            width: 100%;
-            scrollbar-width: none;
-        }
-
-        .nav-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .nav-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 30px;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--text-main);
-            background: var(--surface);
-        }
-
-        .nav-link.active {
-            color: #fff;
-            background: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-            font-weight: 600;
-        }
-
-        /* Основной контент */
-        main {
-            flex: 1;
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 40px 24px;
-            display: grid;
-            grid-template-columns: 280px 1fr 300px;
-            gap: 24px;
-        }
-
-        @media (max-width: 1200px) {
-            main {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Общие блоки */
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-            backdrop-filter: blur(8px);
-            transition: border-color 0.2s ease;
-        }
-
-        .card:hover {
-            border-color: var(--border-hover);
-        }
-
-        /* Левая колонка: Профиль + Навигация по хабу */
-        .sidebar-left {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .profile-card {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .avatar-wrap {
-            position: relative;
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            padding: 2px;
-            background: linear-gradient(135deg, var(--accent), #4f46e5);
-        }
-
-        .avatar-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            background: #111;
-        }
-
-        .profile-info h1 {
-            font-size: 18px;
+        .nav-btn {
+            background: rgba(24, 20, 32, 0.6);
+            border: 1px solid var(--border-color);
+            color: #d1b8ff;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 0.85em;
             font-weight: 700;
-            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .profile-info p {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 14px;
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
         }
 
-        .btn-twitch {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 10px;
-            border-radius: 10px;
-            background: #9146FF;
+        .nav-btn:hover::after {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent-primary);
             color: #fff;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            transition: opacity 0.2s;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
         }
 
-        .btn-twitch:hover {
-            opacity: 0.9;
+        .nav-btn[disabled] {
+            opacity: 0.4;
+            pointer-events: none;
+            filter: grayscale(80%);
         }
 
-        .menu-list {
+        /* --- Контейнер для колонок под навигацией --- */
+        .main-layout {
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            flex: 1;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            gap: 20px;
+            padding: 20px;
         }
 
-        .menu-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid transparent;
-            border-radius: 10px;
+        /* --- Неоновые блоки --- */
+        .cyber-block {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                        inset 0 0 15px rgba(145, 70, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .cyber-block:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+                        0 0 25px rgba(145, 70, 255, 0.15),
+                        inset 0 0 20px rgba(145, 70, 255, 0.08);
+        }
+
+        .cyber-block h2 {
             color: var(--text-main);
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.2s;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-size: 1.05em;
+            font-weight: 800;
+            text-align: center;
+            border-bottom: 1px solid rgba(145, 70, 255, 0.15);
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+            position: relative;
         }
 
-        .menu-item:hover {
-            background: var(--surface-hover);
-            border-color: var(--border);
+        .cyber-block h2::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--accent-primary);
+            box-shadow: 0 0 8px var(--accent-primary);
+        }
+        
+        .cyber-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .cyber-list li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+        .cyber-list li:hover {
             transform: translateX(4px);
         }
-
-        .menu-item span {
-            color: var(--accent);
+        .cyber-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-primary);
         }
 
-        /* Центральная колонка */
-        .content-center {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
+        /* --- Красный блок Вторжение 2.0 --- */
+        .cyber-block.invasion-danger {
+            background: rgba(26, 8, 12, 0.75);
+            border-color: rgba(255, 51, 75, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                        inset 0 0 15px rgba(255, 51, 75, 0.08);
         }
 
-        .hero-banner {
-            background: linear-gradient(135deg, rgba(255, 51, 75, 0.08), rgba(20, 21, 26, 0.6));
-            border: 1px solid rgba(255, 51, 75, 0.15);
-            border-radius: var(--radius);
-            padding: 36px;
+        .cyber-block.invasion-danger:hover {
+            border-color: rgba(255, 51, 75, 0.7);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+                        0 0 25px var(--danger-glow);
+        }
+
+        .cyber-block.invasion-danger h2 {
+            color: #ff808f;
+            border-bottom-color: rgba(255, 51, 75, 0.2);
+        }
+
+        .cyber-block.invasion-danger h2::after {
+            background: var(--danger-primary);
+            box-shadow: 0 0 8px var(--danger-primary);
+        }
+
+        .cyber-block.invasion-danger .cyber-list li::before {
+            background-color: var(--danger-primary);
+            box-shadow: 0 0 10px var(--danger-primary);
+        }
+        
+        /* --- Структура (3 колонки) --- */
+        .sidebar-left {
+            width: 300px;
+            flex-shrink: 0;
+        }
+        
+        .main-content {
+            flex-grow: 1;
+            min-width: 0;
+        }
+        
+        .sidebar-right {
+            width: 340px;
+            flex-shrink: 0;
+        }
+        
+        .welcome-box {
             text-align: center;
         }
-
-        .hero-banner h2 {
-            font-size: 26px;
-            font-weight: 800;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
+        
+        .custom-avatar {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            margin: 0 auto 16px auto;
+            box-shadow: 0 0 25px var(--accent-glow);
+            display: block;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .custom-avatar:hover {
+            transform: scale(1.08) rotate(5deg);
+            border-color: #fff;
+            box-shadow: 0 0 35px var(--accent-primary);
         }
 
-        .hero-banner p {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 15px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 16px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        /* Зал славы / Донатеры */
-        .donors-grid {
+        /* Стили для карточек соцсетей с иконками */
+        .social-grid {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-
-        .donor-row {
+        .social-card {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            background: rgba(20, 16, 28, 0.6);
+            border: 1px solid rgba(145, 70, 255, 0.15);
             padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .donor-row.top-1 { background: linear-gradient(90deg, rgba(255, 215, 0, 0.08), transparent); border-color: rgba(255, 215, 0, 0.2); }
-        .donor-row.top-2 { background: linear-gradient(90deg, rgba(192, 192, 192, 0.08), transparent); border-color: rgba(192, 192, 192, 0.2); }
-        .donor-row.top-3 { background: linear-gradient(90deg, rgba(205, 127, 50, 0.08), transparent); border-color: rgba(205, 127, 50, 0.2); }
-
-        /* Правая колонка: Комьюнити и Терминал */
-        .sidebar-right {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .social-links {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: 12px;
             color: var(--text-main);
+            transition: var(--transition);
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.2s;
         }
-
-        .social-btn:hover {
-            background: var(--surface-hover);
-            border-color: var(--border-hover);
+        .social-card svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            fill: currentColor;
+            transition: transform 0.3s ease;
         }
-
-        /* Аудио-терминал */
-        .terminal-box {
-            background: #07080a;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px;
-            font-family: monospace;
+        .social-card:hover svg {
+            transform: scale(1.15);
         }
-
-        .terminal-header {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
+        .social-card .info {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
         }
-
-        .terminal-screen {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            color: #10b981;
-            margin-bottom: 12px;
+        .social-card .info strong {
+            font-size: 0.95em;
+            color: #fff;
+            font-weight: 700;
         }
-
-        .terminal-controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+        .social-card .info span {
+            font-size: 0.78em;
+            color: var(--text-muted);
         }
-
-        .term-btn {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            padding: 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            cursor: pointer;
-            font-family: var(--font);
-            font-weight: 600;
-            transition: background 0.2s;
+        
+        .social-card.twitch:hover {
+            border-color: #9146FF;
+            background: rgba(145, 70, 255, 0.12);
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.3);
+            transform: translateX(4px);
         }
+        .social-card.twitch svg { fill: #9146FF; }
 
-        .term-btn:hover {
-            background: var(--surface-hover);
+        .social-card.discord:hover {
+            border-color: #5865F2;
+            background: rgba(88, 101, 242, 0.12);
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.3);
+            transform: translateX(4px);
+        }
+        .social-card.discord svg { fill: #5865F2; }
+
+        .social-card.telegram:hover {
+            border-color: #24A1DE;
+            background: rgba(36, 161, 222, 0.12);
+            box-shadow: 0 0 15px rgba(36, 161, 222, 0.3);
+            transform: translateX(4px);
+        }
+        .social-card.telegram svg { fill: #24A1DE; }
+
+        .social-card.youtube:hover {
+            border-color: #FF0000;
+            background: rgba(255, 0, 0, 0.12);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            transform: translateX(4px);
+        }
+        .social-card.youtube svg { fill: #FF0000; }
+
+        .social-card.kick:hover {
+            border-color: #53fc18;
+            background: rgba(83, 252, 24, 0.12);
+            box-shadow: 0 0 15px rgba(83, 252, 24, 0.3);
+            transform: translateX(4px);
+        }
+        .social-card.kick svg { fill: #53fc18; }
+
+        @media (max-width: 1200px) {
+            .main-layout {
+                flex-direction: column;
+            }
+            .sidebar-left, .sidebar-right, .main-content {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- Навигация -->
-    <header>
-        <nav class="nav-container">
-            <a href="#" class="nav-link">Главная хаба</a>
-            <a href="#" class="nav-link">Магазин хаба</a>
-            <a href="#" class="nav-link active">Каталог вторжения</a>
-            <a href="#" class="nav-link">Игровые патчи</a>
-            <a href="#" class="nav-link">Список изменений</a>
-            <a href="#" class="nav-link">Желаемое</a>
-            <a href="#" class="nav-link">Секретная панель</a>
-            <a href="#" class="nav-link">Меценаты</a>
-        </nav>
-    </header>
+    <nav class="top-navbar">
+        <a href="index.html" class="nav-btn">Главная Хаба</a>
+        <a href="roles.html" class="nav-btn">Роли сервера</a>
+        <a href="invasion.html" class="nav-btn" style="background: rgba(222, 13, 13, 0.2); border-color: rgba(222, 13, 13, 0.5); color: #ff9999;">Каталог вторжения 🔪</a>
+        <a href="updates.html" class="nav-btn">Игровые патчи</a>
+        <a href="news.html" class="nav-btn">Список изменений</a>
+        <a href="catalogs.html" class="nav-btn">Игровые каталоги</a>
+        <a href="wishlist.html" class="nav-btn">Желаемое</a>
+        <a href="admin.html" class="nav-btn" disabled>Секретная панель</a>
+        <a href="donate.html" class="nav-btn" style="background: rgba(145, 70, 255, 0.25); border-color: #9146FF; color: #fff;">Меценаты</a>
+    </nav>
 
-    <!-- Основная сетка -->
-    <main>
-        <!-- Левая колонка -->
+    <!-- Обертка для трех колонок под навигацией -->
+    <div class="main-layout">
+
+        <!-- ЛЕВАЯ КОЛОНКА -->
         <aside class="sidebar-left">
-            <div class="card profile-card">
-                <div class="avatar-wrap">
-                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="PashaShine">
-                </div>
-                <div class="profile-info">
-                    <h1>PashaShine</h1>
-                    <p>Twitch Streamer</p>
-                    <a href="#" class="btn-twitch">Открыть на Twitch</a>
-                </div>
-            </div>
-
-            <div class="card menu-list">
-                <a href="#" class="menu-item">Вторжение 2.0 <span>✦</span></a>
-                <a href="#" class="menu-item">Актуальное <span>•</span></a>
-                <a href="#" class="menu-item">Каталоги Outlast Trials <span>→</span></a>
-            </div>
-        </aside>
-
-        <!-- Центр -->
-        <section class="content-center">
-            <div class="hero-banner">
-                <h2>Добро пожаловать в хаб стримера PashaShine</h2>
-                <p>Это центральная база моего проекта, где собрано всё, что связано с The Outlast Trials и моим каналом: архивы вторжений, игровые каталоги, патчи игры, журнал обновлений и ссылки на все площадки.</p>
-            </div>
-
-            <div class="card">
-                <div class="section-title">👑 Зал славы хаба</div>
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Каждая копейка идет на апгрейд железа, улучшение качества стримов и борьбу с мракобесием.</p>
+            <div class="cyber-block welcome-box">
+                <img src="001.png" alt="Avatar" class="custom-avatar" title="НЕ НАЖИМАТЬ!" onclick="triggerEasterEgg()">
+                <h1 style="font-size: 1.35em; margin: 0 0 4px 0; color: #fff; font-weight: 800;">PashaShine</h1>
+                <p style="margin: 0 0 14px 0; font-size: 0.85em; color: var(--text-muted); font-weight: 500;">Twitch Streamer</p>
                 
-                <div class="donors-grid">
-                    <div class="donor-row top-1">
-                        <span>🥇 Flent</span>
-                        <span style="color: #fbbf24;">★</span>
-                    </div>
-                    <div class="donor-row top-2">
-                        <span>🥈 Stevenrichter1996</span>
-                        <span style="color: #94a3b8;">◆</span>
-                    </div>
-                    <div class="donor-row top-3">
-                        <span>🥉 Ravenous_vest</span>
-                        <span style="color: #d97706;">✦</span>
-                    </div>
-                    <div class="donor-row">
-                        <span>au_hero_wormix_54</span>
-                        <span style="color: var(--accent);">•</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Правая колонка -->
-        <aside class="sidebar-right">
-            <div class="card">
-                <div class="section-title">Комьюнити хаба</div>
-                <div class="social-links">
-                    <a href="#" class="social-btn"><span>Twitch</span> ↗</a>
-                    <a href="#" class="social-btn"><span>Outlast</span> ↗</a>
-                    <a href="#" class="social-btn"><span>Discord</span> ↗</a>
-                    <a href="#" class="social-btn"><span>Telegram</span> ↗</a>
-                    <a href="#" class="social-btn"><span>YouTube</span> ↗</a>
-                    <a href="#" class="social-btn"><span>Kick</span> ↗</a>
+                <div>
+                    <a href="https://www.twitch.tv/pashashine" target="_blank" style="font-size: 0.88em; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(145,70,255,0.15); border: 1px solid rgba(145,70,255,0.3); border-radius: 8px;">Открыть на Twitch ↗</a>
                 </div>
             </div>
 
-            <div class="terminal-box">
-                <div class="terminal-header">
-                    <span>Терминал хаба</span>
-                    <span>v2.5</span>
-                </div>
-                <div class="terminal-screen">
-                    > Аудио-шлюз изолятора: активен<br>
-                    > Сигнал отличен [OK]
-                </div>
-                <div class="terminal-controls">
-                    <button class="term-btn">▶ ПУСК</button>
-                    <button class="term-btn">⏹ СМЕНИТЬ</button>
-                </div>
+            <div class="cyber-block invasion-danger">
+                <h2>Вторжение 2.0 🔪</h2>
+                <ul class="cyber-list">
+                    <li><a href="invasion.html" style="color: #ff9999; font-weight: 600;">Каталог вторжений</a></li>
+                </ul>
             </div>
+    
+            <div class="cyber-block">
+                <h2>Актуальное</h2>
+                <ul class="cyber-list">
+                    <li><a href="updates.html" style="font-weight: 600;">Игровые патчи</a></li>
+                </ul>
+            </div>
+
+            <div class="cyber-block invasion-danger">
+                <h2>Каталоги Outlast Trials</h2>
+                <ul class="cyber-list">
+                    <li><a href="catalogs.html" style="color: #ff9999; font-weight: 600;">Игровые каталоги</a></li>
+                </ul>
+            </div>
+            
         </aside>
-    </main>
 
+        <!-- ЦЕНТР -->
+        <main class="main-content">
+            <div class="cyber-block main-header-block" style="text-align: center; padding: 32px 24px;">
+                <h1 style="text-align: center; font-size: 1.8em; font-weight: 800; margin-top: 0; background: linear-gradient(135deg, #fff 30%, #bf94ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Добро пожаловать в хаб стримера PashaShine</h1>
+                <p class="hub-subtitle" style="text-align: center; margin-left: auto; margin-right: auto; max-width: 650px; color: var(--text-muted); font-size: 0.95em; line-height: 1.7;">
+                    Добро пожаловать в хаб стримера PashaShine!<br>
+                    Это центральная база моего проекта, где собраны всё, что связано с <strong>The Outlast Trials</strong> и моим каналом: <br> архивы вторжений, игровые каталоги, патчи игры, журнал обновлений, <br> результаты сезонов, статистика, информация о сетапе, а также ссылки на все мои площадки.<br>
+                    Хаб регулярно обновляется и постепенно пополняется новым контентом.
+                </p>
+            </div>
+            
+            <div class="cyber-block" style="position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; right: 0; width: 150px; height: 150px; background: var(--accent-primary); filter: blur(70px); opacity: 0.1; pointer-events: none;"></div>
+                <h2>Поддержка Хаба</h2>
+                <div style="font-size: 0.92em; color: var(--text-muted); text-align: left; line-height: 1.7; padding-left: 5px;">
+                    <div style="background: rgba(145, 70, 255, 0.08); border: 1px solid rgba(145, 70, 255, 0.2); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                        <span style="color: #fff; font-weight: 700; font-size: 1.05em;">👑💎 ЗАЛ СЛАВЫ ХАБА 💎👑</span><br>
+                        Список самых легендарных, щедрых и невероятных людей нашей галактики!<br>
+                        Каждая копейка идет на апгрейд железа, улучшение качества стримов и борьбу с мракобесием. Огромное спасибо за помощь и веру!
+                    </div>
+                    <div style="font-weight: 700; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                        <span>⚡</span> <span>ТОП ДОНАТЕРОВ</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                        <div style="background: rgba(255,255,255,0.03); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">🥇 Flent 👑</div>
+                        <div style="background: rgba(255,255,255,0.03); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">🥈 Stevenrichter1996 💎</div>
+                        <div style="background: rgba(255,255,255,0.03); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">🥉 Ravenous_vest</div>
+                        <div style="background: rgba(255,255,255,0.03); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">🚀 au_hero_wormix_54</div>
+                    </div>
+                </div>
+            </div>
+
+    <!-- Блок: Результаты сезонов игры -->
+            <div class="cyber-block investigation-board">
+                <h2>📋 Вторжение. Последние сезоны. </h2>
+                <p style="font-size: 0.85em; color: var(--text-muted); text-align: center; margin-top: 0; margin-bottom: 20px;">
+                    Цели во вторжении
+                </p>
+
+                <div class="board-grid">
+                    <!-- Сезон 5 -->
+                    <div class="evidence-card" onclick="inspectCard(this)">
+                        <span class="pin">📌</span>
+                        <span class="case-number">SEASON 5</span>
+                        <h3>Цель ВЫПОЛНЕНА</h3>
+                        <p>GOLD I достигнуто</p>
+                        <div class="status-stamp success">ВЫПОЛНЕНО</div>
+                    </div>
+
+                    <!-- Сезон 6 -->
+                    <div class="evidence-card" onclick="inspectCard(this)">
+                        <span class="pin">📌</span>
+                        <span class="case-number">SEASON 6</span>
+                        <h3>Цель не выполнена</h3>
+                        <p>GOLD I не достигнуто</p>
+                        <div class="status-stamp pending">СЕЗОН ЗАКРЫТ</div>
+                    </div>
+
+                    <!-- Сезон 7 -->
+                    <div class="evidence-card" onclick="inspectCard(this)">
+                        <span class="pin">📌</span>
+                        <span class="case-number">SEASON 7</span>
+                        <h3>Цель ВЫПОЛНЕНА</h3>
+                        <p>GOLD I достигнуто</p>
+                         <div class="status-stamp success">ВЫПОЛНЕНО</div>
+                    </div>
+
+                    <!-- Сезон 8 -->
+                    <div class="evidence-card" onclick="inspectCard(this)">
+                        <span class="pin">📌</span>
+                        <span class="case-number">SEASON 8</span>
+                        <h3>Сезон еще не вышел</h3>
+                        <p>GOLD I не достигнуто</p>
+                        <div class="status-stamp pending">СЕЗОН ЕЩЕ НЕ ВЫШЕЛ</div>
+                    </div>
+               </div>
+            </div>
+
+            <div class="cyber-block" style="border-color: var(--border-color); background: var(--bg-card); margin-bottom: 20px;">
+                <h2 style="color: var(--text-main); border-bottom: 1px solid rgba(145, 70, 255, 0.15); padding-bottom: 12px; margin-top: 0; font-size: 1.05em; text-transform: uppercase; letter-spacing: 1.2px;">
+                    ⚙️ Аппаратное обеспечение / Спецификации сетапа
+                </h2>
+                <div style="font-size: 0.9em; line-height: 1.7; color: #d0d0d0; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    
+                    <!-- Левая колонка: Консоль и Периферия -->
+                    <div style="background: rgba(145, 70, 255, 0.03); padding: 16px; border-radius: 12px; border: 1px solid rgba(145, 70, 255, 0.1);">
+                        <p style="color: var(--accent-bright); font-weight: 700; margin-top: 0; margin-bottom: 10px; text-transform: uppercase; font-size: 0.9em; letter-spacing: 0.5px;">🎮 Консоль и девайсы</p>
+                        <ul style="padding-left: 18px; margin: 0; color: var(--text-muted);">
+                            <li><strong style="color: var(--text-main);">Консоль:</strong> PlayStation 5 Slim</li>
+                            <li><strong style="color: var(--text-main);">Наушники:</strong> PlayStation PULSE 3D</li>
+                            <li><strong style="color: var(--text-main);">Веб-камера:</strong> PlayStation HD Camera</li>
+                            <li><strong style="color: var(--text-main);">Микрофон:</strong> Fifine TAM8W</li>
+                            <li><strong style="color: var(--text-main);">Клавиатура:</strong> Ajazz AF98 Black</li>
+                            <li><strong style="color: var(--text-main);">Монитор:</strong> Xiaomi G27i</li>
+                        </ul>
+                    </div>
+
+                    <!-- Правая колонка: Начинка ПК -->
+                    <div style="background: rgba(255, 51, 75, 0.03); padding: 16px; border-radius: 12px; border: 1px solid rgba(255, 51, 75, 0.1);">
+                        <p style="color: #ff6677; font-weight: 700; margin-top: 0; margin-bottom: 10px; text-transform: uppercase; font-size: 0.9em; letter-spacing: 0.5px;">💻 Характеристики ПК</p>
+                        <ul style="padding-left: 18px; margin: 0; color: var(--text-muted);">
+                            <li><strong style="color: var(--text-main);">Видеокарта:</strong> AMD Radeon RX 580</li>
+                            <li><strong style="color: var(--text-main);">Процессор:</strong> Intel Core i7-3770K</li>
+                            <li><strong style="color: var(--text-main);">Оперативная память:</strong> 16 GB</li>
+                            <li><strong style="color: var(--text-main);">Монитор:</strong> Xiaomi A27i</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <style>
+                .investigation-board {
+                    background: var(--bg-card);
+                    border: 1px solid var(--border-color);
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .board-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 16px;
+                    position: relative;
+                    z-index: 1;
+                }
+
+                .evidence-card {
+                    background: rgba(20, 16, 28, 0.7);
+                    border: 1px dashed rgba(145, 70, 255, 0.3);
+                    border-radius: 12px;
+                    padding: 16px;
+                    position: relative;
+                    cursor: pointer;
+                    transition: var(--transition);
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+                }
+
+                .evidence-card:hover {
+                    border-color: var(--accent-primary);
+                    background: rgba(30, 24, 42, 0.85);
+                    transform: translateY(-4px);
+                    box-shadow: 0 8px 25px rgba(145, 70, 255, 0.25);
+                }
+
+                .evidence-card .pin {
+                    position: absolute;
+                    top: -10px;
+                    right: 12px;
+                    font-size: 1.15em;
+                    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.9));
+                }
+
+                .evidence-card .case-number {
+                    font-family: 'JetBrains Mono', monospace;
+                    font-size: 0.72em;
+                    color: var(--danger-primary);
+                    text-transform: uppercase;
+                    letter-spacing: 1.2px;
+                    display: block;
+                    margin-bottom: 6px;
+                    font-weight: 700;
+                }
+
+                .evidence-card h3 {
+                    color: #fff;
+                    font-size: 0.98em;
+                    margin: 0 0 6px 0;
+                    font-weight: 700;
+                }
+
+                .evidence-card p {
+                    color: var(--text-muted);
+                    font-size: 0.82em;
+                    line-height: 1.4;
+                    margin: 0 0 12px 0;
+                }
+
+                .status-stamp {
+                    font-family: 'JetBrains Mono', monospace;
+                    font-size: 0.68em;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    display: inline-block;
+                    background: rgba(255, 170, 0, 0.1);
+                    color: #ffaa00;
+                    border: 1px solid rgba(255, 170, 0, 0.4);
+                    letter-spacing: 0.8px;
+                    font-weight: 700;
+                }
+
+                .status-stamp.success {
+                    background: rgba(0, 255, 102, 0.1);
+                    color: #00ff66;
+                    border-color: rgba(0, 255, 102, 0.4);
+                }
+
+                .status-stamp.pending {
+                    background: rgba(255, 85, 85, 0.1);
+                    color: #ff5555;
+                    border-color: rgba(255, 85, 85, 0.4);
+                }
+            </style>
+
+            <script>
+                function inspectCard(cardElement) {
+                    cardElement.style.borderColor = '#00ff66';
+                    cardElement.style.boxShadow = '0 0 20px rgba(0,255,102,0.3)';
+                    setTimeout(() => {
+                        cardElement.style.borderColor = '';
+                        cardElement.style.boxShadow = '';
+                    }, 600);
+                }
+            </script>
+        </main>
+
+        <!-- ПРАВАЯ КОЛОНКА -->
+        <aside class="sidebar-right">
+            <div class="cyber-block social-hub">
+                <h2>Комьюнити Хаба</h2>
+                <div class="social-grid">
+                    <!-- Twitch -->
+                    <a href="https://www.twitch.tv/pashashine" target="_blank" class="social-card twitch">
+                        <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+                        <div class="info">
+                            <strong>Twitch</strong>
+                            <span>Зафоловиться</span>
+                        </div>
+                    </a>
+
+                       <!-- Outlast -->
+                    <a href="https://outlasttrialsstats.com/@ttvpashashine" target="_blank" class="social-card discord">
+                      <img src="https://static.wikia.nocookie.net/outlast/images/9/97/Murkoff_Logo_clean.png/revision/latest/scale-to-width/360?cb=20241201194710" width="24" height="24" style="width:24px;height:24px;object-fit:contain;margin-right:14px;" alt="Murkoff">
+                        <div class="info">
+                            <strong>Outlast Stats</strong>
+                            <span>Я в Аутласте</span>
+                        </div>
+                    </a>
+
+                    <!-- Discord -->
+                    <a href="https://discord.gg/6JK7Qc6C9u" target="_blank" class="social-card discord">
+                        <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                        <div class="info">
+                            <strong>Discord</strong>
+                            <span>Залететь на сервер</span>
+                        </div>
+                    </a>
+
+                    <!-- Telegram -->
+                    <a href="https://t.me/pasha_shine" target="_blank" class="social-card telegram">
+                        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.12.098.153.228.166.331.011.095.025.319.011.503z"/></svg>
+                        <div class="info">
+                            <strong>Telegram</strong>
+                            <span>Подписаться</span>
+                        </div>
+                    </a>
+
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com/@pashashine" target="_blank" class="social-card youtube">
+                        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        <div class="info">
+                            <strong>YouTube</strong>
+                            <span>Отслеживать</span>
+                        </div>
+                    </div>
+
+                    <!-- Kick -->
+                    <a href="https://kick.com/pashashine" target="_blank" class="social-card kick">
+                        <svg viewBox="0 0 24 24"><path d="M4 2h5v5H4V2zm0 5h5v5H4V7zm0 5h5v5H4v-5zm0 5h5v5H4v-5zm5-10h5v5H9V7zm5 0h5v5h-5V7zm5 5h5v5h-5v-5zm-5 5h5v5H5v-5zm0-5h5v5h-5v-5zm-5 5h5v5H9v-5z"/></svg>
+                        <div class="info">
+                            <strong>Kick</strong>
+                            <span>Платформа-запаска</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Музыкальный терминал комплексов Murkoff -->
+            <div class="cyber-block terminal-player">
+                <h2>🧪 Терминал хаба</h2>
+                <p style="font-size: 0.8em; color: var(--text-muted); text-align: center; margin-top: 0; margin-bottom: 14px;">
+                    Аудио-шлюз изолятора
+                </p>
+
+                <div class="terminal-screen" id="terminal-screen">
+                    <span class="terminal-status-dot" id="player-dot"></span>
+                    <span id="track-title" class="track-name">Сигнал отключен</span>
+                </div>
+
+                <div class="terminal-controls">
+                    <button class="term-btn" onclick="togglePlay()" id="play-btn">▶ ПУСК</button>
+                    <button class="term-btn" onclick="nextTrack()">⏭ СМЕНИТЬ</button>
+                </div>
+
+                <audio id="ambient-audio" loop></audio>
+            </div>
+
+            <div class="cyber-block">
+                <h2>Обновления</h2>
+                <ul class="cyber-list">
+                    <li><a href="news.html" style="font-weight: 600;">Изменения хаба</a></li>
+                </ul>
+            </div>
+
+            <style>
+                .terminal-player {
+                    text-align: center;
+                }
+                .terminal-screen {
+                    background: #040406;
+                    border: 1px solid rgba(145, 70, 255, 0.25);
+                    border-radius: 8px;
+                    padding: 12px;
+                    margin-bottom: 14px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+                    min-height: 30px;
+                }
+                .terminal-status-dot {
+                    width: 8px;
+                    height: 8px;
+                    background-color: #555;
+                    border-radius: 50%;
+                    box-shadow: 0 0 5px #555;
+                    transition: var(--transition);
+                }
+                .terminal-status-dot.playing {
+                    background-color: #00ff66;
+                    box-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66;
+                }
+                .track-name {
+                    font-family: 'JetBrains Mono', monospace;
+                    font-size: 0.82em;
+                    color: var(--accent-bright);
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .terminal-controls {
+                    display: flex;
+                    gap: 10px;
+                }
+                .term-btn {
+                    flex: 1;
+                    background: rgba(24, 20, 32, 0.8);
+                    border: 1px solid rgba(145, 70, 255, 0.3);
+                    color: var(--accent-bright);
+                    padding: 10px;
+                    border-radius: 8px;
+                    font-family: 'JetBrains Mono', monospace;
+                    font-size: 0.78em;
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: var(--transition);
+                    text-transform: uppercase;
+                }
+                .term-btn:hover {
+                    background: var(--accent-primary);
+                    color: #fff;
+                    border-color: var(--accent-primary);
+                    box-shadow: 0 0 15px var(--accent-glow);
+                    transform: translateY(-2px);
+                }
+            </style>
+
+            <script>
+                const playlist = [
+                    { name: "Outlast Vibe", url: "Outlast_Vibe.mp3" }, 
+                    { name: "Outlast Trials", url: "Outlast.mp3" }, 
+                ];
+
+                let currentTrackIndex = 0;
+                const audio = document.getElementById('ambient-audio');
+                const playBtn = document.getElementById('play-btn');
+                const playerDot = document.getElementById('player-dot');
+                const trackTitle = document.getElementById('track-title');
+
+                function loadTrack(index) {
+                    currentTrackIndex = index;
+                    audio.src = playlist[currentTrackIndex].url;
+                    trackTitle.innerText = playlist[currentTrackIndex].name;
+                }
+
+                function togglePlay() {
+                    if (!audio.src || audio.src === window.location.href) {
+                        loadTrack(0);
+                    }
+
+                    if (audio.paused) {
+                        audio.play().then(() => {
+                            playBtn.innerText = "⏸ СТОП";
+                            playerDot.classList.add('playing');
+                            trackTitle.innerText = playlist[currentTrackIndex].name;
+                        }).catch(e => {
+                            trackTitle.innerText = "Трек не воспроизводится";
+                        });
+                    } else {
+                        audio.pause();
+                        playBtn.innerText = "▶ ПУСК";
+                        playerDot.classList.remove('playing');
+                        trackTitle.innerText = "На паузе";
+                    }
+                }
+
+                function nextTrack() {
+                    currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+                    loadTrack(currentTrackIndex);
+                    if (!audio.paused) {
+                        audio.play();
+                    }
+                }
+
+                trackTitle.innerText = playlist[0].name;
+                audio.src = playlist[0].url;
+            </script>
+        </aside>
+
+    </div><!-- /main-layout -->
+
+    <!-- Глобальные скрипты управления -->
+    <script>
+        const easterEggMessages = [
+            "👁️ Доктор Истерман наблюдает за вами...",
+            "⚡ Подача тока на ферму... Всё в норме.",
+            "🧪 Обнаружен образец крови Амелии.",
+            "🔒 Доступ к секретному терминалу 'Побег' закрыт."
+        ];
+        function triggerEasterEgg() {
+            const randomMsg = easterEggMessages[Math.floor(Math.random() * easterEggMessages.length)];
+            alert(randomMsg);
+        }
+
+        document.addEventListener('click', function unlockAudio() {
+            const audioEl = document.getElementById('ambient-audio');
+            if (audioEl && (audioEl.src === "" || audioEl.src === window.location.href)) {
+                audioEl.src = playlist[0].url;
+                document.getElementById('track-title').innerText = playlist[0].name;
+            }
+            document.removeEventListener('click', unlockAudio);
+        }, { once: true });
+    </script>
 </body>
 </html>
