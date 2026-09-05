@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сезон 7.1: Дорожная карта и Дев-блог // PashaShineHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #030305;
+            --bg-card: rgba(16, 14, 23, 0.7);
+            --bg-card-hover: rgba(24, 20, 35, 0.85);
+            --accent-primary: #9146FF;
+            --accent-glow: rgba(145, 70, 255, 0.35);
+            --accent-bright: #b882ff;
+            --danger-primary: #ff334b;
+            --danger-glow: rgba(255, 51, 75, 0.35);
+            --text-main: #f3f0ff;
+            --text-muted: #9c94b0;
+            --border-color: rgba(145, 70, 255, 0.2);
+            --border-hover: rgba(145, 70, 255, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+        body::before {
+            background: var(--accent-primary);
+            top: -200px;
+            left: -200px;
+            animation: floatOrb 10s ease-in-out infinite alternate;
+        }
+        body::after {
+            background: #502099;
+            bottom: -200px;
+            right: -200px;
+            animation: floatOrb 14s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(50px) scale(1.1); }
+        }
+
+        a {
+            color: var(--accent-bright);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        a:hover {
+            color: #ffffff;
+        }
+
+        .top-navbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(8, 7, 12, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(145, 70, 255, 0.1);
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(24, 20, 32, 0.6);
+            border: 1px solid var(--border-color);
+            color: #d1b8ff;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent-primary);
+            color: #fff;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .main-layout {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .cyber-block {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                        inset 0 0 15px rgba(145, 70, 255, 0.05);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .cyber-block h2 {
+            color: var(--text-main);
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-size: 1.15em;
+            font-weight: 800;
+            border-bottom: 1px solid rgba(145, 70, 255, 0.15);
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .cyber-block h2::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-primary);
+            box-shadow: 0 0 8px var(--accent-primary);
+        }
+
+        .cyber-block.danger-zone {
+            background: rgba(26, 8, 12, 0.75);
+            border-color: rgba(255, 51, 75, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                        inset 0 0 15px rgba(255, 51, 75, 0.08);
+        }
+
+        .cyber-block.danger-zone h2 {
+            color: #ff808f;
+            border-bottom-color: rgba(255, 51, 75, 0.2);
+        }
+
+        .cyber-block.danger-zone h2::after {
+            background: var(--danger-primary);
+            box-shadow: 0 0 8px var(--danger-primary);
+        }
+
+        /* Блок для картинки */
+        .image-container {
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px dashed var(--border-color);
+            background: rgba(0,0,0,0.4);
+            text-align: center;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            max-height: 400px;
+        }
+
+        .image-placeholder-text {
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            padding: 20px;
+        }
+
+        blockquote {
+            margin: 0 0 20px 0;
+            padding: 16px 20px;
+            background: rgba(145, 70, 255, 0.05);
+            border-left: 3px solid var(--accent-primary);
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .danger-zone blockquote {
+            background: rgba(255, 51, 75, 0.05);
+            border-left-color: var(--danger-primary);
+            color: #ffb3bc;
+        }
+
+        .qol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .qol-item {
+            background: rgba(24, 20, 32, 0.6);
+            border: 1px solid rgba(145, 70, 255, 0.15);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.88em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .qol-item::before {
+            content: '⚙️';
+            font-size: 0.9em;
+        }
+
+        .highlight-badge {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(145, 70, 255, 0.15);
+            color: var(--accent-bright);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            border: 1px solid rgba(145, 70, 255, 0.3);
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-navbar">
+        <a href="index.html" class="nav-btn">Главная Хаба</a>
+        <a href="roles.html" class="nav-btn">Роли сервера</a>
+        <a href="invasion.html" class="nav-btn">Каталог вторжения 🔪</a>
+        <a href="updates.html" class="nav-btn" style="background: var(--accent-primary); color: #fff; border-color: var(--accent-primary);">Игровые патчи</a>
+        <a href="news.html" class="nav-btn">Список изменений</a>
+        <a href="catalogs.html" class="nav-btn">Игровые каталоги</a>
+    </nav>
+
+    <div class="main-layout">
+        <main class="main-content">
+            
+            <!-- Шапка и тизер -->
+            <div class="cyber-block">
+                <span class="highlight-badge">ДЕВ-БЛОГ // СЕЗОН 7.1</span>
+                <h1 style="font-size: 1.8em; font-weight: 800; margin-top: 0; margin-bottom: 14px; color: #fff;">
+                    📋 Дорожная карта и Дев-блог Сезона 7.1 - Обновление выйдет 8 сентября
+                </h1>
+                
+                <!-- Место для вставки картинки (Замените src на вашу ссылку, например: https://example.com/image.jpg) -->
+                <div class="image-container">
+                    <img src="https://" alt="Сезон 7.1 The Outlast Trials" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="image-placeholder-text" style="display:none;">
+                        📷 Место для изображения (вставьте валидную ссылку после https:// в коде страницы)
+                    </div>
+                </div>
+
+                <blockquote>
+                    "Сентябрь наступил, и по мере приближения обновления Сезона 7.1 мы хотим приоткрыть завесу тайны над тем, что ждет вас 8 сентября в 17:00 по МСК (10:00 ET), а также до конца 2026 года в The Outlast Trials! 👁️"
+                </blockquote>
+            </div>
+
+            <!-- Дорожная карта -->
+            <div class="cyber-block">
+                <h2>🗺️ Дорожная карта (Roadmap)</h2>
+                <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+                    Терапия не сбавляет обороты. Вот что ждет вас в испытаниях до конца 2026 года:
+                </p>
+                <div style="background: rgba(145, 70, 255, 0.08); border: 1px solid rgba(145, 70, 255, 0.2); padding: 14px 18px; border-radius: 10px; font-weight: 700; color: #fff;">
+                    🚀 Сезон 7.1 - 8 сентября: 2 новых MK-испытания и временное событие "Утечка химикатов".
+                </div>
+            </div>
+
+            <!-- Событие и MK-испытания -->
+            <div class="cyber-block">
+                <h2>🔥 Новое временное событие: Утечка химикатов (Chemical Leak)</h2>
+                <blockquote>
+                    "Яд - это пьянящие объятия, удушающие тело, точно так же, как ложные кумиры отравляют веру слабых, необразованных и уязвимых. Перекройте вентили, вздохните свободно и помните, что терапия - единственный ответ".
+                </blockquote>
+                <p style="font-size: 0.9em; color: var(--accent-bright);">✨ Событие также будет включать собственный эксклюзивный каталог.</p>
+            </div>
+
+            <div class="cyber-block">
+                <h2>📺 Новое MK-испытание: Изменить программу (Change the Program)</h2>
+                <blockquote>
+                    "Вы - глашатай, который знает: новости не обязаны быть журналистикой, они должны быть просто новыми. Несите нашу правду, измените программу, и мы отпустим вас".
+                </blockquote>
+            </div>
+
+            <div class="cyber-block">
+                <h2>💰 Новое MK-испытание: Проспонсируй кампанию (Fund the Campaign)</h2>
+                <blockquote>
+                    "Вы - молот в руках ребенка, способный сокрушить хрупких свиней, смеющих отделять успех от созданного им правительства. Деньги - это будущее свободы слова. Проспонсируй кампанию, и мы отпустим вас".
+                </blockquote>
+            </div>
+
+            <!-- Прекращение поддержки модов -->
+            <div class="cyber-block danger-zone">
+                <h2>🛑 Прекращение поддержки модов (начиная с Сезона 7.1)</h2>
+                <p style="color: #ffb3bc; line-height: 1.6; margin-bottom: 16px;">
+                    С 8 сентября поддержка модификаций больше недоступна. Разработчики признают пользу модов, но некоторые из них дают нечестное преимущество или меняют игровой процесс непредусмотренным образом. Для поддержания честного и стабильного опыта для всех игроков моды больше не поддерживаются.
+                </p>
+                
+                <p style="color: #fff; font-weight: 700; margin-bottom: 12px;">
+                    Взамен в меню настроек добавлены популярные функции качества жизни (QoL), ранее доступные только через моды:
+                </p>
+
+                <div class="qol-grid">
+                    <div class="qol-item">Регулировка поля зрения (Field of View - ползунок)</div>
+                    <div class="qol-item">Интенсивность тряски камеры (Camera Shake - ползунок)</div>
+                    <div class="qol-item">Разминка в движении / Размытие (Motion Blur) — Вкл / Выкл</div>
+                    <div class="qol-item">Зернистость пленки (Film Grain) — Вкл / Выкл</div>
+                    <div class="qol-item">Хроматическая аберрация (Chromatic Aberration) — Вкл / Выкл</div>
+                    <div class="qol-item">Блики в объективе (Lens Flares) — Вкл / Выкл</div>
+                    <div class="qol-item">Виньетка (Vignette) — Вкл / Выкл</div>
+                    <div class="qol-item">Свечение (Bloom) — Вкл / Выкл</div>
+                    <div class="qol-item">Вступительные видео (Startup videos) — Вкл / Выкл</div>
+                    <div class="qol-item">Переключение отображения интерфейса (Toggle HUD Display) — Вкл / Выкл</div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>
