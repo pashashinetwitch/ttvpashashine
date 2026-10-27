@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поддержка проекта // PashaShineHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #050507;
+            --bg-card: rgba(16, 14, 23, 0.85);
+            --accent-primary: #9146FF;
+            --accent-glow: rgba(145, 70, 255, 0.35);
+            --accent-bright: #b882ff;
+            --danger-primary: #ff334b;
+            --danger-glow: rgba(255, 51, 75, 0.4);
+            --text-main: #f3f0ff;
+            --text-muted: #9c94b0;
+            --border-color: rgba(145, 70, 255, 0.25);
+            --border-hover: rgba(145, 70, 255, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Фикс перекрытия: затемняем картинку прямо в background */
+            background: linear-gradient(rgba(5, 5, 8, 0.88), rgba(3, 3, 5, 0.95)), 
+                        url('https://abrakadabra.fun/uploads/posts/2022-02/1645669006_1-abrakadabra-fun-p-fon-dlya-doneishen-alerts-2.jpg') center/cover no-repeat fixed #050507;
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 20px 10px;
+            min-height: 100vh;
+        }
+
+        a {
+            color: var(--accent-bright);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        a:hover {
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Верхняя навигация */
+        .top-navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(12, 10, 18, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 14px 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(145, 70, 255, 0.15);
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(24, 20, 32, 0.7);
+            border: 1px solid var(--border-color);
+            color: #d1b8ff;
+            padding: 10px 18px;
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--accent-primary);
+            color: #fff;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Карточки/Блоки */
+        .cyber-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .cyber-block:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(145, 70, 255, 0.15);
+        }
+
+        .cyber-block h2 {
+            color: var(--text-main);
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-size: 1.1em;
+            font-weight: 800;
+            border-bottom: 1px solid rgba(145, 70, 255, 0.2);
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items:
