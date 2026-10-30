@@ -486,6 +486,72 @@
     <audio id="ambient-audio" loop></audio>
 </div>
 
+<script>
+    const playlist = [
+        { name: "Outlast Vibe", url: "Outlast_Vibe.mp3" }, 
+        { name: "Outlast Trials", url: "Outlast.mp3" }, 
+    ];
+
+    let currentTrackIndex = 0;
+    const audio = document.getElementById('ambient-audio');
+    const playBtn = document.getElementById('play-btn');
+    const playerDot = document.getElementById('player-dot');
+    const trackTitle = document.getElementById('track-title');
+    const volumeControl = document.getElementById('volume-control');
+
+    // Функция обновления громкости
+    function changeVolume(val) {
+        if (audio) {
+            audio.volume = parseFloat(val);
+        }
+    }
+
+    function loadTrack(index) {
+        currentTrackIndex = index;
+        audio.src = playlist[currentTrackIndex].url;
+        trackTitle.innerText = playlist[currentTrackIndex].name;
+        // Принудительно ставим громкость из ползунка при загрузке трека
+        audio.volume = volumeControl ? parseFloat(volumeControl.value) : 0.3;
+    }
+
+    function togglePlay() {
+        if (!audio.src || audio.src === window.location.href) {
+            loadTrack(0);
+        }
+
+        // Еще раз жестко применяем громкость перед воспроизведением
+        audio.volume = volumeControl ? parseFloat(volumeControl.value) : 0.3;
+
+        if (audio.paused) {
+            audio.play().then(() => {
+                playBtn.innerText = "⏸ СТОП";
+                if(playerDot) playerDot.classList.add('playing');
+                trackTitle.innerText = playlist[currentTrackIndex].name;
+            }).catch(e => {
+                trackTitle.innerText = "Ошибка воспроизведения";
+            });
+        } else {
+            audio.pause();
+            playBtn.innerText = "▶ ПУСК";
+            if(playerDot) playerDot.classList.remove('playing');
+            trackTitle.innerText = "На паузе";
+        }
+    }
+
+    function nextTrack() {
+        currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+        loadTrack(currentTrackIndex);
+        if (!audio.paused) {
+            audio.play();
+        }
+    }
+
+    // Инициализация при загрузке
+    if (audio) {
+        audio.volume = 0.3; // 30% стартовая громкость
+    }
+</script>
+
             <!-- Обновления -->
             <div class="glass-panel rounded-2xl p-5 border border-cyber-purple/30">
                 <div class="border-b border-cyber-purple/30 pb-3 mb-3">
