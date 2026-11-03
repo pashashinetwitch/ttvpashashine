@@ -97,4 +97,325 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 2
+            gap: 20px;
+        }
+
+        /* --- Кибер-блоки --- */
+        .cyber-block {
+            background-color: #101014;
+            border: 1px solid #502099;
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4), inset 0 0 10px rgba(145, 70, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .cyber-block h2 {
+            color: #c39bff;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1em;
+            text-align: center;
+            border-bottom: 1px solid #40197a;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* --- Блок Монобанки (красный акцент Murkoff) --- */
+        .cyber-block.monobank-danger {
+            background-color: #1a080a;
+            border-color: #ff3333;
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.4), inset 0 0 10px rgba(255, 51, 75, 0.1);
+        }
+
+        .cyber-block.monobank-danger h2 {
+            color: #ff6666;
+            border-bottom-color: #7a1919;
+        }
+
+        .bot-reward-card {
+            background: rgba(255, 51, 51, 0.08);
+            border-left: 3px solid #ff3333;
+            padding: 12px 15px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 18px;
+            font-size: 0.9em;
+            color: #ffb3bc;
+            line-height: 1.6;
+        }
+
+        .mono-btn-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .mono-btn {
+            background: linear-gradient(135deg, #ff3343 0%, #cc1125 100%);
+            border: 1px solid #ff3343;
+            color: white;
+            padding: 12px 26px;
+            font-weight: 800;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
+            transition: var(--transition);
+            display: inline-block;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .mono-btn:hover {
+            background: linear-gradient(135deg, #ff4d5d 0%, #ff3343 100%);
+            box-shadow: 0 0 25px rgba(255, 51, 51, 0.8);
+            transform: translateY(-2px);
+            color: #fff;
+        }
+
+        .tracker-btn {
+            background: #ece9d8;
+            border: 1px solid #7f9db9;
+            color: #000;
+            font-family: Tahoma, sans-serif;
+            font-size: 0.82em;
+            padding: 4px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            box-shadow: inset 1px 1px 0 #fff, 1px 1px 2px rgba(0,0,0,0.3);
+            margin-top: 6px;
+        }
+        .tracker-btn:hover {
+            background: #f5f3e7;
+        }
+
+        /* --- Топ донатеров сетка --- */
+        .top-donators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 11px;
+        }
+
+        .donator-card {
+            background: #181820;
+            border: 1px solid #40197a;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .donator-card:hover {
+            border-color: #9146FF;
+            box-shadow: 0 0 10px rgba(145, 70, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* --- Таблица истории --- */
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+
+        .history-table th, .history-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #40197a;
+            text-align: left;
+        }
+
+        .history-table th {
+            color: #c39bff;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+        }
+
+        .history-table td {
+            color: #b0b0c0;
+        }
+
+        /* --- Сетки для инфо-блоков --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигация -->
+    <nav class="top-navbar">
+        <a href="index.html" class="nav-btn">Главная Хаба</a>
+        <a href="invasion.html" class="nav-btn" style="background: #de0d0d; color: #fff;">Каталог вторжения 🔪</a>
+        <a href="wishlist.html" class="nav-btn">Желаемое</a>
+        <a href="donat.html" class="nav-btn active" style="background: #9146FF; color: #fff;">Меценаты</a>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="main-layout">
+
+        <!-- Блок Монобанки -->
+        <div class="cyber-block monobank-danger">
+            <h2>💳 Поддержать стримера</h2>
+            <p class="info-text" style="color: #d0d0d0; font-size: 0.95em; line-height: 1.5; margin-top: 0;">
+                Помощь PashaShineHub. Поддерживая стримера, вы улучшаете качество трансляций и железный сетап. Спасибо вам за помощь!
+            </p>
+            
+            <div class="bot-reward-card">
+                ⚡ <strong>Награда Меценатам:</strong> Каждый вклад вносит прямой вклад в стабильность трансляций. За активную помощь в продлении работы сервера и стримера PashaShine меценаты награждаются <strong>особыми бонусами, эксклюзивным статусом и благодарностью</strong> на канале!<br><br>
+                🌍 <span style="color: #ffcccc;">Карта Monobank доступна в Украине и Европе.</span>
+            </div>
+
+            <div class="mono-btn-container" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://send.monobank.ua/jar/85ZzRFwoWJ" target="_blank" class="mono-btn">🛡️ Monobank</a>
+                <a href="https://www.donationalerts.com/r/ttvpashashine" target="_blank" class="mono-btn" style="background: linear-gradient(135deg, #9146FF 0%, #502099 100%); border-color: #9146FF;">🛡️ DonationAlerts + Crypto</a>
+            </div>
+        </div>
+
+        <!-- РЕТРО-БЛОК В СТИЛЕ ТРЕКЕРА (Пакеты голосов и ГБ) -->
+        <div class="cyber-block" style="border-color: #ffb700; background-color: #0e0d12;">
+            <h2 style="color: #ffb700; border-bottom-color: #5c4300;">🎁 Офшорные пакеты поддержки (Kinozal Edition)</h2>
+            
+            <!-- Пакет 1: PayPal / Mono -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid #ffb700; border-radius: 6px; padding: 12px; margin-bottom: 12px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="background: #fff; color: #003087; font-weight: 900; font-size: 0.75em; padding: 2px 6px; border-radius: 3px; font-family: sans-serif;">PayPal / Visa</span>
+                    <div>
+                        <strong style="color: #fff; font-size: 0.9em;">Monobank & Card</strong>
+                        <span style="font-size: 0.78em; color: #ffb84d; margin-left: 6px;">Оплата UAH/EUR. Рекомендуемый способ.</span>
+                    </div>
+                </div>
+
+                <form onsubmit="redirectToPay(event, 'https://send.monobank.ua/jar/85ZzRFwoWJ')" style="font-size: 0.84em; color: #ffb84d;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 6px; margin-bottom: 8px;">
+                        <label style="cursor: pointer;"><input type="radio" name="p1" checked> <strong>100₴</strong> — получить 50 голосов и 100 ГБ</label>
+                        <label style="cursor: pointer;"><input type="radio" name="p1"> <strong>300₴</strong> — 150 голосов и 300 ГБ + 15%</label>
+                        <label style="cursor: pointer;"><input type="radio" name="p1"> <strong>200₴</strong> — 100 голосов и 200 ГБ + 10%</label>
+                        <label style="cursor: pointer;"><input type="radio" name="p1"> <strong>600₴</strong> — 300 голосов и 600 ГБ + 20%</label>
+                    </div>
+                    <button type="submit" class="tracker-btn">Получить голоса Monobank</button>
+                </form>
+            </div>
+
+            <!-- Пакет 2: NOWPayments / Crypto -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid #40197a; border-radius: 6px; padding: 12px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="background: #f7931a; color: #fff; font-weight: 900; font-size: 0.75em; padding: 2px 6px; border-radius: 3px; font-family: sans-serif;">₿ NOWPayments</span>
+                    <div>
+                        <strong style="color: #fff; font-size: 0.9em;">Crypto & DonationAlerts</strong>
+                        <span style="font-size: 0.78em; color: #a0a0b0; margin-left: 6px;">(USDT, BTC, ETH, Solana, TON).</span>
+                    </div>
+                </div>
+
+                <form onsubmit="redirectToPay(event, 'https://www.donationalerts.com/r/ttvpashashine')" style="font-size: 0.84em; color: #ffb84d;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 6px; margin-bottom: 8px;">
+                        <label style="cursor: pointer;"><input type="radio" name="p2" checked> <strong>10$</strong> — 100 голосов и 200 ГБ + 10%</label>
+                        <label style="cursor: pointer;"><input type="radio" name="p2"> <strong>30$</strong> — 300 голосов и 600 ГБ + 20%</label>
+                        <label style="cursor: pointer;"><input type="radio" name="p2"> <strong>20$</strong> — 150 голосов и 300 ГБ + 15%</label>
+                        <label style="cursor: pointer;"><input type="radio" name="p2"> <strong>50$</strong> — 600 голосов и 1200 ГБ + 25%</label>
+                    </div>
+                    <button type="submit" class="tracker-btn">Получить голоса NOWPayments</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Топ донатеров -->
+        <div class="cyber-block">
+            <h2>⚡ ТОП ДОНАТЕРОВ ⚡</h2>
+            <div class="top-donators-grid">
+                <div class="donator-card">Flent</div>
+                <div class="donator-card">Stevenrichter1996</div>
+                <div class="donator-card">Ravenous_vest</div>
+                <div class="donator-card">au_hero_wormix_54</div>
+            </div>
+        </div>
+
+        <!-- История помощи -->
+        <div class="cyber-block">
+            <h2>📋 Помощь Меценатов за все время</h2>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Способ</th>
+                        <th>Начисление</th>
+                        <th>Дата</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PayPal</td>
+                        <td style="color: #00ff66; font-family: 'Courier New', monospace; font-weight: bold;">+ 8084 UAH</td>
+                        <td>За весь период</td>
+                    </tr>
+                    <tr>
+                        <td>PayPal</td>
+                        <td style="color: #00ff66; font-family: 'Courier New', monospace; font-weight: bold;">+ 3000 UAH</td>
+                        <td>За весь период</td>
+                    </tr>
+                    <tr>
+                        <td>DonationAlerts</td>
+                        <td style="color: #00ff66; font-family: 'Courier New', monospace; font-weight: bold;">+ 575 UAH</td>
+                        <td>За весь период</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Обратная связь и Памятка -->
+        <div class="grid-2">
+            <div class="cyber-block" style="margin-bottom: 0;">
+                <h2>📡 Обратная связь</h2>
+                <p style="font-size: 0.9em; color: #a0a0b0; line-height: 1.5; margin: 0;">
+                    Если донат по какой-то причине не отобразился в таблице или возникли вопросы по переводу — пиши в чат во время стрима или в личные сообщения. Всё проверим и поправим!
+                </p>
+            </div>
+
+            <div class="cyber-block" style="margin-bottom: 0;">
+                <h2>💡 Памятка по переводам</h2>
+                <p style="font-size: 0.9em; color: #a0a0b0; line-height: 1.5; margin: 0;">
+                    При переводе через зарубежные карты или PayPal конвертация в гривну идет по курсу твоего банка. Для переводов без лишних комиссий лучше использовать прямую ссылку на Монобанку.
+                </p>
+            </div>
+        </div>
+
+        <!-- FAQ и Цели -->
+        <div class="grid-2">
+            <div class="cyber-block" style="margin-bottom: 0;">
+                <h2>❓ Частые вопросы</h2>
+                <div style="font-size: 0.88em; color: #a0a0b0; display: flex; flex-direction: column; gap: 10px;">
+                    <div><strong style="color: #fff;">Как сделать анонимный донат?</strong><br>Укажи любое имя или оставь поле пустым при переводе через DonationAlerts.</div>
+                    <div><strong style="color: #fff;">Куда идут алерты?</strong><br>Все донаты мгновенно триггерят оповещение прямо на стриме.</div>
+                </div>
+            </div>
+
+            <div class="cyber-block" style="margin-bottom: 0;">
+                <h2>⚡ Бонусы и Цели</h2>
+                <ul style="margin: 0; padding-left: 18px; font-size: 0.88em; color: #a0a0b0; display: flex; flex-direction: column; gap: 6px;">
+                    <li>Приоритетный вывод TTS-сообщений на стриме.</li>
+                    <li>Доступ к кастомным ролям и эмоциям в комьюнити.</li>
+                    <li>Оплата стабильной работы сервера и апгрейд железа.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Скрипт редиректа для трекер-кнопок -->
+    <script>
+        function redirectToPay(e, url) {
+            e.preventDefault();
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
